@@ -6,6 +6,7 @@ declare namespace NodeJS {
     GITHUB_SECRET: string
     FACEBOOK_ID: string
     FACEBOOK_SECRET: string
+    FACEBOOK_CALLBACK: string
     TWITTER_ID: string
     TWITTER_SECRET: string
     GOOGLE_ID: string
