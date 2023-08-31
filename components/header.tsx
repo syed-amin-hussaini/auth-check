@@ -33,7 +33,17 @@ export default function Header() {
                   signIn("google");
                 }}
               >
-                Sign in
+                Sign in google
+              </a>
+              <a
+                href={`/api/auth/signin`}
+                className={styles.buttonPrimary}
+                onClick={(e) => {
+                  e.preventDefault();
+                  signIn("facebook");
+                }}
+              >
+                Sign in Facebook
               </a>
             </>
           )}
