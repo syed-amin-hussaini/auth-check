@@ -43,6 +43,7 @@ const Login = () => {
             Oreo
           </h2>
           <a
+           href={`/api/auth/signin`}
             onClick={() => handleSignIn("google")}
             className={`${styles.button} ${styles.button_google}`}
           >
@@ -50,6 +51,7 @@ const Login = () => {
             Sign in Google
           </a>
           <a
+             href={`/api/auth/signin`}
             onClick={() => handleSignIn("facebook")}
             className={`${styles.button} ${styles.button_facebook}`}
           >
