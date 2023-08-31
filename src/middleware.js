@@ -23,7 +23,7 @@ export default async function middleware(req) {
     console.log(user)
     console.log(user?.token)
    
-    if (userCountry === 'Pakistans' && req.url !== '/testing') {
+    if (userCountry !== 'Pakistan' && req.url !== '/testing') {
       console.log("Redirecting user from Pakistan to /testing route");
       return NextResponse.rewrite(new URL('/testing', req.url))
     }
