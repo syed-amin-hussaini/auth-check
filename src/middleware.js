@@ -17,7 +17,7 @@ export default async function middleware(req) {
     const userCountry = userIpData?.country_name ?? "empty";
     // console.log(userCountry)
     // const token = req.cookies.get("token");
-    let user = req?.cookies?.get("user")?.value ?? {};
+    let user = req?.cookies?.get("user")?.value ?? '{"token":"","profile_status":""}';
     let  userCurrent = JSON?.parse(user)
     // console.log({req})
     console.log(userCurrent)
