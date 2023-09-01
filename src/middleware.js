@@ -31,7 +31,7 @@ export default async function middleware(req) {
     }
     console.log("Cookie Result")
     console.log({userDetail})
-    const sessionMiddleware = await getToken({ req: req, secret: process.env.SECRET }); console.log('Session in middleware: ', sessionMiddleware)
+    const sessionMiddleware = await getToken({ req: req, secret: process.env.JWT_SECRET }); console.log('Session in middleware: ', sessionMiddleware)
     console.log({sessionMiddleware})
     if (user === undefined) { 
       console.log("Redirecting user from Login route");
