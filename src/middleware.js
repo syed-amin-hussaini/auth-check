@@ -22,7 +22,6 @@ export default async function middleware(req) {
     // const token = req.cookies.get("token");
     let user = req?.cookies.get("user")?.value;
     if (user) {
-      console.log("asdas")
       user = JSON?.parse(user) 
     }
     let userDetail = {
@@ -32,9 +31,9 @@ export default async function middleware(req) {
     }
     console.log("Cookie Result")
     console.log({userDetail})
-    const session = await getToken({ req: req, secret: process.env.SECRET }); console.log('Session in middleware: ', session)
-    
-    if (!session) {
+    const sessionMiddleware = await getToken({ req: req, secret: process.env.SECRET }); console.log('Session in middleware: ', sessionMiddleware)
+    console.log({sessionMiddleware})
+    if (user === undefined) { 
       console.log("Redirecting user from Login route");
       return NextResponse.rewrite(new URL('/login', req.url))
     }
