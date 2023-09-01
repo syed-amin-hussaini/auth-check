@@ -17,11 +17,11 @@ export default async function middleware(req) {
     const userCountry = userIpData?.country_name ?? "empty";
     // console.log(userCountry)
     // const token = req.cookies.get("token");
-    let user = req?.cookies?.get("user")?.value;
-     user = JSON?.parse(user)
+    let user = req?.cookies?.get("user")?.value ?? {};
+    let  userCurrent = JSON?.parse(user)
     // console.log({req})
-    console.log(user)
-    console.log(user?.token)
+    console.log(userCurrent)
+    console.log(userCurrent?.token)
    
     if (userCountry !== 'Pakistan' && req.url !== '/notallow') {
       console.log("Redirecting user from Pakistan to /testing route");
@@ -31,7 +31,7 @@ export default async function middleware(req) {
       console.log("Redirecting user from Empty to /empty route");
       return NextResponse.rewrite(new URL('/testing', req.url))
     }
-    if ( user?.profile_status != "complete"  ||  user?.profile_status == undefined || user?.profile_status == null ) {
+    if ( userCurrent?.profile_status != "complete"  ||  userCurrent?.profile_status == undefined || userCurrent?.profile_status == null ) {
       console.log("Redirect to Register");
       return NextResponse.rewrite(new URL('/registration', req.url));
     }
