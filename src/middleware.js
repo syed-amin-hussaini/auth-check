@@ -13,24 +13,37 @@ export default async function middleware(req) {
 
   try {
     const userIpResponse = await fetch("https://json.geoiplookup.io/", requestOptions);
-    const userIpData = await userIpResponse.json();
-    const userCountry = userIpData.country_name;
+    const userIpData = await userIpResponse?.json();
+    const userCountry = userIpData?.country_name;
     // console.log(userCountry)
     // const token = req.cookies.get("token");
-    let user = req.cookies.get("user")?.value;
-     user = JSON?.parse(user)
-    // console.log({req})
-    console.log({user})
-    console.log(user?.token)
-   
+    let user = req?.cookies.get("user")?.value;
+    if (user) {
+      console.log("asdas")
+      user = JSON?.parse(user) 
+    }
+    let userDetail = {
+      userStatus:user?.profile_status,
+      userToken:user?.token,
+      userCountry:userCountry,
+    }
+    console.log("Cookie Result")
+    console.log({userDetail})
+
+    if (user === undefined) { 
+      console.log("Redirecting user from Login route");
+      return NextResponse.rewrite(new URL('/login', req.url))
+    }
+
     if (userCountry === 'Pakistans' && req.url !== '/testing') {
       console.log("Redirecting user from Pakistan to /testing route");
       return NextResponse.rewrite(new URL('/testing', req.url))
     }
-    // if ( user?.profile_status != "complete"  ||  user?.profile_status == undefined || user?.profile_status == null ) {
-    //   console.log("Redirect to Register");
-    //   return NextResponse.rewrite(new URL('/registration', req.url));
-    // }
+    if (user?.profile_status != "complete"  ||  user?.profile_status == undefined || user?.profile_status == null ) {
+      console.log("Redirect to Register");
+      return NextResponse.rewrite(new URL('/registration', req.url));
+    }
+
    
   } catch (error) {
     console.error("Error fetching user IP data:", error);

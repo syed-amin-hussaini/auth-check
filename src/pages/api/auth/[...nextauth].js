@@ -29,7 +29,6 @@ const nextAuthOptions = (req, res) => {
     callbacks: {
       async signIn(user, account, profile) {
         try {
-          // console.log({ user });
           const apiUrl =  `${process.env.NEXT_PUBLIC_API_URL}verify-user`;
           const requestData = {
             id: user?.user?.id,
@@ -40,17 +39,13 @@ const nextAuthOptions = (req, res) => {
           };
 
           const response = await axios.post(apiUrl, requestData);
-          // console.log(response?.data)
           let token = response?.data?.token;
           let profile_status = response?.data?.profile_status;
-          console.log("API REsult") 
-          console.log({ token })
-          console.log({profile_status})
 
           // Use the useEffect hook to set the cookie on the client side
           // useEffect(() => {
             // setCookie({ res }, 'user', `{\"token\":\"${token}\",\"profile_status\":\"${profile_status}\"}` , {
-            setCookie({ res }, 'user', `{\"token\":\"${token}\",\"profile_status\":\"incomplete\"}` , {
+            setCookie({ res }, 'user', `{\"token\":\"${token}\",\"profile_status\":\"${profile_status}\"}` , {
               maxAge: 3600, // Cookie expiration time in seconds (e.g., 1 hour)
               path: '/',    // Cookie path
             });
