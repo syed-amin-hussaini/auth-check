@@ -20,7 +20,7 @@ export default async function middleware(req) {
     let user = req.cookies.get("user")?.value;
      user = JSON?.parse(user)
     // console.log({req})
-    console.log(user)
+    console.log({user})
     console.log(user?.token)
    
     if (userCountry === 'Pakistans' && req.url !== '/testing') {
