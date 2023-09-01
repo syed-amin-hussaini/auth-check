@@ -3,6 +3,7 @@ import Head from "next/head";
 import { getSession, useSession } from "next-auth/react";
 import Nav from "@/components/Nav";
 import { useEffect, useState } from "react";
+import Drawer from "@/components/Drawer";
 
 
 export default function Home({user }) {
@@ -25,8 +26,6 @@ export default function Home({user }) {
     errMsg: "",
   });
  
-
-
   return (
     <div>
       <Head>
@@ -34,11 +33,12 @@ export default function Home({user }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Nav />
+      <Drawer />
       <main>
         {loading && <div className={{}}>Loading...</div>}
         <h1>Hello, {user?.name}!</h1>
-      <p>Email: {user?.email}</p>
-      <p>Custom Token: {user?.customToken}</p>
+        <p>Email: {user?.email}</p>
+        <p>Custom Token: {user?.customToken}</p>
       </main>
     </div>
   );

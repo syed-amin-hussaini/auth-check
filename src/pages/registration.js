@@ -1,8 +1,10 @@
 import Head from "next/head";
 // import styles from "../styles/Home.module.css";
-import { getSession, useSession } from "next-auth/react";
+// import { getSession, useSession } from "next-auth/react";
 import Nav from "@/components/Nav";
 import { useEffect, useState } from "react";
+import { getSession } from "next-auth/react";
+import Drawer from "@/components/Drawer";
 
 export default function Registration({session}) {
   // const { data: session, status } = useSession();
@@ -43,6 +45,7 @@ export default function Registration({session}) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Nav />
+      <Drawer />
       <main>
         <form>
           
@@ -106,19 +109,20 @@ export default function Registration({session}) {
   );
 }
 
-// export async function getServerSideProps(context) {
-//   const session = await getSession(context)
+export async function getServerSideProps(context) {
+  const session = await getSession(context)
 
-//   if (!session) {
-//     return {
-//       redirect: {
-//         destination: '/login',
-//         permanent: false,
-//       },
-//     }
-//   }
+  console.log({session})
+  // if (!session) {
+  //   return {
+  //     redirect: {
+  //       destination: '/login',
+  //       permanent: false,
+  //     },
+  //   }
+  // }
 
-//   return {
-//     props: { session }
-//   }
-// }
+  return {
+    props: { session }
+  }
+}

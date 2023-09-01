@@ -16,4 +16,15 @@ module.exports = withPWA({
   // next.js config
 })
 
+module.exports = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'lh3.googleusercontent.com',
+      },
+    ],
+  },
+}
+
 // module.exports = nextConfig;

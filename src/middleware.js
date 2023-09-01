@@ -33,21 +33,16 @@ export default async function middleware(req) {
     console.log({userDetail})
     const sessionMiddleware = await getToken({ req: req, secret: process.env.JWT_SECRET }); console.log('Session in middleware: ', sessionMiddleware)
     console.log({sessionMiddleware})
-    if (user === undefined) { 
-      console.log("Redirecting user from Login route");
+    if (user === undefined) {
       return NextResponse.rewrite(new URL('/login', req.url))
     }
-
     if (userCountry === 'Pakistans' && req.url !== '/testing') {
-      console.log("Redirecting user from Pakistan to /testing route");
       return NextResponse.rewrite(new URL('/testing', req.url))
     }
     if (user?.profile_status != "complete"  ||  user?.profile_status == undefined || user?.profile_status == null ) {
-      console.log("Redirect to Register");
       return NextResponse.rewrite(new URL('/registration', req.url));
     }
-
-   
+    
   } catch (error) {
     console.error("Error fetching user IP data:", error);
   }
