@@ -1,10 +1,13 @@
 import { NextResponse } from "next/server";
 import { parseCookies } from 'nookies';
+import { getToken } from "next-auth/jwt";
+
 
 export default async function middleware(req) {
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
 
+  
   const requestOptions = {
     method: "GET",
     redirect: "follow",
@@ -29,8 +32,9 @@ export default async function middleware(req) {
     }
     console.log("Cookie Result")
     console.log({userDetail})
-
-    if (user === undefined) { 
+    const session = await getToken({ req: req, secret: process.env.SECRET }); console.log('Session in middleware: ', session)
+    
+    if (!session) {
       console.log("Redirecting user from Login route");
       return NextResponse.rewrite(new URL('/login', req.url))
     }
