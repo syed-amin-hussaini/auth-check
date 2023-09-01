@@ -17,24 +17,16 @@ export default async function middleware(req) {
     const userCountry = userIpData?.country_name ?? "empty";
     // console.log(userCountry)
     // const token = req.cookies.get("token");
-    let user = req?.cookies?.get("user")?.value ?? '{"token":"","profile_status":""}';
-    let  userCurrent = JSON?.parse(user)
+    let user = req?.cookies?.get("user") ;
+    let getUser = user?.value;
+    console.log({getUser})
+    let userCurrent;
+    if (getUser) {
+      userCurrent = JSON?.parse(user)
+    }
     // console.log({req})
-    console.log(userCurrent)
-    console.log(userCurrent?.token)
-   
-    if (userCountry !== 'Pakistan' && req.url !== '/notallow') {
-      console.log("Redirecting user from Pakistan to /testing route");
-      return NextResponse.rewrite(new URL('/notallow', req.url))
-    }
-    if (userCountry !== 'empty' && req.url !== '/testing') {
-      console.log("Redirecting user from Empty to /empty route");
-      return NextResponse.rewrite(new URL('/testing', req.url))
-    }
-    if ( userCurrent?.profile_status != "complete"  ||  userCurrent?.profile_status == undefined || userCurrent?.profile_status == null ) {
-      console.log("Redirect to Register");
-      return NextResponse.rewrite(new URL('/registration', req.url));
-    }
+    console.log({userCurrent})
+    console.log({userCountry})
    
   } catch (error) {
     console.error("Error fetching user IP data:", error);

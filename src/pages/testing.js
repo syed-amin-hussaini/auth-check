@@ -15,7 +15,7 @@ export default function Testing() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={{}}>
-        <h1 className={{}}>This website is only allow in Pakistan</h1>
+        <h1 className={{}}>This website is only allowed in Pakistan.</h1>
         
       </main>
     </div>
