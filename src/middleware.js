@@ -26,10 +26,10 @@ export default async function middleware(req) {
     // console.log({req})
     console.log({userCurrent})
    
-    if (userCountry !== 'Pakistan' && req.url !== '/notallow') {
-      console.log("Redirecting user from Pakistan to /testing route");
-      return NextResponse.rewrite(new URL('/notallow', req.url))
-    }
+    // if (userCountry !== 'Pakistan' && req.url !== '/notallow') {
+    //   console.log("Redirecting user from Pakistan to /testing route");
+    //   return NextResponse.rewrite(new URL('/notallow', req.url))
+    // }
     
    
   } catch (error) {
