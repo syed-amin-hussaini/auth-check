@@ -19,14 +19,18 @@ export default async function middleware(req) {
     // const token = req.cookies.get("token");
     let user = req?.cookies?.get("user") ;
     let getUser = user?.value;
-    console.log({getUser})
     let userCurrent;
     if (getUser) {
       userCurrent = JSON?.parse(user)
     }
     // console.log({req})
     console.log({userCurrent})
-    console.log({userCountry})
+   
+    if (userCountry !== 'Pakistan' && req.url !== '/notallow') {
+      console.log("Redirecting user from Pakistan to /testing route");
+      return NextResponse.rewrite(new URL('/notallow', req.url))
+    }
+    
    
   } catch (error) {
     console.error("Error fetching user IP data:", error);
