@@ -9,15 +9,8 @@ export default function Home({user }) {
   const { data: session, status } = useSession();
   const loading = status === "loading";
 
-  if (session) {
-    // Access custom parameters
-    const customParams = session.user;
-    console.log(customParams)
-    // ...use customParams as needed
+ console.log({session})
 
-    console.log(customParams)
-  }
-  
   const [form, setForm] = useState({
     name: "",
     age: "",
@@ -31,7 +24,7 @@ export default function Home({user }) {
     errStatus: false,
     errMsg: "",
   });
-  // console.log({session})
+ 
 
 
   return (
