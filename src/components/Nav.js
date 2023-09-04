@@ -2,6 +2,7 @@ import React from "react";
 import { useSession, signOut, getSession } from "next-auth/react";
 import Image from "next/image";
 import logo from "@/src/images/logo.png";
+import Avatar from "@/src/images/avatar.png";
 import nookies, { destroyCookie } from "nookies";
 
 const Nav = ({ user }) => {
@@ -58,7 +59,7 @@ const Nav = ({ user }) => {
                 <Image
                   src={
                     session?.user?.image ||
-                    "https://res.cloudinary.com/devatchannel/image/upload/v1602752402/avatar/avatar_cugq40.png"
+                    Avatar
                   }
                   className="img-fluid rounded-circle"
                   alt="logo"

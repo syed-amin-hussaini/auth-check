@@ -1,6 +1,3 @@
-@import './bootstrap.min.scss';
-
-
 :root {
   --max-width: 1100px;
   --border-radius: 12px;
@@ -108,5 +105,15 @@ a {
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
+  }
+}
+// tel
+.react-tel-input  {
+  input {
+    padding-left: 48px !important;
+  }
+  .flag-dropdown {
+    border-right: 1px solid #7F8FBB !important;
+    border-radius: 10px 0 0 10px !important;
   }
 }

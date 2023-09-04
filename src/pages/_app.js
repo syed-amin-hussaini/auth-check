@@ -2,6 +2,7 @@ import { SessionProvider, getSession } from "next-auth/react";
 import Head from "next/head";
 import Link from "next/link";
 import Script from "next/script";
+import "@/src/styles/globals.scss";
 
 function MyApp({ Component, pageProps, session }) {
   return (
