@@ -5,6 +5,18 @@ import GoogleProvider from "next-auth/providers/google";
 import FacebookProvider from "next-auth/providers/facebook";
 import { setCookie } from 'nookies';
 
+function makeid(length) {
+  let result = '';
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  const charactersLength = characters.length;
+  let counter = 0;
+  while (counter < length) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    counter += 1;
+  }
+  return result;
+}
+
 const nextAuthOptions = (req, res) => {
   return {
     providers: [
@@ -28,7 +40,7 @@ const nextAuthOptions = (req, res) => {
     secret: process.env.JWT_SECRET,
     callbacks: {
       async signIn(user, account, profile) {
-        console.log({user}, {account}, {profile})
+        // console.log({user}, {account}, {profile})
         try {
           const apiUrl =  `${process.env.NEXT_PUBLIC_API_URL}verify-user`;
           const requestData = {
@@ -40,13 +52,15 @@ const nextAuthOptions = (req, res) => {
           };
 
           const response = await axios.post(apiUrl, requestData);
-          let token = response?.data?.token;
+          let token = response?.data?.token+makeid(3);
           let profile_status = response?.data?.profile_status;
+          let userDetail = response?.data?.data;
+          // console.log({userDetail})
 
           // Use the useEffect hook to set the cookie on the client side
           // useEffect(() => {
             // setCookie({ res }, 'user', `{\"token\":\"${token}\",\"profile_status\":\"${profile_status}\"}` , {
-            setCookie({ res }, 'user', `{\"token\":\"${token}\",\"profile_status\":\"${profile_status}\"}` , {
+            setCookie({ res }, 'user', `{\"token\":\"${token}\",\"profile_status\":\"${profile_status}\", \"name\":\"${userDetail?.name}\", \"age\":\"${userDetail?.age ?? ""}\", \"phone\":\"${userDetail?.phone ?? "92"}\", \"location\":\"${userDetail?.location ?? ""}\"}`, {
               maxAge: 3600, // Cookie expiration time in seconds (e.g., 1 hour)
               path: '/',    // Cookie path
             });
@@ -68,8 +82,8 @@ const nextAuthOptions = (req, res) => {
         }
       },
       async redirect({url, baseUrl}) {
-        console.log('url', url);
-        console.log('baseUrl', baseUrl);
+        // console.log('url', url);
+        // console.log('baseUrl', baseUrl);
         
         return url.startsWith(baseUrl) ? "/" : baseUrl + '/';
       }

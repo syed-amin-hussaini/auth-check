@@ -93,8 +93,6 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
-
-    background:orange !important;
 }
 
 a {
@@ -116,4 +114,17 @@ a {
     border-right: 1px solid #7F8FBB !important;
     border-radius: 10px 0 0 10px !important;
   }
+}
+
+// Remove Arrows/
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }

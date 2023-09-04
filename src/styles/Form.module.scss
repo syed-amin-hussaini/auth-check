@@ -1,5 +1,4 @@
 .main {
-  background-color: orange;
   display: grid;
   height: calc(100vh - 70px);
   place-items: center;
@@ -22,6 +21,7 @@
       height: auto;
     } 
     p {
+      color:var(--bs-danger);
       margin-bottom: 0;
     }
    

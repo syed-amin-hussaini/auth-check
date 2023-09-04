@@ -9,12 +9,17 @@ import Drawer from "@/components/Drawer";
 import { Controller, useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import PhoneInput from "react-phone-input-2";
+import axios from "axios";
+import { toast } from "react-toastify";
 
-export default function Registration({ session }) {
+import nookies from "nookies";
+
+export default function Profile({ session,userCurrent }) {
   const {
     register,
     handleSubmit,
     control,
+    setValue,
     formState: { errors },
   } = useForm({
     criteriaMode: "all",
@@ -23,42 +28,65 @@ export default function Registration({ session }) {
   // const loading = status === "loading";
 
   const [phoneLength, setPhoneLength] = useState(0);
-  const [form, setForm] = useState({
-    name: "",
-    age: "",
-    email: "",
-    location: "",
-    number: "",
+  const [phone, setPhone] = useState(0);
+  
+  const [submit, setSubmit] = useState(false)
+  const [emailExit, setEmailExit] = useState(false)
 
-    submit: false,
-
-    success: false,
-    errStatus: false,
-    errMsg: "",
-  });
-
-  const fieldValid = (formatVal) => {
+  const fieldValid = (formatVal,pho) => {
+    setPhone(pho);
     setPhoneLength(formatVal.format.length);
   };
   useEffect(() => {
-    setForm((prev) => {
-      console.log({ session });
-      return {
-        ...prev,
-        name: session?.user?.name,
-        email: session?.user?.email,
-      };
-    });
-    console.log({ form });
+    setValue("name", session?.user?.name)
+    setValue("email", session?.user?.email)
+    setValue("age", userCurrent?.age)
+    setValue("location", userCurrent?.location)
+    setValue("phone", userCurrent?.phone)
+    session?.user?.email && setEmailExit(true);
+    setPhone(userCurrent?.phone);
+    
   }, []);
 
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = async (data) => {
+    console.log(data)
+    console.log({phone})
+    setSubmit(true);
+    const formData = new FormData();
+    formData.append('name', data.name);
+    formData.append('email', data.email);
+    formData.append('age', data.age);
+    formData.append('location', data.location);
+    formData.append('phone', phone);
+
+     try {
+      
+      const response = await axios({
+        method: 'post',
+        url: '/api/form-detail',
+        data: formData,
+        headers: { 'Content-Type': 'application/json' },
+      });
+       console.log({response})
+      if (response.status === 200) {
+        toast("Profile Updated")
+        // Router.push(`/thank-you/${currentPage}`);
+      }
+    } catch (error) {
+      const status = error?.response?.status;
+      const statusText = error?.response?.statusText;
+       console.log(status, statusText)
+       toast.error(statusText)
+    }
+    setSubmit(false);
+  
+  };
 
   return (
     <div>
       <Head>
-        <title>Oreo | Register</title>
+        <title>Oreo | Profile</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Nav />
@@ -73,7 +101,7 @@ export default function Registration({ session }) {
             <input
               type="text"
               className={styles.autoColor}
-              maxLength={64}
+              maxLength={99}
               {...register("name", {
                 required: "This field is mandatory",
                 pattern: {
@@ -86,14 +114,15 @@ export default function Registration({ session }) {
           </div>
 
           <div className={`col-md-12`}>
-            <label htmlFor="name">
+            <label htmlFor="email">
               Email 
             </label>
             <br />
             <input
-              type="text"
+              type="email"
               className={styles.autoColor}
               maxLength={256}
+              disabled={emailExit}
               {...register("email", {
                 required: "This field is mandatory",
                 pattern: {
@@ -106,14 +135,14 @@ export default function Registration({ session }) {
             <ErrorMessage errors={errors} name="email" as="p" />
           </div>
           <div className={`col-md-12`}>
-            <label htmlFor="name">
+            <label htmlFor="age">
               Age 
             </label>
             <br/>
             <input
               type="number"
               className={styles.autoColor}
-              maxLength={64}
+              maxLength={99}
               {...register("age", {
                 required: "This field is mandatory",
                 pattern: {
@@ -126,7 +155,7 @@ export default function Registration({ session }) {
           </div>
          
           <div className={`col-md-12`}>
-            <label htmlFor="name">
+            <label htmlFor="location">
               Location 
             </label>
             <br />
@@ -154,19 +183,23 @@ export default function Registration({ session }) {
               render={({ field }) => (
                 <>
                 <label>Number </label>
-                <PhoneInput
+                  <PhoneInput
+                  disableDropdown={true}
                   {...field}
                   country={"pk"}
                   containerClass={styles.tel_container}
                   inputClass={styles.tel_input}
+                  onlyCountries={['pk']}
                   buttonClass={`${styles.tel_box} form-country-box`}
-                  onChange={(_, telDetail, __, formatVal) => {
-                    fieldValid(telDetail);
+                    onChange={(cur, telDetail, __, formatVal) => {
+                    // console.log({cur},{telDetail},{__},{formatVal})
+                    fieldValid(telDetail,cur);
                     field.onChange(formatVal);
+                      
                   }}
                   value={field.value}
                   inputProps={{
-                    placeholder: "(201) 555-0123*",
+                    placeholder: "+92 000-0000000",
                   }}
                 />
                 </>
@@ -178,8 +211,9 @@ export default function Registration({ session }) {
             <button
               type="submit"
               className={`${styles.submitBtn}`}
+              disabled={submit}
             >
-              {form?.submit ? (
+              {submit ? (
                 <i className="fa fa-spinner fa-spin" aria-hidden="true"></i>
               ) : (
                 <span>Start Collecting</span>
@@ -194,18 +228,26 @@ export default function Registration({ session }) {
 
 export async function getServerSideProps(context) {
   const session = await getSession(context);
+  const cookies = nookies?.get(context?.res);
 
-  console.log({ session });
-  // if (!session) {
-  //   return {
-  //     redirect: {
-  //       destination: '/login',
-  //       permanent: false,
-  //     },
-  //   }
-  // }
-
+  const userIdCookie = cookies["user"];
+  let userCurrent;
+  if (!session) {
+    return {
+      // redirect: {
+      //   destination: '/login',
+      //   permanent: false,
+      // },
+      rewrite: {
+        destination: '/login',
+        permanent: false,
+      },
+    }
+  }
+  if (userIdCookie) {
+    userCurrent = JSON.parse(userIdCookie);
+  }
   return {
-    props: { session },
+    props: { session,userCurrent },
   };
 }

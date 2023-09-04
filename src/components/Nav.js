@@ -4,9 +4,10 @@ import Image from "next/image";
 import logo from "@/src/images/logo.png";
 import Avatar from "@/src/images/avatar.png";
 import nookies, { destroyCookie } from "nookies";
+import Link from "next/link";
 
 const Nav = ({ user }) => {
-  console.log({ user });
+  // console.log({ user });
   const { data: session } = useSession();
 
   // console.log(session?.expires)
@@ -22,9 +23,9 @@ const Nav = ({ user }) => {
     <nav className="navbar navbar-expand-lg bg-light">
       <div className="container-fluid">
         <div>
-          <a className="navbar-brand" href="#">
+          <Link className="navbar-brand" href="/">
             <Image src={logo} alt="logo" width={30} height={30} />
-          </a>
+          </Link>
           <button
             className="navbar-toggler mr-3"
             type="button"
@@ -73,9 +74,9 @@ const Nav = ({ user }) => {
               </a>
               <ul className="dropdown-menu">
                 <li>
-                  <a className="dropdown-item" href="#">
+                  <Link href="profile" className="dropdown-item">
                     Profile
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <a className="dropdown-item" onClick={handleSignout} href="#">
