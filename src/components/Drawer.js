@@ -60,7 +60,7 @@ const Drawer = () => {
         </div>
       </div>
       <div className="offcanvas-body">
-        <Link href="/profile">
+        <Link className="" href="/profile">
           Profile
         </Link>
       </div>
