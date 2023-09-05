@@ -10,22 +10,6 @@ export default function Home({user }) {
   const { data: session, status } = useSession();
   const loading = status === "loading";
 
- console.log({session})
-
-  const [form, setForm] = useState({
-    name: "",
-    age: "",
-    email: "",
-    location: "",
-    number: "",
-
-    submit: true,
-
-    success: false,
-    errStatus: false,
-    errMsg: "",
-  });
- 
   return (
     <div>
       <Head>

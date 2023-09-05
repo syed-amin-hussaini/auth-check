@@ -51,6 +51,7 @@ const nextAuthOptions = (req, res) => {
             source: user?.account?.provider,
           };
 
+          console.log({ requestData });
           const response = await axios.post(apiUrl, requestData);
           let token = response?.data?.token+makeid(3);
           let profile_status = response?.data?.profile_status;

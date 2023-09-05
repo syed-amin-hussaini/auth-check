@@ -13,6 +13,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 import nookies from "nookies";
+import { useRouter } from "next/router";
 
 export default function Profile({ session, userCurrent }) {
   const [phoneLength, setPhoneLength] = useState(0);
@@ -20,6 +21,8 @@ export default function Profile({ session, userCurrent }) {
 
   const [submit, setSubmit] = useState(false);
   const [emailExit, setEmailExit] = useState(false);
+
+  const router = useRouter()
 
   const {
     register,
@@ -84,7 +87,7 @@ export default function Profile({ session, userCurrent }) {
       console.log({ response });
       if (response.status === 200) {
         toast("Profile Updated");
-        // Router.push(`/thank-you/${currentPage}`);
+        router.push("/");
       }
     } catch (error) {
       const status = error?.response?.status;

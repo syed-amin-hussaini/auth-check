@@ -22,7 +22,7 @@ const Nav = ({ user }) => {
   return (
     <nav className="navbar navbar-expand-lg bg-light">
       <div className="container-fluid">
-        <div className="d-flex justify-content-between">
+        <div className="d-flex justify-content-between w-100">
           <Link className="navbar-brand" href="/">
             <Image src={logo} alt="logo" width={30} height={30} />
           </Link>
@@ -36,17 +36,6 @@ const Nav = ({ user }) => {
             <span className="navbar-toggler-icon text-black"></span>
           </button>
         </div>
-        {/* <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarScroll"
-          aria-controls="navbarScroll"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          
-        </button> */}
         <div className="collapse navbar-collapse" id="navbarScroll">
           <ul className="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll w-100 justify-content-end">
             <li className="dropdown nav-item">
