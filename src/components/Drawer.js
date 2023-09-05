@@ -1,6 +1,15 @@
+import { signOut } from "next-auth/react";
+import { destroyCookie } from "nookies";
 import React from "react";
 
 const Drawer = () => {
+
+  const handleSignout = (e) => {
+    e.preventDefault();
+    destroyCookie(null, "user", { path: "/" });
+    signOut();
+  };
+
   return (
     <div
       className="offcanvas offcanvas-end"
@@ -15,6 +24,7 @@ const Drawer = () => {
         </h5>
         <div className="d-flex justify-content-center align-items-center">
           <button
+            onClick={handleSignout}
             className="btn btn-outline-primary d-flex align-items-center me-3"
           > 
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-box-arrow-left" viewBox="0 0 16 16">

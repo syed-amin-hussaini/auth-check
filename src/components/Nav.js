@@ -22,7 +22,7 @@ const Nav = ({ user }) => {
   return (
     <nav className="navbar navbar-expand-lg bg-light">
       <div className="container-fluid">
-        <div>
+        <div className="d-flex justify-content-between">
           <Link className="navbar-brand" href="/">
             <Image src={logo} alt="logo" width={30} height={30} />
           </Link>
