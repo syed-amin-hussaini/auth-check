@@ -40,7 +40,7 @@ const nextAuthOptions = (req, res) => {
     secret: process.env.JWT_SECRET,
     callbacks: {
       async signIn(user, account, profile) {
-        // console.log({user}, {account}, {profile})
+        console.log({user})
         try {
           const apiUrl =  `${process.env.NEXT_PUBLIC_API_URL}verify-user`;
           const requestData = {
