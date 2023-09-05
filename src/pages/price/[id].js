@@ -20,7 +20,7 @@ export default function Price() {
   const videoConstraints = {
     width: 320,
     height: 320,
-    facingMode: "user",
+    facingMode: "environment",
   };
 
   const webcamRef = React.useRef(null);
