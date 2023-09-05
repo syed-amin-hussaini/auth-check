@@ -69,7 +69,6 @@ const nextAuthOptions = (req, res) => {
         } catch (error) {
           console.error("API Error:", error);
         }
-
         return true;
       },
       async jwt({ token, user, account }) {
