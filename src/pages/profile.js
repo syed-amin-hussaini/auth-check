@@ -146,7 +146,7 @@ export default function Profile({ session,userCurrent }) {
               {...register("age", {
                 required: "This field is mandatory",
                 pattern: {
-                  value: /\b\d{1,2}\b/gm,
+                  // value: /\b\d{1,2}\b/gm,
                   message: "Incorrect Age Format",
                 },
               })}
