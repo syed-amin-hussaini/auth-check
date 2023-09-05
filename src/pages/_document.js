@@ -1,4 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
+import Script from "next/script";
 
 class MyDocument extends Document {
   render() {
@@ -20,6 +21,10 @@ class MyDocument extends Document {
           />
         </Head>
         <body>
+        <Script
+        // async
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+      ></Script>
           <Main />
           <NextScript />
         </body>

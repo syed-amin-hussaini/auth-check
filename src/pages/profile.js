@@ -59,12 +59,12 @@ export default function Profile({ session, userCurrent }) {
     session?.user?.email && setEmailExit(true);
     setPhone(userCurrent?.phone);
   }, [
-    session?.user?.name,
-    session?.user?.email,
-    setValue,
-    userCurrent?.age,
-    userCurrent?.location,
-    userCurrent?.phone,
+    // session?.user?.name,
+    // session?.user?.email,
+    // setValue,
+    // userCurrent?.age,
+    // userCurrent?.location,
+    // userCurrent?.phone,
   ]);
 
   const onSubmit = async (data) => {

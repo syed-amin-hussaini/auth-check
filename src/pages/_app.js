@@ -6,6 +6,7 @@ import "@/src/styles/globals.scss";
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from "react-toastify";
 
+
 function MyApp({ Component, pageProps, session }) {
   return (
     // <SessionProvider session={pageProps.session}>
@@ -14,11 +15,7 @@ function MyApp({ Component, pageProps, session }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         
       </Head>
-      <script
-        async
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-      ></script>
-
+    
       <Component {...pageProps} />
       <ToastContainer
         position="bottom-right"

@@ -27,9 +27,7 @@ app.post("/api/thirdparty", (req, res) => {
     res.status(200).json(
       {
         status: "success",
-        profile_status: "incomplete",
-        msg: "Token refreshed successfully!",
-        token: "2|TAkj0O2raiMkZIckdN425FNkrduJuUOgspiyRHAT"
+        
       }
     );
   } catch (error) {

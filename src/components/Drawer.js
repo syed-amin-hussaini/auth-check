@@ -1,5 +1,4 @@
 import { signOut, useSession } from "next-auth/react";
-import Image from "next/image";
 import { destroyCookie } from "nookies";
 import React from "react";
 import Avatar from "@/src/images/avatar.png";

@@ -4,7 +4,7 @@ import nookies, { setCookie } from "nookies";
 export default async function handler(req, res) {
   try {
     const cookies = nookies.get({ req });
-    let {name,age,phone,location} = req.body;
+    let {name,age,phone,location} = req?.body;
 
     const userIdCookie = cookies["user"];
     let userToken;
