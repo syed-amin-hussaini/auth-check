@@ -1,5 +1,5 @@
 import Head from "next/head";
-import 'react-phone-input-2/lib/style.css';
+import "react-phone-input-2/lib/style.css";
 import styles from "@/src/styles/Form.module.scss";
 // import { getSession, useSession } from "next-auth/react";
 import Nav from "@/components/Nav";
@@ -14,7 +14,13 @@ import { toast } from "react-toastify";
 
 import nookies from "nookies";
 
-export default function Profile({ session,userCurrent }) {
+export default function Profile({ session, userCurrent }) {
+  const [phoneLength, setPhoneLength] = useState(0);
+  const [phone, setPhone] = useState(0);
+
+  const [submit, setSubmit] = useState(false);
+  const [emailExit, setEmailExit] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -27,60 +33,67 @@ export default function Profile({ session,userCurrent }) {
   // const { data: session, status } = useSession();
   // const loading = status === "loading";
 
-  const [phoneLength, setPhoneLength] = useState(0);
-  const [phone, setPhone] = useState(0);
-  
-  const [submit, setSubmit] = useState(false)
-  const [emailExit, setEmailExit] = useState(false)
-
-  const fieldValid = (formatVal,pho) => {
+  const fieldValid = (formatVal, pho) => {
     setPhone(pho);
     setPhoneLength(formatVal.format.length);
   };
+
+  // useEffect(() => {
+  //   setValue("name", session?.user?.name);
+  //   setValue("email", session?.user?.email);
+  //   setValue("age", userCurrent?.age);
+  //   setValue("location", userCurrent?.location);
+  //   setValue("phone", userCurrent?.phone);
+  //   session?.user?.email && setEmailExit(true);
+  //   setPhone(userCurrent?.phone);
+  // }, []);
   useEffect(() => {
-    setValue("name", session?.user?.name)
-    setValue("email", session?.user?.email)
-    setValue("age", userCurrent?.age)
-    setValue("location", userCurrent?.location)
-    setValue("phone", userCurrent?.phone)
+    setValue("name", session?.user?.name);
+    setValue("email", session?.user?.email);
+    setValue("age", userCurrent?.age);
+    setValue("location", userCurrent?.location);
+    setValue("phone", userCurrent?.phone);
     session?.user?.email && setEmailExit(true);
     setPhone(userCurrent?.phone);
-    
-  }, []);
-
+  }, [
+    session?.user?.name,
+    session?.user?.email,
+    setValue,
+    userCurrent?.age,
+    userCurrent?.location,
+    userCurrent?.phone,
+  ]);
 
   const onSubmit = async (data) => {
-    console.log(data)
-    console.log({phone})
     setSubmit(true);
-    const formData = new FormData();
-    formData.append('name', data.name);
-    formData.append('email', data.email);
-    formData.append('age', data.age);
-    formData.append('location', data.location);
-    formData.append('phone', phone);
 
-     try {
-      
+    const formData = new FormData();
+    formData.append("name", data.name);
+    formData.append("email", data.email);
+    formData.append("age", data.age);
+    formData.append("location", data.location);
+    formData.append("phone", phone);
+
+    try {
       const response = await axios({
-        method: 'post',
-        url: '/api/form-detail',
+        method: "post",
+        url: "/api/form-detail",
         data: formData,
-        headers: { 'Content-Type': 'application/json' },
+        headers: { "Content-Type": "application/json" },
       });
-       console.log({response})
+      console.log({ response });
       if (response.status === 200) {
-        toast("Profile Updated")
+        toast("Profile Updated");
         // Router.push(`/thank-you/${currentPage}`);
       }
     } catch (error) {
       const status = error?.response?.status;
       const statusText = error?.response?.statusText;
-       console.log(status, statusText)
-       toast.error(statusText)
+      console.log(status, statusText);
+      toast.error(statusText);
     }
+
     setSubmit(false);
-  
   };
 
   return (
@@ -92,11 +105,12 @@ export default function Profile({ session,userCurrent }) {
       <Nav />
       <Drawer />
       <main className={styles.main}>
-        <form onSubmit={handleSubmit(onSubmit)} className={`${styles.form} row`}>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className={`${styles.form} row`}
+        >
           <div className={`col-md-12`}>
-            <label htmlFor="name">
-              Name 
-            </label>
+            <label htmlFor="name">Name</label>
             <br />
             <input
               type="text"
@@ -114,9 +128,7 @@ export default function Profile({ session,userCurrent }) {
           </div>
 
           <div className={`col-md-12`}>
-            <label htmlFor="email">
-              Email 
-            </label>
+            <label htmlFor="email">Email</label>
             <br />
             <input
               type="email"
@@ -135,10 +147,8 @@ export default function Profile({ session,userCurrent }) {
             <ErrorMessage errors={errors} name="email" as="p" />
           </div>
           <div className={`col-md-12`}>
-            <label htmlFor="age">
-              Age 
-            </label>
-            <br/>
+            <label htmlFor="age">Age</label>
+            <br />
             <input
               type="number"
               className={styles.autoColor}
@@ -153,11 +163,9 @@ export default function Profile({ session,userCurrent }) {
             />
             <ErrorMessage errors={errors} name="age" as="p" />
           </div>
-         
+
           <div className={`col-md-12`}>
-            <label htmlFor="location">
-              Location 
-            </label>
+            <label htmlFor="location">Location</label>
             <br />
             <input
               type="text"
@@ -182,26 +190,25 @@ export default function Profile({ session,userCurrent }) {
               }}
               render={({ field }) => (
                 <>
-                <label>Number </label>
+                  <label>Number </label>
                   <PhoneInput
-                  disableDropdown={true}
-                  {...field}
-                  country={"pk"}
-                  containerClass={styles.tel_container}
-                  inputClass={styles.tel_input}
-                  onlyCountries={['pk']}
-                  buttonClass={`${styles.tel_box} form-country-box`}
+                    disableDropdown={true}
+                    {...field}
+                    country={"pk"}
+                    containerClass={styles.tel_container}
+                    inputClass={styles.tel_input}
+                    onlyCountries={["pk"]}
+                    buttonClass={`${styles.tel_box} form-country-box`}
                     onChange={(cur, telDetail, __, formatVal) => {
-                    // console.log({cur},{telDetail},{__},{formatVal})
-                    fieldValid(telDetail,cur);
-                    field.onChange(formatVal);
-                      
-                  }}
-                  value={field.value}
-                  inputProps={{
-                    placeholder: "+92 000-0000000",
-                  }}
-                />
+                      // console.log({cur},{telDetail},{__},{formatVal})
+                      fieldValid(telDetail, cur);
+                      field.onChange(formatVal);
+                    }}
+                    value={field.value}
+                    inputProps={{
+                      placeholder: "+92 000-0000000",
+                    }}
+                  />
                 </>
               )}
             />
@@ -239,15 +246,15 @@ export async function getServerSideProps(context) {
       //   permanent: false,
       // },
       rewrite: {
-        destination: '/login',
+        destination: "/login",
         permanent: false,
       },
-    }
+    };
   }
   if (userIdCookie) {
     userCurrent = JSON.parse(userIdCookie);
   }
   return {
-    props: { session,userCurrent },
+    props: { session, userCurrent },
   };
 }
