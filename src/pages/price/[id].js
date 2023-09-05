@@ -68,13 +68,13 @@ export default function Price() {
         <Webcam
           audio={false}
           ref={webcamRef}
-          mirrored={true}
+          mirrored={false}
           videoConstraints={videoConstraints}
           screenshotFormat="image/jpeg" 
           
           />
         <button onClick={capture}>Capture photo {id}</button>
-        {imgSrc && <img src={imgSrc} />}
+        {imgSrc && <img style={{position: "absolute",left: "20%",top: "-20px"}} src={imgSrc} />}
 
       </main>
     </div>
