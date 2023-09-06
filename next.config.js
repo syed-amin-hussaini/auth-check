@@ -1,19 +1,19 @@
-const path = require('path');
-const withPWA = require('next-pwa');
 
+const path = require('path')
+ 
 module.exports = {
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
   },
-  ...withPWA({
-    dest: 'public',
-  }),
-  images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'lh3.googleusercontent.com',
-      },
-    ],
-  },
-};
+}
+const runtimeCaching = require("next-pwa/cache");
+
+const withPWA = require('next-pwa')({
+  dest: 'public'
+})
+
+module.exports = withPWA({
+  // next.js config
+})
+
+// module.exports = nextConfig;

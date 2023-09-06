@@ -60,7 +60,8 @@ const Nav = ({ user }) => {
                   aria-expanded="false"
                 >
                   <Image
-                    src={session?.user?.image || Avatar}
+                    // src={session?.user?.image || Avatar}
+                    src={Avatar}
                     className="img-fluid rounded-circle"
                     alt="logo"
                     width={35}
