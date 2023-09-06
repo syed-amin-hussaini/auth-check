@@ -39,7 +39,7 @@ const Login = () => {
             className="text-center fw-bolder text-uppercase mb-3"
             style={{ color: "#555", letterSpacing: "1px" }}
           >
-            Oreo
+            Oreos
           </h2>
           <a
             onClick={() => signIn("google")}
