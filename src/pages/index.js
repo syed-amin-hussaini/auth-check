@@ -42,7 +42,7 @@ export default function Home() {
           <div className="card-body">
             <p className="card-text">Found Mr Pennybags on the cookie?</p>
             <p className="card-text">Scan it to win a grand prize.</p>
-            <Link href="/price/grand" className="btn bg-black text-white fw-bold">
+            <Link href="/prize/grand" className="btn bg-black text-white fw-bold">
               Scan your Oreo Cookie
             </Link>
           </div>
@@ -57,7 +57,7 @@ export default function Home() {
               Scan and collect all 5 limited edition cookies for a chance to win
               Oreo X Monopoly board.
             </p>
-            <Link href="/price/collect" className="btn bg-black text-white fw-bold">
+            <Link href="/prize/collect" className="btn bg-black text-white fw-bold">
               Build your collection
             </Link>
           </div>
