@@ -21,10 +21,10 @@ class MyDocument extends Document {
           />
         </Head>
         <body>
-        <Script
-        // async
+        <script
+        async
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-      ></Script>
+      ></script>
           <Main />
           <NextScript />
         </body>
