@@ -1,11 +1,13 @@
-const withPWA = require('next-pwa')({
-  dest: 'public'
-})
+const path = require('path');
+const withPWA = require('next-pwa');
 
-module.exports = withPWA({
+module.exports = {
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
   },
+  ...withPWA({
+    dest: 'public',
+  }),
   images: {
     remotePatterns: [
       {
@@ -14,4 +16,4 @@ module.exports = withPWA({
       },
     ],
   },
-})
+};
