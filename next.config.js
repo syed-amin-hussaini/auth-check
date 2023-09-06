@@ -55,7 +55,7 @@ const headers = async () => {
 const nextConfig = {
   reactStrictMode: true,
   compiler: {
-    removeConsole: process.env.NODE_ENV !== 'development',
+    // removeConsole: process.env.NODE_ENV !== 'development',
   },
   swcMinify: true,
   images: {
