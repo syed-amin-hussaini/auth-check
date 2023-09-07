@@ -48,13 +48,13 @@ export default async function middleware(req) {
       // NextResponse.rewrite(new URL('/manifest.json', req.url))
     }
     if (!sessions) {
-      return NextResponse.redirect(new URL('/login', req.url))
+      return NextResponse.rewrite(new URL('/login', req.url))
     }
     // if (userCountry === 'Pakistans' && req.url !== '/testing') {
-    //   return NextResponse.redirect(new URL('/testing', req.url))
+    //   return NextResponse.rewrite(new URL('/testing', req.url))
     // }
     // if (user?.profile_status != "complete"  ||  user?.profile_status == undefined || user?.profile_status == null ) {
-    //   return NextResponse.redirect(new URL('/profile', req.url));
+    //   return NextResponse.rewrite(new URL('/profile', req.url));
     // }
 
     // Your other middleware logic here...
