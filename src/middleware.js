@@ -43,20 +43,19 @@ export default async function middleware(req) {
 
     // Check if the request is for the manifest file
     if (req?.nextUrl?.pathname === "/manifest.json") {
-
-      console.log("Allow the manifest file to access public resources")
+      // console.log("Allow the manifest file to access public resources")
       return NextResponse.next();
       // NextResponse.rewrite(new URL('/manifest.json', req.url))
     }
-    if (!sessions) {
-      return NextResponse.rewrite(new URL('/login', req.url))
-    }
-    if (userCountry === 'Pakistans' && req.url !== '/testing') {
-      return NextResponse.rewrite(new URL('/testing', req.url))
-    }
-    if (user?.profile_status != "complete"  ||  user?.profile_status == undefined || user?.profile_status == null ) {
-      return NextResponse.rewrite(new URL('/profile', req.url));
-    }
+    // if (!sessions) {
+    //   return NextResponse.redirect(new URL('/login', req.url))
+    // }
+    // if (userCountry === 'Pakistans' && req.url !== '/testing') {
+    //   return NextResponse.redirect(new URL('/testing', req.url))
+    // }
+    // if (user?.profile_status != "complete"  ||  user?.profile_status == undefined || user?.profile_status == null ) {
+    //   return NextResponse.redirect(new URL('/profile', req.url));
+    // }
 
     // Your other middleware logic here...
   } catch (error) {
