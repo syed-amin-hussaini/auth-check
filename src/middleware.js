@@ -31,17 +31,17 @@ export default async function middleware(req) {
     }
     console.log("Cookie Result")
     console.log({userDetail})
-    // const sessionMiddleware = await getToken({ req: req, secret: process.env.JWT_SECRET }); console.log('Session in middleware: ', sessionMiddleware)
-    // console.log({sessionMiddleware})
-    // if (user === undefined) {
-    //   return NextResponse.rewrite(new URL('/login', req.url))
-    // }
-    // if (userCountry === 'Pakistans' && req.url !== '/testing') {
-    //   return NextResponse.rewrite(new URL('/testing', req.url))
-    // }
-    // if (user?.profile_status != "complete"  ||  user?.profile_status == undefined || user?.profile_status == null ) {
-    //   return NextResponse.rewrite(new URL('/profile', req.url));
-    // }
+    const sessionMiddleware = await getToken({ req: req, secret: process.env.JWT_SECRET }); console.log('Session in middleware: ', sessionMiddleware)
+    console.log({sessionMiddleware})
+    if (user === undefined) {
+      return NextResponse.rewrite(new URL('/login', req.url))
+    }
+    if (userCountry === 'Pakistans' && req.url !== '/testing') {
+      return NextResponse.rewrite(new URL('/testing', req.url))
+    }
+    if (user?.profile_status != "complete"  ||  user?.profile_status == undefined || user?.profile_status == null ) {
+      return NextResponse.rewrite(new URL('/profile', req.url));
+    }
     
   } catch (error) {
     console.error("Error fetching user IP data:", error);
