@@ -7,7 +7,7 @@ import Drawer from "@/components/Drawer";
 import Link from "next/link";
 import Webcam from "react-webcam";
 
-export default function Dashboard() {
+export default function Home() {
   const { data: session, status } = useSession();
   const loading = status === "loading";
 

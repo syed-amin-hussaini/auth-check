@@ -2,6 +2,7 @@
   display: grid;
   height: calc(100vh - 70px);
   place-items: center;
+    align-items: flex-start;
   .form {
     background-color: #fff;
     width: 300px;

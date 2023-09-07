@@ -4,7 +4,7 @@ import styles from "@/src/styles/login.module.scss";
 import { useEffect } from "react";
 import {  useRouter } from "next/router";
 
-const Home = () => {
+const Login = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { data: session, status } = useSession();
   // const loading = status === "loading";
@@ -60,4 +60,4 @@ const Home = () => {
     </div>
   );
 };
-export default Home;
+export default Login;

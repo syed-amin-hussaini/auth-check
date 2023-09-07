@@ -247,6 +247,7 @@ export async function getServerSideProps(context) {
     console.log("if userIdCookie")
     userCurrent = JSON.parse(userIdCookie);
   }
+  console.log({session})
   if (!session) {
     
     console.log("Profile if")
@@ -255,10 +256,10 @@ export async function getServerSideProps(context) {
       //   destination: '/login',
       //   permanent: false,
       // },
-      // redirect: {
-      //   destination: "/login",
-      //   permanent: false,
-      // },
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
     };
   }
   
