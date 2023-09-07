@@ -1,84 +1,63 @@
 import Head from "next/head";
-// import styles from "../styles/Home.module.css";
-import { getSession, useSession } from "next-auth/react";
-import Nav from "@/components/Nav";
-import React, { useEffect, useState } from "react";
-import Drawer from "@/components/Drawer";
-import Link from "next/link";
-import Webcam from "react-webcam";
+import { useSession, signIn, signOut } from "next-auth/react";
+import styles from "@/src/styles/login.module.scss";
+import { useEffect } from "react";
+import {  useRouter } from "next/router";
 
-export default function Home() {
+const Home = () => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const { data: session, status } = useSession();
-  const loading = status === "loading";
+  // const loading = status === "loading";
+  // const router = useRouter();
 
-  const videoConstraints = {
-    width: 250,
-    height: 250,
-    facingMode: "user",
-  };
+  // const handleSignIn = async (provider) => {
+  //   const result = await signIn(provider);
+  //   try {
+  //     const result = await signIn(provider);
+  //     console.log("Sign-in result:", result);
+  //   } catch (error) {
+  //     console.error("Sign-in error:", error);
+  //   }
+  // };
 
-  const webcamRef = React.useRef(null);
-  const [imgSrc, setImgSrc] = React.useState(null);
-
-  const capture = React.useCallback(() => {
-    const imageSrc = webcamRef.current.getScreenshot();
-    setImgSrc(imageSrc);
-  }, [webcamRef, setImgSrc]);
 
   return (
-    <div>
+    <div className={{}}>
       <Head>
-        <title>Nextjs | Next-Auth</title>
+        <title>Nextjs | Login</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Nav />
-      <Drawer />
-      <main className="container-fluid">
-       
-        <div className="card mt-5 text-center">
-          <div className="card-header card-header bg-warning fw-bold">
-            WIN THE GRAND PRIZE
-          </div>
-          <div className="card-body">
-            <p className="card-text">Found Mr Pennybags on the cookie?</p>
-            <p className="card-text">Scan it to win a grand prize.</p>
-            <Link href="/prize/grand" className="btn bg-black text-white fw-bold">
-              Scan your Oreo Cookie
-            </Link>
-          </div>
+      <div
+        className="d-flex justify-content-center align-items-center"
+        style={{ minHeight: "100vh" }}
+      >
+        <div
+          style={{ maxWidth: "450px", width: "100%" }}
+          className="border border-1 max-auto p-4 shadow text-center"
+        >
+          <h2
+            className="text-center fw-bolder text-uppercase mb-3"
+            style={{ color: "#555", letterSpacing: "1px" }}
+          >
+            Oreo
+          </h2>
+          <a
+            onClick={() => signIn("google")}
+            className={`${styles.button} ${styles.button_google}`}
+          >
+            <i className={`${styles.icon} fa fa-google`}></i>
+            Sign in Google
+          </a>
+          <a
+            onClick={() => signIn("facebook")}
+            className={`${styles.button} ${styles.button_facebook}`}
+          >
+            <i className={`${styles.icon}  fa fa-facebook`}></i>
+            Sign in Facebook
+          </a>
         </div>
-
-        <div className="card mt-5 text-center">
-          <div className="card-header bg-danger">
-            <b> A CHANCE TO WIN THE BOARD</b>
-          </div>
-          <div className="card-body">
-            <p className="card-text">
-              Scan and collect all 5 limited edition cookies for a chance to win
-              Oreo X Monopoly board.
-            </p>
-            <Link href="/prize/collect" className="btn bg-black text-white fw-bold">
-              Build your collection
-            </Link>
-          </div>
-        </div>
-      </main>
+      </div>
     </div>
   );
-}
-// export async function getServerSideProps(context) {
-//   const session = await getSession(context)
-//   console.log({session})
-//   if (!session) {
-//     return {
-//       redirect: {
-//         destination: '/login',
-//         permanent: false,
-//       },
-//     }
-//   }
-
-//   return {
-//     props: { session }
-//   }
-// }
+};
+export default Home;

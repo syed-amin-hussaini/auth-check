@@ -88,7 +88,7 @@ const nextAuthOptions = (req, res) => {
         // console.log('url', url);
         // console.log('baseUrl', baseUrl);
         
-        return url.startsWith(baseUrl) ? "/" : baseUrl + '/';
+        return url.startsWith(baseUrl) ? "/dashboard" : baseUrl + '/';
       }
     },
   };
