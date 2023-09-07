@@ -255,10 +255,10 @@ export async function getServerSideProps(context) {
       //   destination: '/login',
       //   permanent: false,
       // },
-      redirect: {
-        destination: "/login",
-        permanent: false,
-      },
+      // redirect: {
+      //   destination: "/login",
+      //   permanent: false,
+      // },
     };
   }
   

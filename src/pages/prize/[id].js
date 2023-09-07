@@ -31,14 +31,13 @@ export default function Price() {
     const imageSrc = webcamRef.current.getScreenshot();
     setImgSrc(imageSrc);
     let data_i = JSON.stringify({
-      image: imageSrc,
-      source: id
+      img: imageSrc
     });
     // Send the captured image to a third-party API
     try {
       const response = await axios({
         method: "post",
-        url: "/api/imageSender",
+        url: "https://obackend.hul-hub.com/api/scan-cookie",
         data: data_i,
         headers: { "Content-Type": "application/json" },
       });

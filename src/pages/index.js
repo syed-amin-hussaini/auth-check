@@ -66,19 +66,19 @@ export default function Home() {
     </div>
   );
 }
-export async function getServerSideProps(context) {
-  const session = await getSession(context)
-  console.log({session})
-  if (!session) {
-    return {
-      redirect: {
-        destination: '/login',
-        permanent: false,
-      },
-    }
-  }
+// export async function getServerSideProps(context) {
+//   const session = await getSession(context)
+//   console.log({session})
+//   if (!session) {
+//     return {
+//       redirect: {
+//         destination: '/login',
+//         permanent: false,
+//       },
+//     }
+//   }
 
-  return {
-    props: { session }
-  }
-}
+//   return {
+//     props: { session }
+//   }
+// }
