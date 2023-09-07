@@ -1,14 +1,31 @@
 {
-  "name": "Oreo Cookie_1",
-  "short_name": "Oreos",
-  "start_url": "/",
-  "display": "standalone",
+  "theme_color": "#000",
   "background_color": "#ffffff",
-  "theme_color": "#000000",
+  "display": "standalone",
+  "scope": "/",
+  "start_url": "/",
+  "name": "Oreo",
+  "short_name": "Oreo",
+  "description": "Oreo Cookie",
   "icons": [
     {
-      "src": "/icon.png",
+      "src": "/icon-192x192.png",
       "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-256x256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
       "type": "image/png"
     }
   ]

@@ -51,6 +51,12 @@ export default async function middleware(req) {
     if (!sessions) {
       return NextResponse.rewrite(new URL('/login', req.url))
     }
+    if (userCountry === 'Pakistans' && req.url !== '/testing') {
+      return NextResponse.rewrite(new URL('/testing', req.url))
+    }
+    if (user?.profile_status != "complete"  ||  user?.profile_status == undefined || user?.profile_status == null ) {
+      return NextResponse.rewrite(new URL('/profile', req.url));
+    }
 
     // Your other middleware logic here...
   } catch (error) {
