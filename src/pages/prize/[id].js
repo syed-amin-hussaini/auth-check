@@ -32,7 +32,7 @@ export default function Price() {
 
     // Send the captured image to a third-party API
     try {
-      const response = await fetch('http://localhost:3000/api/imageSender', {
+      const response = await fetch(`${process.env.NEXTAUTH_URL}imageSender`, {
         method: 'POST',
         body: JSON.stringify({
           image: imageSrc,
