@@ -6,5 +6,5 @@ export default function handler(req, res) {
     // Process the requestData as needed
   console.log("Received data:", requestData);
   
-  res.status(200).json({ name: 'John Doe' })
+  res.status(200).json({ name: requestData })
 }
