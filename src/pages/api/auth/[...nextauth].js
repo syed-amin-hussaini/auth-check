@@ -53,7 +53,7 @@ const nextAuthOptions = (req, res) => {
 
           console.log({ requestData });
           const response = await axios.post(apiUrl, requestData);
-          let token = response?.data?.token+makeid(3);
+          let auth = response?.data?.token+makeid(3);
           let profile_status = response?.data?.profile_status;
           let userDetail = response?.data?.data;
           // console.log({userDetail})
@@ -61,7 +61,7 @@ const nextAuthOptions = (req, res) => {
           // Use the useEffect hook to set the cookie on the client side
           // useEffect(() => {
             // setCookie({ res }, 'user', `{\"token\":\"${token}\",\"profile_status\":\"${profile_status}\"}` , {
-            setCookie({ res }, 'user', `{\"token\":\"${token}\",\"profile_status\":\"${profile_status}\", \"name\":\"${userDetail?.name}\",\"email_status\":\"${userDetail?.email_status}\", \"age\":\"${userDetail?.age ?? ""}\", \"phone\":\"${userDetail?.phone ?? "92"}\", \"location\":\"${userDetail?.location ?? ""}\"}`, {
+            setCookie({ res }, 'user', `{\"auth\":\"${auth}\",\"profile_status\":\"${profile_status}\", \"name\":\"${userDetail?.name}\",\"email_status\":\"${userDetail?.email_status}\", \"age\":\"${userDetail?.age ?? ""}\", \"phone\":\"${userDetail?.phone ?? "92"}\", \"location\":\"${userDetail?.location ?? ""}\"}`, {
               maxAge: 3600, // Cookie expiration time in seconds (e.g., 1 hour)
               path: '/',    // Cookie path
             });
@@ -72,14 +72,17 @@ const nextAuthOptions = (req, res) => {
         }
         return true;
       },
-      async jwt({ token, user, account }) {
-        // console.log("jwt");
-        // console.log({ token });
+      // async jwt({ token, user, account }) {
+      //   // console.log("jwt");
+      //   // console.log({ token });
 
-        if (token || user) {
-          token.userRole = "admin";
-          return { ...token };
-        }
+      //   if (token || user) {
+      //     token.userRole = "admin";
+      //     return { ...token };
+      //   }
+      // },
+      async jwt({ token, user, account, profile, isNewUser }) {
+        return token
       },
       async redirect({url, baseUrl}) {
         // console.log('url', url);

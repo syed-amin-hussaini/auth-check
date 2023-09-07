@@ -22,12 +22,14 @@ export default async function middleware(req) {
     // console.log(userCountry)
     // const token = req.cookies.get("token");
     let user = req?.cookies.get("user")?.value;
+    console.log({user})
     if (user) {
       user = JSON?.parse(user);
+      console.log({user})
     }
     let userDetail = {
       userStatus: user?.profile_status,
-      userToken: user?.token,
+      userToken: user?.auth,
       userCountry: userCountry,
     };
     console.log("Cookie Result");
@@ -37,16 +39,16 @@ export default async function middleware(req) {
       secret: process.env.JWT_SECRET,
     });
     console.log({ sessions });
-
-    if (!sessions) {
-      return NextResponse.rewrite(new URL('/login', req.url))
-    }
-    if (userCountry === 'Pakistans' && req.url !== '/testing') {
-      return NextResponse.rewrite(new URL('/testing', req.url))
-    }
-    if (user?.profile_status != "complete"  ||  user?.profile_status == undefined || user?.profile_status == null ) {
-      return NextResponse.rewrite(new URL('/profile', req.url));
-    }
+    console.log(req.url)
+    // if (!sessions || req.url !== 'http://localhost:3000/manifest.json') {
+    //   return NextResponse.rewrite(new URL('/login', req.url))
+    // }
+    // if (userCountry === 'Pakistans' && req.url !== '/testing') {
+    //   return NextResponse.rewrite(new URL('/testing', req.url))
+    // }
+    // if (user?.profile_status != "complete"  ||  user?.profile_status == undefined || user?.profile_status == null ) {
+    //   return NextResponse.rewrite(new URL('/profile', req.url));
+    // }
   } catch (error) {
     console.error("Error fetching user IP data:", error);
   }
