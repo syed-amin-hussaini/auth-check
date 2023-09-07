@@ -242,6 +242,9 @@ export async function getServerSideProps(context) {
 
   const userIdCookie = cookies["user"];
   let userCurrent;
+  if (userIdCookie) {
+    userCurrent = JSON.parse(userIdCookie);
+  }
   if (!session) {
     return {
       // redirect: {
@@ -254,9 +257,7 @@ export async function getServerSideProps(context) {
       },
     };
   }
-  if (userIdCookie) {
-    userCurrent = JSON.parse(userIdCookie);
-  }
+  
   return {
     props: { session, userCurrent },
   };
