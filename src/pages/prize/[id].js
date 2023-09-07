@@ -42,7 +42,6 @@ export default function Price() {
         headers: { "Content-Type": "application/json" },
       });
       
-
       if (response.ok) {
         console.log({response})
         // Handle success
