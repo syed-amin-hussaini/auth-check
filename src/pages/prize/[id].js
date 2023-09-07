@@ -19,8 +19,8 @@ export default function Price() {
   const { id } = router.query
   
   const videoConstraints = {
-    width: 320,
-    height: 320,
+    width: 500,
+    height: 500,
     facingMode: "environment",
   };
 
@@ -70,7 +70,7 @@ export default function Price() {
           mirrored={false}
           videoConstraints={videoConstraints}
           screenshotFormat="image/jpeg" 
-          
+          screenshotQuality={1}
           />
         <button onClick={capture}>Capture photo {id}</button>
         {imgSrc && <img style={{position: "absolute",left: "20%",top: "-20px"}} src={imgSrc} />}
