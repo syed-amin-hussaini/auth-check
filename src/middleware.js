@@ -47,9 +47,9 @@ export default async function middleware(req) {
       return NextResponse.next();
       // NextResponse.rewrite(new URL('/manifest.json', req.url))
     }
-    // if (!sessions) {
-    //   return NextResponse.redirect(new URL('/login', req.url))
-    // }
+    if (!sessions) {
+      return NextResponse.redirect(new URL('/login', req.url))
+    }
     // if (userCountry === 'Pakistans' && req.url !== '/testing') {
     //   return NextResponse.redirect(new URL('/testing', req.url))
     // }
