@@ -242,10 +242,14 @@ export async function getServerSideProps(context) {
 
   const userIdCookie = cookies["user"];
   let userCurrent;
+  console.log("Out side")
   if (userIdCookie) {
+    console.log("if userIdCookie")
     userCurrent = JSON.parse(userIdCookie);
   }
   if (!session) {
+    
+    console.log("Profile if")
     return {
       // redirect: {
       //   destination: '/login',
