@@ -9,6 +9,7 @@ import Webcam from "react-webcam";
 
 import styles from "@/src/styles/Camera.module.scss";
 import { useRouter } from "next/router";
+import axios from "axios";
 
 export default function Price() {
   const { data: session, status } = useSession();
@@ -29,20 +30,19 @@ export default function Price() {
   const capture = async () => {
     const imageSrc = webcamRef.current.getScreenshot();
     setImgSrc(imageSrc);
-
+    let data_i = JSON.stringify({
+      image: imageSrc,
+      source: id
+    });
     // Send the captured image to a third-party API
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}imageSender`, {
-        method: 'POST',
-        body: JSON.stringify({
-          image: imageSrc,
-          source: id
-        }),
-        headers: {
-          'Content-Type': 'application/json',
-          // Add any necessary headers for your API
-        },
+      const response = await axios({
+        method: "post",
+        url: "/api/imageSender",
+        data: data_i,
+        headers: { "Content-Type": "application/json" },
       });
+      
 
       if (response.ok) {
         console.log({response})
