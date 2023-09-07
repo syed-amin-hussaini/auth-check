@@ -2,25 +2,17 @@ import Head from "next/head";
 import { useSession, signIn, signOut } from "next-auth/react";
 import styles from "@/src/styles/login.module.scss";
 import { useEffect } from "react";
-import {  useRouter } from "next/router";
+import { useRouter } from "next/router";
 
 const Login = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { data: session, status } = useSession();
-  // const loading = status === "loading";
-  // const router = useRouter();
-
-  // const handleSignIn = async (provider) => {
-  //   const result = await signIn(provider);
-  //   try {
-  //     const result = await signIn(provider);
-  //     console.log("Sign-in result:", result);
-  //   } catch (error) {
-  //     console.error("Sign-in error:", error);
-  //   }
-  // };
-
-
+  const router = useRouter();
+  useEffect(() => {
+    if (!session) {
+      router.replace("/dashboard");
+    }
+  }, []);
   return (
     <div className={{}}>
       <Head>

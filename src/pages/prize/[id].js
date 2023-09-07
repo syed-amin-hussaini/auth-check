@@ -78,19 +78,19 @@ export default function Price() {
     </div>
   );
 }
-// export async function getServerSideProps(context) {
-//   const session = await getSession(context)
+export async function getServerSideProps(context) {
+  const session = await getSession(context)
 
-//   if (!session) {
-//     return {
-//       redirect: {
-//         destination: '/login',
-//         permanent: false,
-//       },
-//     }
-//   }
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    }
+  }
 
-//   return {
-//     props: { session }
-//   }
-// }
+  return {
+    props: { session }
+  }
+}

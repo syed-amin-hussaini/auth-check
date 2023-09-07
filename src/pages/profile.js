@@ -66,7 +66,6 @@ export default function Profile({ session, userCurrent }) {
     // userCurrent?.location,
     // userCurrent?.phone,
   ]);
-
   const onSubmit = async (data) => {
     setSubmit(true);
 
@@ -86,8 +85,13 @@ export default function Profile({ session, userCurrent }) {
       });
       console.log({ response });
       if (response.status === 200) {
+        if (router.asPath == "/dashboard") {
+          alert("asd")
+          router.push("/dashboard");
+        }
         toast("Profile Updated");
-        router.push("/");
+        // // router.push("/testing");
+        
       }
     } catch (error) {
       const status = error?.response?.status;
@@ -242,20 +246,13 @@ export async function getServerSideProps(context) {
 
   const userIdCookie = cookies["user"];
   let userCurrent;
-  console.log("Out side")
   if (userIdCookie) {
-    console.log("if userIdCookie")
     userCurrent = JSON.parse(userIdCookie);
   }
   console.log({session})
   if (!session) {
     
-    console.log("Profile if")
     return {
-      // redirect: {
-      //   destination: '/login',
-      //   permanent: false,
-      // },
       redirect: {
         destination: "/",
         permanent: false,

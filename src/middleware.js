@@ -28,25 +28,25 @@ export default async function middleware(req) {
       console.log({ user });
     }
     let userDetail = {
-      userStatus: user?.profile_status,
+      userStatus: user?.profile_status ?? "",
       userToken: user?.auth,
       userCountry: userCountry,
     };
     console.log("Cookie Result");
     console.log({ userDetail });
-    
-    const sessions = await getToken({
-      req,
-      secret: process.env.JWT_SECRET,
-    });
-    console.log("asd " + req.nextUrl.pathname);
+
+    // const sessions = await getToken({
+    //   req,
+    //   secret: process.env.JWT_SECRET,
+    // });
+    // console.log("asd " + sessions);
 
     if (userCountry === 'Pakistans' && req.url !== '/notallow') {
       return NextResponse.rewrite(new URL('/notallow', req.url))
     }
-    // if (user?.profile_status != "complete"  ||  user?.profile_status == undefined || user?.profile_status == null ) {
-    //   return NextResponse.redirect(new URL('/profile', req.url));
-    // }
+    if (userDetail?.userStatus != "" &&  userDetail?.userStatus == "incomplete") {
+      return NextResponse.rewrite(new URL('/profile', req.url));
+    }
 
     // Your other middleware logic here...
   } catch (error) {
