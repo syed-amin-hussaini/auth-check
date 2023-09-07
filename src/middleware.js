@@ -32,9 +32,9 @@ export default async function middleware(req) {
     console.log("Cookie Result")
     console.log({ userDetail })
     
-    if (user === undefined) {
-      return NextResponse.rewrite(new URL('/login', req.url))
-    }
+    // if (user === undefined && req.url !== '/login') {
+    //   return NextResponse.rewrite(new URL('/login', req.url))
+    // }
     if (userCountry === 'Pakistans' && req.url !== '/testing') {
       return NextResponse.rewrite(new URL('/testing', req.url))
     }
