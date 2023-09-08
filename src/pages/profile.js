@@ -142,11 +142,11 @@ export default function Profile({ session, userCurrent }) {
               maxLength={256}
               disabled={emailExit}
               {...register("email", {
-                required: "This field is mandatory",
+                required: "Email field is required",
                 pattern: {
                   value:
                     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                  message: "Incorrect Email Format",
+                  message: "Email Address is not in a valid format",
                 },
               })}
             />
@@ -160,10 +160,10 @@ export default function Profile({ session, userCurrent }) {
               className={styles.autoColor}
               maxLength={99}
               {...register("age", {
-                required: "This field is mandatory",
+                required: "Age field is required",
                 pattern: {
-                  // value: /\b\d{1,2}\b/gm,
-                  message: "Incorrect Age Format",
+                  value: /\b\d{1,2}\b/gm,
+                  message: "Age value is invalid",
                 },
               })}
             />
@@ -191,7 +191,7 @@ export default function Profile({ session, userCurrent }) {
                 required: "This field is mandatory",
                 minLength: {
                   value: phoneLength,
-                  message: "Incorrect Phone Format",
+                  message: "Phone Number is not in a valid format",
                 },
               }}
               render={({ field }) => (
