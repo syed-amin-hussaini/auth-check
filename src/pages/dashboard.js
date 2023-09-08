@@ -2,12 +2,17 @@ import Head from "next/head";
 // import styles from "../styles/Home.module.css";
 import { getSession, useSession } from "next-auth/react";
 import Nav from "@/components/Nav";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef} from "react";
 import Drawer from "@/components/Drawer";
 import Link from "next/link";
 import Webcam from "react-webcam";
 
-export default function Home() {
+
+// 
+import { QrReader } from '@blackbox-vision/react-qr-reader';
+import { useTorchLight } from '@blackbox-vision/use-torch-light';
+
+export default function Home(props) {
   const { data: session, status } = useSession();
   const loading = status === "loading";
 
@@ -25,6 +30,19 @@ export default function Home() {
     setImgSrc(imageSrc);
   }, [webcamRef, setImgSrc]);
 
+
+// 
+  const streamRef = useRef(null);
+
+  const [error, setError] = useState(null);
+  const [data, setData] = useState('No result');
+
+  const [on, toggle] = useTorchLight(streamRef.current);
+
+  const setRef = ({ stream }) => {
+    streamRef.current = stream;
+  };
+
   return (
     <div>
       <Head>
@@ -35,6 +53,16 @@ export default function Home() {
       <Drawer />
       <main className="container-fluid">
        
+      <QrReader
+        onLoad={setRef}
+        onScan={setData}
+        onError={setError}
+        style={{ width: '100%' }}
+      />
+      <button onClick={toggle}>{on ? 'Disable Torch' : 'Enable Torch'}</button>
+      <p>{JSON.stringify(data, null, 2)}</p>
+      <p>{JSON.stringify(error, null, 2)}</p>
+        
         <div className="card mt-5 text-center">
           <div className="card-header card-header bg-warning fw-bold">
             WIN THE GRAND PRIZE
