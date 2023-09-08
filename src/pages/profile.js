@@ -259,10 +259,10 @@ export async function getServerSideProps(context) {
       //   destination: '/login',
       //   permanent: false,
       // },
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
+      // redirect: {
+      //   destination: "/",
+      //   permanent: false,
+      // },
     };
   }
   
