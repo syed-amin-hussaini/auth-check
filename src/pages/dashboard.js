@@ -5,64 +5,21 @@ import Nav from "@/components/Nav";
 import React, { useEffect, useState, useRef} from "react";
 import Drawer from "@/components/Drawer";
 import Link from "next/link";
-import Webcam from "react-webcam";
-
-
-// 
-import { QrReader } from '@blackbox-vision/react-qr-reader';
-import { useTorchLight } from '@blackbox-vision/use-torch-light';
 
 export default function Home(props) {
   const { data: session, status } = useSession();
   const loading = status === "loading";
 
-  const videoConstraints = {
-    width: 250,
-    height: 250,
-    facingMode: "user",
-  };
-
-  const webcamRef = React.useRef(null);
-  const [imgSrc, setImgSrc] = React.useState(null);
-
-  const capture = React.useCallback(() => {
-    const imageSrc = webcamRef.current.getScreenshot();
-    setImgSrc(imageSrc);
-  }, [webcamRef, setImgSrc]);
-
-
-// 
-  const streamRef = useRef(null);
-
-  const [error, setError] = useState(null);
-  const [data, setData] = useState('No result');
-
-  const [on, toggle] = useTorchLight(streamRef.current);
-
-  const setRef = ({ stream }) => {
-    streamRef.current = stream;
-  };
-
   return (
     <div>
       <Head>
-        <title>Nextjs | Next-Auth</title>
+        <title>Oreo | Dashboard</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Nav />
       <Drawer />
       <main className="container-fluid">
-       
-      <QrReader
-        onLoad={setRef}
-        onScan={setData}
-        onError={setError}
-        style={{ width: '100%' }}
-      />
-      <button onClick={toggle}>{on ? 'Disable Torch' : 'Enable Torch'}</button>
-      <p>{JSON.stringify(data, null, 2)}</p>
-      <p>{JSON.stringify(error, null, 2)}</p>
-        
+               
         <div className="card mt-5 text-center">
           <div className="card-header card-header bg-warning fw-bold">
             WIN THE GRAND PRIZE

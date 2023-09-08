@@ -17,11 +17,17 @@ export default function Price() {
 
   const router = useRouter();
   const { id } = router.query
-  
+  const [torchEnabled, setTorchEnabled] = useState(false);
+
+  const toggleTorch = () => {
+    setTorchEnabled(!torchEnabled);
+  };
+
   const videoConstraints = {
     width: 500,
     height: 500,
     facingMode: "environment",
+    torch: torchEnabled,
   };
 
   const webcamRef = React.useRef(null);
@@ -72,6 +78,9 @@ export default function Price() {
           screenshotQuality={1}
           />
         <button onClick={capture}>Capture photo {id}</button>
+        <button onClick={toggleTorch}>
+          {torchEnabled ? 'Turn Off Torch' : 'Turn On Torch'}
+        </button>
         {imgSrc && <img style={{position: "absolute",left: "20%",top: "-20px"}} src={imgSrc} />}
 
       </main>
