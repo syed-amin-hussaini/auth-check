@@ -11,13 +11,7 @@ import { useRouter } from "next/router";
 export default function Home() {
   const { data: session, status } = useSession();
   const loading = status === "loading";
-  const router = useRouter();
-  useLayoutEffect(() => {
-    if (!session) { 
-      router.push("/")
-    }
-  }, [])
-
+ 
   return (
     <div>
       <Head>

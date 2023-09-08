@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { useSession, signOut, getSession } from "next-auth/react";
 import Image from "next/image";
 import logo from "@/src/images/logo.png";
@@ -8,8 +8,9 @@ import Link from "next/link";
 
 const Nav = ({ user }) => {
   const [email, setEmail] = useState()
+  const router = useRouter();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const cookies = parseCookies();
     console.log(cookies.user)
     if (cookies?.user) {
@@ -17,6 +18,8 @@ const Nav = ({ user }) => {
       console.log(JSON?.parse(cookies?.user)?.email_status)
       let emailStatus = JSON?.parse(cookies?.user)?.email_status;
       setEmail(emailStatus)
+    } else {
+      router.push("/")
     }
     
   }, [])
