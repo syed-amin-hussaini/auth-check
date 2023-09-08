@@ -40,7 +40,7 @@ const Nav = ({ user }) => {
       <nav className="navbar navbar-expand-lg bg-light">
         <div className="container-fluid">
           <div className="d-flex justify-content-between w-100">
-            <Link className="navbar-brand" href="/">
+            <Link className="navbar-brand" href="/dashboard">
               <Image src={logo} alt="logo" width={30} height={30} />
             </Link>
             <button

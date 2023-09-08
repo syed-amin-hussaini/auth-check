@@ -16,20 +16,22 @@ function MyApp({ Component, pageProps, session }) {
         
       </Head>
     
-      <Component {...pageProps}>
-        <ToastContainer
-          position="bottom-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="light"
-        />
-      </Component>
+      <Component {...pageProps} />
+
+      <ToastContainer
+        // toastStyle={{background:"#000",color:"#fff"}}
+        // progressStyle={{background:"#7F8FBB"}}
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </SessionProvider>
   );
 }

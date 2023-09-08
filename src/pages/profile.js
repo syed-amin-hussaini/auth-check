@@ -87,7 +87,10 @@ export default function Profile({ session, userCurrent }) {
       console.log({ response });
       if (response.status === 200) {
         toast("Profile Updated");
-        router.push("/");
+        if (router.asPath == "/dashboard") {
+          alert("asd")
+          router.push("/dashboard");
+        }
       }
     } catch (error) {
       const status = error?.response?.status;
