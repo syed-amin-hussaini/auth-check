@@ -2,7 +2,7 @@ import Head from "next/head";
 // import styles from "../styles/Home.module.css";
 import { getSession, useSession } from "next-auth/react";
 import Nav from "@/components/Nav";
-import React, { useLayoutEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Drawer from "@/components/Drawer";
 import Link from "next/link";
 import { useRouter } from "next/router";

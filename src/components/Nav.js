@@ -11,7 +11,7 @@ const Nav = ({ user }) => {
   const [email, setEmail] = useState()
   const router = useRouter();
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const cookies = parseCookies();
     console.log(cookies.user)
     if (cookies?.user) {
@@ -37,7 +37,7 @@ const Nav = ({ user }) => {
   console.log({email})
   return (
     <>
-      <nav className="navbar navbar-expand-lg bg-light">
+      {/* <nav className="navbar navbar-expand-lg bg-light">
         <div className="container-fluid">
           <div className="d-flex justify-content-between w-100">
             <Link className="navbar-brand" href="/dashboard">
@@ -96,8 +96,8 @@ const Nav = ({ user }) => {
             </ul>
           </div>
         </div>
-      </nav>
-      {email == "false" && <div  className="alert alert-warning d-flex align-items-center" role="alert">
+      </nav> */}
+      {email == "false" ? <div className="alert alert-warning d-flex align-items-center" role="alert">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"
@@ -110,7 +110,7 @@ const Nav = ({ user }) => {
             <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
           </svg>
           <div className="ms-2"> Verify email</div>
-        </div>
+        </div> :<div></div>
       }
     </>
   );
