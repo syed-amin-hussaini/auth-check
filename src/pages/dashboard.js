@@ -2,28 +2,21 @@ import Head from "next/head";
 // import styles from "../styles/Home.module.css";
 import { getSession, useSession } from "next-auth/react";
 import Nav from "@/components/Nav";
-import React, { useEffect, useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import Drawer from "@/components/Drawer";
 import Link from "next/link";
-import Webcam from "react-webcam";
+import { useRouter } from "next/router";
+
 
 export default function Home() {
   const { data: session, status } = useSession();
   const loading = status === "loading";
-
-  const videoConstraints = {
-    width: 250,
-    height: 250,
-    facingMode: "user",
-  };
-
-  const webcamRef = React.useRef(null);
-  const [imgSrc, setImgSrc] = React.useState(null);
-
-  const capture = React.useCallback(() => {
-    const imageSrc = webcamRef.current.getScreenshot();
-    setImgSrc(imageSrc);
-  }, [webcamRef, setImgSrc]);
+  const router = useRouter();
+  useLayoutEffect(() => {
+    if (!session) { 
+      router.push("/")
+    }
+  }, [])
 
   return (
     <div>
@@ -66,19 +59,19 @@ export default function Home() {
     </div>
   );
 }
-export async function getServerSideProps(context) {
-  const session = await getSession(context)
-  console.log({session})
-  if (!session) {
-    return {
-      redirect: {
-        destination: '/',
-        permanent: false,
-      },
-    }
-  }
+// export async function getServerSideProps(context) {
+//   const session = await getSession(context)
+//   console.log({session})
+//   if (!session) {
+//     return {
+//       redirect: {
+//         destination: '/',
+//         permanent: false,
+//       },
+//     }
+//   }
 
-  return {
-    props: { session }
-  }
-}
+//   return {
+//     props: { session }
+//   }
+// }
