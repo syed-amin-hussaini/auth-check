@@ -31,11 +31,11 @@ const Login = () => {
       
       <div
         className={styles.main }>
-        <Image alt="Logo" src={Logo} style={{width:"80%",objectFit: "contain",margin: "0 0 30px;",paddingBlock:"40px", display: "block"}} />
-        <Image alt="Uncle" src={Uncle} style={{width:"80%",height:"auto",objectFit: "contain",marginBottom: "40px",display: "block"}} />
+        <Image alt="Logo" src={Logo} style={{width:"85%",objectFit: "contain",margin: "0 0 30px;",paddingBlock:"40px", display: "block"}} />
+        <Image alt="Uncle" src={Uncle} style={{width:"85%",height:"auto",objectFit: "contain",marginBottom: "40px",display: "block"}} />
         
         <div
-          style={{ maxWidth: "80%", width: "100%",marginBottom:"40px" }}
+          style={{ maxWidth: "85%", width: "100%",marginBottom:"40px" }}
           className="text-center"
         >
           <a
