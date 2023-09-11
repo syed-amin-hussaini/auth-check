@@ -6,8 +6,7 @@ import Avatar from "@/src/images/avatar.png";
 import { parseCookies, setCookie, destroyCookie } from 'nookies'
 import Link from "next/link";
 import { useRouter } from "next/router";
-import LoaderImage from "@/public/assets/images/loader.gif";
-import Layer from "@/public/assets/images/layer-2.webp";
+
 
 const Nav = ({ user }) => {
   const [email, setEmail] = useState()
@@ -99,7 +98,7 @@ const Nav = ({ user }) => {
           </div>
         </div>
       </nav>
-      {/* <div className="loader" style={{backgroundImage: `url(${Layer.src})`}}></div> */}
+      
       {email == "false" && <div  className="alert alert-warning d-flex align-items-center" role="alert">
           <svg
             xmlns="http://www.w3.org/2000/svg"
