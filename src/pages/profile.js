@@ -254,9 +254,9 @@ export async function getServerSideProps(context) {
 
   const userIdCookie = cookies["user"];
   let userCurrent;
-  if (userIdCookie) {
-    userCurrent = JSON.parse(userIdCookie);
-  }
+  // if (userIdCookie) {
+  //   userCurrent = JSON.parse(userIdCookie);
+  // }
   console.log({session})
   // if (!session) {
     
