@@ -13,10 +13,9 @@ const Nav = ({ user }) => {
 
   useEffect(() => {
     const cookies = parseCookies();
-    console.log(cookies.user)
+    // console.log(cookies.user)
     if (cookies?.user) {
-      console.log("If")
-      console.log(JSON?.parse(cookies?.user)?.email_status)
+      // console.log(JSON?.parse(cookies?.user)?.email_status)
       let emailStatus = JSON?.parse(cookies?.user)?.email_status;
       setEmail(emailStatus)
     } else {

@@ -4,6 +4,7 @@ import styles from "@/src/styles/Form.module.scss";
 // import { getSession, useSession } from "next-auth/react";
 import Nav from "@/components/Nav";
 import { useEffect, useState } from "react";
+import { getSession } from "next-auth/react";
 import Drawer from "@/components/Drawer";
 import { Controller, useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
@@ -11,18 +12,17 @@ import PhoneInput from "react-phone-input-2";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-import nookies, { parseCookies } from "nookies";
+import nookies from "nookies";
 import { useRouter } from "next/router";
-import { useSession } from "next-auth/react";
 
-export default function Profile() {
+export default function Profile({ session, userCurrent }) {
   const [phoneLength, setPhoneLength] = useState(0);
   const [phone, setPhone] = useState(0);
 
   const [submit, setSubmit] = useState(false);
   const [emailExit, setEmailExit] = useState(false);
+
   const router = useRouter()
-  const { data: session } = useSession();
 
   const {
     register,
@@ -41,26 +41,7 @@ export default function Profile() {
     setPhoneLength(formatVal.format.length);
   };
 
-  useEffect(() => {
-    let cookies = parseCookies();
-    // console.log(cookies.user)
-    if (cookies?.user) {
-      // console.log(JSON?.parse(cookies?.user)?.email_status)
-     cookies = JSON?.parse(cookies?.user);
-    }
-
-    console.log({session})
-    console.log(session?.user?.name, session?.user?.email)
-    setValue("name", session?.user?.name);
-    setValue("email", session?.user?.email);
-    setValue("age",      cookies?.age);
-    setValue("location", cookies?.location);
-    setValue("phone", cookies?.phone);
-    session?.user?.email && setEmailExit(true);
-    setPhone(cookies?.phone);
-  }, []);
   // useEffect(() => {
-  //   console.log({session},{userCurrent})
   //   setValue("name", session?.user?.name);
   //   setValue("email", session?.user?.email);
   //   setValue("age", userCurrent?.age);
@@ -68,14 +49,24 @@ export default function Profile() {
   //   setValue("phone", userCurrent?.phone);
   //   session?.user?.email && setEmailExit(true);
   //   setPhone(userCurrent?.phone);
-  // }, [
-  //   session?.user?.name,
-  //   session?.user?.email,
-  //   setValue,
-  //   userCurrent?.age,
-  //   userCurrent?.location,
-  //   userCurrent?.phone,
-  // ]);
+  // }, []);
+  useEffect(() => {
+    console.log({session},{userCurrent})
+    setValue("name", session?.user?.name);
+    setValue("email", session?.user?.email);
+    setValue("age", userCurrent?.age);
+    setValue("location", userCurrent?.location);
+    setValue("phone", userCurrent?.phone);
+    session?.user?.email && setEmailExit(true);
+    setPhone(userCurrent?.phone);
+  }, [
+    session?.user?.name,
+    session?.user?.email,
+    setValue,
+    userCurrent?.age,
+    userCurrent?.location,
+    userCurrent?.phone,
+  ]);
 
   const onSubmit = async (data) => {
     setSubmit(true);
@@ -97,10 +88,10 @@ export default function Profile() {
       console.log({ response });
       if (response.status === 200) {
         toast("Profile Updated");
-        // if (router.asPath == "/dashboard") {
-        //   alert("asd")
-        //   router.push("/dashboard");
-        // }
+        if (router.asPath == "/dashboard") {
+          alert("asd")
+          router.push("/dashboard");
+        }
       }
     } catch (error) {
       const status = error?.response?.status;
@@ -249,34 +240,34 @@ export default function Profile() {
   );
 }
 
-// export async function getServerSideProps(context) {
-//   const session = await getSession(context);
-//   const cookies = nookies?.get(context?.res);
+export async function getServerSideProps(context) {
+  const session = await getSession(context);
+  const cookies = nookies?.get(context?.res);
 
-//   const userIdCookie = cookies["user"];
-//   let userCurrent;
-//   console.log("Out side")
-//   if (userIdCookie) {
-//     console.log("if userIdCookie")
-//     userCurrent = JSON.parse(userIdCookie);
-//   }
-//   console.log({session})
-//   if (!session) {
+  const userIdCookie = cookies["user"];
+  let userCurrent;
+  console.log("Out side")
+  if (userIdCookie) {
+    console.log("if userIdCookie")
+    userCurrent = JSON.parse(userIdCookie);
+  }
+  console.log({session})
+  if (!session) {
     
-//     console.log("Profile if")
-//     return {
-//       // redirect: {
-//       //   destination: '/login',
-//       //   permanent: false,
-//       // },
-//       // redirect: {
-//       //   destination: "/",
-//       //   permanent: false,
-//       // },
-//     };
-//   }
+    console.log("Profile if")
+    return {
+      // redirect: {
+      //   destination: '/login',
+      //   permanent: false,
+      // },
+      // redirect: {
+      //   destination: "/",
+      //   permanent: false,
+      // },
+    };
+  }
   
-//   return {
-//     props: { session, userCurrent },
-//   };
-// }
+  return {
+    props: { session, userCurrent },
+  };
+}
