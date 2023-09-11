@@ -35,7 +35,7 @@ const Login = () => {
         <Image alt="Uncle" src={Uncle} style={{width:"85%",height:"auto",objectFit: "contain",marginBottom: "40px",display: "block"}} />
         
         <div
-          style={{ maxWidth: "85%", width: "100%",marginBottom:"40px" }}
+          style={{ maxWidth: "95%", width: "100%",marginBottom:"40px" }}
           className="text-center"
         >
           <a
