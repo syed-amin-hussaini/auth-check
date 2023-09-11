@@ -12,7 +12,7 @@ import PhoneInput from "react-phone-input-2";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-import nookies from "nookies";
+import nookies, { parseCookies } from "nookies";
 import { useRouter } from "next/router";
 
 export default function Profile({ session, userCurrent }) {
@@ -20,7 +20,6 @@ export default function Profile({ session, userCurrent }) {
   const [phone, setPhone] = useState(0);
 
   const [submit, setSubmit] = useState(false);
-  const [emailExit, setEmailExit] = useState(false);
 
   const router = useRouter()
 
@@ -42,12 +41,18 @@ export default function Profile({ session, userCurrent }) {
   };
 
   useEffect(() => {
-    setValue("name", session?.user?.name);
-    setValue("email", session?.user?.email);
+    let cookies = parseCookies();
+    console.log(cookies.user)
+    if (cookies?.user) {
+      cookies = JSON?.parse(cookies?.user)
+    } 
+
+    setValue("name", cookies.name);
+    setValue("email", cookies.email);
     setValue("age", userCurrent?.age);
     setValue("location", userCurrent?.location);
     setValue("phone", userCurrent?.phone);
-    session?.user?.email && setEmailExit(true);
+    
     setPhone(userCurrent?.phone);
   }, []);
   // useEffect(() => {
