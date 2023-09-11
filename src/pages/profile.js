@@ -22,7 +22,7 @@ export default function Profile({ session, userCurrent }) {
   const [submit, setSubmit] = useState(false);
   const [emailExit, setEmailExit] = useState(false);
 
-  const router = useRouter()
+  const router = useRouter();
 
   const {
     register,
