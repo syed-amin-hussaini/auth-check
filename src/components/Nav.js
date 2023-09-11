@@ -19,7 +19,7 @@ const Nav = ({ user }) => {
       console.log(JSON?.parse(cookies?.user)?.email_status)
       let emailStatus = JSON?.parse(cookies?.user)?.email_status;
       setEmail(emailStatus)
-    } else { 
+    }else { 
       router.push("/");
     }
     
@@ -33,7 +33,7 @@ const Nav = ({ user }) => {
     signOut();
   };
 
-  if (!session) return;
+  // if (!session) return;
   console.log({email})
   return (
     <>

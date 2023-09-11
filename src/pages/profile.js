@@ -15,7 +15,7 @@ import { toast } from "react-toastify";
 import nookies, { parseCookies } from "nookies";
 import { useRouter } from "next/router";
 
-export default function Profile({ session, userCurrent }) {
+export default function Profile() {
   const [phoneLength, setPhoneLength] = useState(0);
   const [phone, setPhone] = useState(0);
 
@@ -52,11 +52,11 @@ export default function Profile({ session, userCurrent }) {
 
     setValue("name", cookies.name);
     setValue("email", cookies.email);
-    setValue("age", userCurrent?.age);
-    setValue("location", userCurrent?.location);
-    setValue("phone", userCurrent?.phone);
+    setValue("age", cookies?.age);
+    setValue("location", cookies?.location);
+    setValue("phone", cookies?.phone);
     cookies.email && setEmailExit(true);
-    setPhone(userCurrent?.phone);
+    setPhone(cookies?.phone);
   }, []);
   // useEffect(() => {
   //   setValue("name", session?.user?.name);
@@ -246,29 +246,4 @@ export default function Profile({ session, userCurrent }) {
       </main>
     </div>
   );
-}
-
-export async function getServerSideProps(context) {
-  const session = await getSession(context);
-  const cookies = nookies?.get(context?.res);
-
-  const userIdCookie = cookies["user"];
-  let userCurrent;
-  // if (userIdCookie) {
-  //   userCurrent = JSON.parse(userIdCookie);
-  // }
-  console.log({session})
-  // if (!session) {
-    
-  //   return {
-  //     redirect: {
-  //       destination: "/",
-  //       permanent: false,
-  //     },
-  //   };
-  // }
-  
-  return {
-    props: { session, userCurrent },
-  };
 }

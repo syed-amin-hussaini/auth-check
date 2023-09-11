@@ -3,16 +3,21 @@ import { useSession, signIn, signOut } from "next-auth/react";
 import styles from "@/src/styles/login.module.scss";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
+import { parseCookies } from "nookies";
 
 const Login = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { data: session, status } = useSession();
   const router = useRouter();
-  useEffect(() => {
-    if (!session) {
-      router.replace("/dashboard");
-    }
-  }, []);
+  let cookies = parseCookies();
+ console.log(cookies?.user)
+  if (cookies?.user != undefined) {
+    router.replace("/dashboard");
+  } 
+  // useEffect(() => {
+  //   if (!session) {
+  //   }
+  // }, []);
   return (
     <div className={{}}>
       <Head>
