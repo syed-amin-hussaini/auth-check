@@ -4,6 +4,11 @@ import styles from "@/src/styles/login.module.scss";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { parseCookies } from "nookies";
+import Image from "next/image";
+import Logo from "@/public/assets/images/complete-logo.png";
+import Uncle from "@/public/assets/images/login/uncle.png";
+import Facebook from "@/public/assets/images/login/facebook.svg";
+import Google from "@/public/assets/images/login/google.svg";
 
 const Login = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -11,46 +16,41 @@ const Login = () => {
   const router = useRouter();
   let cookies = parseCookies();
  console.log(cookies?.user)
-  if (cookies?.user != undefined) {
-    router.replace("/dashboard");
-  } 
-  // useEffect(() => {
-  //   if (!session) {
-  //   }
-  // }, []);
+  useEffect(() => {
+   
+    if (cookies?.user != undefined) {
+      router.replace("/dashboard");
+    } 
+  }, []);
   return (
     <div className={{}}>
       <Head>
-        <title>Nextjs | Login</title>
+        <title>Oreo | Login</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      
       <div
-        className="d-flex justify-content-center align-items-center"
-        style={{ minHeight: "100vh" }}
-      >
+        className={styles.main }>
+        <Image alt="Logo" src={Logo} style={{width:"80%",objectFit: "contain",margin: "0 0 30px;",paddingBlock:"40px", display: "block"}} />
+        <Image alt="Uncle" src={Uncle} style={{width:"80%",height:"auto",objectFit: "contain",marginBottom: "40px",display: "block"}} />
+        
         <div
-          style={{ maxWidth: "450px", width: "100%" }}
-          className="border border-1 max-auto p-4 shadow text-center"
+          style={{ maxWidth: "80%", width: "100%",marginBottom:"40px" }}
+          className="text-center"
         >
-          <h2
-            className="text-center fw-bolder text-uppercase mb-3"
-            style={{ color: "#555", letterSpacing: "1px" }}
-          >
-            Oreo
-          </h2>
           <a
             onClick={() => signIn("google")}
             className={`${styles.button} ${styles.button_google}`}
           >
-            <i className={`${styles.icon} fa fa-google`}></i>
-            Sign in Google
+            <Image alt="Google icon" src={Google} style={{padding:"10px"}} /> 
+              Continue with Google
           </a>
           <a
             onClick={() => signIn("facebook")}
             className={`${styles.button} ${styles.button_facebook}`}
           >
-            <i className={`${styles.icon}  fa fa-facebook`}></i>
-            Sign in Facebook
+            <Image alt="Facebook icon" src={Facebook} style={{padding:"10px"}} />
+            Continue with Facebook
           </a>
         </div>
       </div>

@@ -1,72 +1,55 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto+Slab:400,700);
 
-.button {
-  display: inline-block;
-  padding: 0 18px 0 6px;
-  border: 0 none;
-  border-radius: 5px;
-  text-decoration: none;
-  transition: all 250ms linear;
-  margin-bottom: 12px;
-  margin-right: 12px;
-  color: white;
-  height: 50px;
-  line-height: 46px;
-  position: relative;
-  text-align: left;
-  width: 250px;
-  margin-inline: auto;
-  &:hover {
-    color: #fff;
-    text-decoration: none;
-    cursor: pointer;
-  }
-
-  .icon {
-    margin-right: 12px;
-    font-size: 24px;
-    line-height: 24px;
-    width: 42px;
-    height: 24px;
-    text-align: center;
+.main {
+  background-image: url("/assets/images/layer.webp");
+  height: 96vh;
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .button {
     display: inline-block;
+    padding: 0 18px 0 6px;
+    border: 0 none;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: all 250ms linear;
+    margin-bottom: 12px;
+    margin-right: 12px;
+    color: white;
+    height: 50px;
+    line-height: 46px;
     position: relative;
-    top: 4px;
-    &:before {
-      display: inline-block;
-      width: 40px;
+    text-align: center;
+    width: 100%;
+    margin-inline: auto;
+    text-transform: uppercase;
+    &:hover {
+      color: #fff;
+      text-decoration: none;
+      cursor: pointer;
     }
-    &:after {
-      content: "";
-    }
-  }
-  &.button_facebook {
-    background-color: #4b70ab;
-    border: 1px solid #3b5988;
-    .icon {
-      border-right: 1px solid #3b5988;
-      &:after {
-        border-right: 1px solid #6b8bbe;
+   
+    &.button_facebook {
+      background-color: #0075ff;
+      border: 1px solid #0477fa;
+      &:hover {
+        background-color: #0477fa;
       }
     }
-    &:hover {
-      background-color: #436499;
-    }
-  }
-  
-  
-  
-  &.button_google {
-    background-color: #3F85F4;
-    border: 1px solid #0f66f1;
-    .icon {
-      border-right: 1px solid #0f66f1;
-      &:after {
-        border-right: 1px solid #6fa4f7;
+    
+    
+    
+    &.button_google {
+      background-color: #fff;
+      border: 1px solid #fafafa;
+      color: #9a9a9a;
+      
+      &:hover {
+        background-color: #fafafa;
       }
-    }
-    &:hover {
-      background-color: #1e68de;
     }
   }
 }
