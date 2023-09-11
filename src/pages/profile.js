@@ -248,7 +248,7 @@ export async function getServerSideProps(context) {
       //   destination: '/login',
       //   permanent: false,
       // },
-      rewrite: {
+      redirect: {
         destination: "/login",
         permanent: false,
       },
