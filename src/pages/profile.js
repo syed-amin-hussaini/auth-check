@@ -20,6 +20,7 @@ export default function Profile({ session, userCurrent }) {
   const [phone, setPhone] = useState(0);
 
   const [submit, setSubmit] = useState(false);
+  const [emailExit, setEmailExit] = useState(false);
 
   const router = useRouter()
 
@@ -42,17 +43,19 @@ export default function Profile({ session, userCurrent }) {
 
   useEffect(() => {
     let cookies = parseCookies();
-    console.log(cookies.user)
     if (cookies?.user) {
       cookies = JSON?.parse(cookies?.user)
     } 
+    console.log(cookies)
+    console.log("Profile")
+    console.log(cookies.email)
 
     setValue("name", cookies.name);
     setValue("email", cookies.email);
     setValue("age", userCurrent?.age);
     setValue("location", userCurrent?.location);
     setValue("phone", userCurrent?.phone);
-    
+    cookies.email && setEmailExit(true);
     setPhone(userCurrent?.phone);
   }, []);
   // useEffect(() => {
