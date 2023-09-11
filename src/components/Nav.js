@@ -7,7 +7,7 @@ import { parseCookies, setCookie, destroyCookie } from 'nookies'
 import Link from "next/link";
 import { useRouter } from "next/router";
 import LoaderImage from "@/public/assets/images/loader.gif";
-import Layer from "@/public/assets/images/layer-2.png";
+import Layer from "@/public/assets/images/layer-2.webp";
 
 const Nav = ({ user }) => {
   const [email, setEmail] = useState()
@@ -99,18 +99,7 @@ const Nav = ({ user }) => {
           </div>
         </div>
       </nav>
-      <div className="loader" style={{backgroundImage: `url(${Layer.src})`}}>
-        <span className="text-center">
-        <Image
-          src={LoaderImage}
-          alt="App Loader"
-          width={250} // Set the width of the image
-          height={250} // Set the height of the image
-        />
-        <p className="text-white">Loading.</p>
-
-        </span>
-      </div>
+      {/* <div className="loader" style={{backgroundImage: `url(${Layer.src})`}}></div> */}
       {email == "false" && <div  className="alert alert-warning d-flex align-items-center" role="alert">
           <svg
             xmlns="http://www.w3.org/2000/svg"

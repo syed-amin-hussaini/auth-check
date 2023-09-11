@@ -12,6 +12,12 @@ body {
   font-family: "Pluto Bold";
   position: relative;
 }
+.main {
+  background-image: url("/assets/images/layer-2.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+}
 
 a {
   color: inherit;
