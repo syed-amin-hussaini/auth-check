@@ -1,5 +1,3 @@
-
-
 * {
   box-sizing: border-box;
   padding: 0;
@@ -12,6 +10,7 @@ body {
   overflow-x: hidden;
   margin: 1vh auto;
   font-family: "Pluto Bold";
+  position: relative;
 }
 
 a {
@@ -20,12 +19,12 @@ a {
 }
 
 // tel
-.react-tel-input  {
+.react-tel-input {
   input {
     padding-left: 48px !important;
   }
   .flag-dropdown {
-    border-right: 1px solid #7F8FBB !important;
+    border-right: 1px solid #7f8fbb !important;
     border-radius: 10px 0 0 10px !important;
   }
 }
@@ -39,6 +38,31 @@ input::-webkit-inner-spin-button {
 }
 
 /* Firefox */
-input[type=number] {
+input[type="number"] {
   -moz-appearance: textfield;
+}
+.loader {
+  display: grid;
+  place-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  z-index: 1;
+  &:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    content: "";
+    // background-image: url("/assets/images/layer-2.png");
+    background-image: url("/assets/images/layer.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 99;
+  }
+  img {
+  }
 }
