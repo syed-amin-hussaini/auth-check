@@ -12,7 +12,7 @@ import PhoneInput from "react-phone-input-2";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-import nookies from "nookies";
+import nookies, { parseCookies } from "nookies";
 import { useRouter } from "next/router";
 
 export default function Profile({ session, userCurrent }) {
@@ -41,31 +41,41 @@ export default function Profile({ session, userCurrent }) {
     setPhoneLength(formatVal.format.length);
   };
 
-  // useEffect(() => {
-  //   setValue("name", session?.user?.name);
-  //   setValue("email", session?.user?.email);
-  //   setValue("age", userCurrent?.age);
-  //   setValue("location", userCurrent?.location);
-  //   setValue("phone", userCurrent?.phone);
-  //   session?.user?.email && setEmailExit(true);
-  //   setPhone(userCurrent?.phone);
-  // }, []);
   useEffect(() => {
-    setValue("name", userCurrent?.name);
-    setValue("email", userCurrent?.email);
+    
+    let cookies = parseCookies();
+    
+    if (cookies?.user) {
+      cookies = JSON?.parse(cookies?.user);
+
+    }
+    console.log(cookies)
+    console.log("Profile")
+
+    setValue("name", cookies.name);
+    setValue("email", cookies.email);
     setValue("age", userCurrent?.age);
     setValue("location", userCurrent?.location);
     setValue("phone", userCurrent?.phone);
     session?.user?.email && setEmailExit(true);
     setPhone(userCurrent?.phone);
-  }, [
-    // session?.user?.name,
-    // session?.user?.email,
-    // setValue,
-    // userCurrent?.age,
-    // userCurrent?.location,
-    // userCurrent?.phone,
-  ]);
+  }, []);
+  // useEffect(() => {
+  //   setValue("name", userCurrent?.name);
+  //   setValue("email", userCurrent?.email);
+  //   setValue("age", userCurrent?.age);
+  //   setValue("location", userCurrent?.location);
+  //   setValue("phone", userCurrent?.phone);
+  //   session?.user?.email && setEmailExit(true);
+  //   setPhone(userCurrent?.phone);
+  // }, [
+  //   // session?.user?.name,
+  //   // session?.user?.email,
+  //   // setValue,
+  //   // userCurrent?.age,
+  //   // userCurrent?.location,
+  //   // userCurrent?.phone,
+  // ]);
 
   const onSubmit = async (data) => {
     setSubmit(true);

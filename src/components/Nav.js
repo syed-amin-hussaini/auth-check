@@ -5,18 +5,22 @@ import logo from "@/src/images/logo.png";
 import Avatar from "@/src/images/avatar.png";
 import { parseCookies, setCookie, destroyCookie } from 'nookies'
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const Nav = ({ user }) => {
   const [email, setEmail] = useState()
+  let router = useRouter()
 
   useEffect(() => {
     const cookies = parseCookies();
-    console.log(cookies.user)
+    // console.log(cookies.user)
     if (cookies?.user) {
-      console.log("If")
-      console.log(JSON?.parse(cookies?.user)?.email_status)
+      // console.log("If")
+      // console.log(JSON?.parse(cookies?.user)?.email_status)
       let emailStatus = JSON?.parse(cookies?.user)?.email_status;
       setEmail(emailStatus)
+    } else { 
+      router.push("/login")
     }
     
   }, [])
