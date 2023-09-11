@@ -41,15 +41,6 @@ export default function Profile({ session, userCurrent }) {
     setPhoneLength(formatVal.format.length);
   };
 
-  // useEffect(() => {
-  //   setValue("name", session?.user?.name);
-  //   setValue("email", session?.user?.email);
-  //   setValue("age", userCurrent?.age);
-  //   setValue("location", userCurrent?.location);
-  //   setValue("phone", userCurrent?.phone);
-  //   session?.user?.email && setEmailExit(true);
-  //   setPhone(userCurrent?.phone);
-  // }, []);
   useEffect(() => {
     setValue("name", session?.user?.name);
     setValue("email", session?.user?.email);
@@ -58,14 +49,23 @@ export default function Profile({ session, userCurrent }) {
     setValue("phone", userCurrent?.phone);
     session?.user?.email && setEmailExit(true);
     setPhone(userCurrent?.phone);
-  }, [
-    // session?.user?.name,
-    // session?.user?.email,
-    // setValue,
-    // userCurrent?.age,
-    // userCurrent?.location,
-    // userCurrent?.phone,
-  ]);
+  }, []);
+  // useEffect(() => {
+  //   setValue("name", session?.user?.name);
+  //   setValue("email", session?.user?.email);
+  //   setValue("age", userCurrent?.age);
+  //   setValue("location", userCurrent?.location);
+  //   setValue("phone", userCurrent?.phone);
+  //   session?.user?.email && setEmailExit(true);
+  //   setPhone(userCurrent?.phone);
+  // }, [
+  //   // session?.user?.name,
+  //   // session?.user?.email,
+  //   // setValue,
+  //   // userCurrent?.age,
+  //   // userCurrent?.location,
+  //   // userCurrent?.phone,
+  // ]);
   const onSubmit = async (data) => {
     setSubmit(true);
 
@@ -250,15 +250,15 @@ export async function getServerSideProps(context) {
     userCurrent = JSON.parse(userIdCookie);
   }
   console.log({session})
-  if (!session) {
+  // if (!session) {
     
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
-    };
-  }
+  //   return {
+  //     redirect: {
+  //       destination: "/",
+  //       permanent: false,
+  //     },
+  //   };
+  // }
   
   return {
     props: { session, userCurrent },
