@@ -4,7 +4,7 @@ import nookies, { setCookie } from "nookies";
 export default async function handler(req, res) {
   try {
     const cookies = nookies.get({ req });
-    let {name,age,phone,location} = req?.body;
+    let {name,age,phone,location,email} = req?.body;
 
     const userIdCookie = cookies["user"];
     let userToken;
@@ -16,8 +16,8 @@ export default async function handler(req, res) {
 
       // Destroy the "user" cookie by setting it to an empty string and providing options
       nookies.destroy({ res }, "user", { path: "/" });
-
-      nookies.set({ res }, 'user', `{\"token\":\"${user?.token}\",\"profile_status\":\"complete\", \"name\":\"${name}\", \"age\":\"${age}\", \"phone\":\"${phone}\", \"location\":\"${location}\"}`, {
+      nookies.set({ res }, 'user', `{\"token\":\"${user?.token}\",\"profile_status\":\"complete\", \"name\":\"${name}\",\"email_status\":\"${userDetail?.email_status}\",\"email\":\"${email}\", \"age\":\"${age ?? ""}\", \"phone\":\"${phone ?? "92"}\", \"location\":\"${location ?? ""}\"}`, {
+      // nookies.set({ res }, 'user', `{\"token\":\"${user?.token}\",\"profile_status\":\"complete\", \"name\":\"${name}\", \"age\":\"${age}\", \"phone\":\"${phone}\", \"location\":\"${location}\"}`, {
         maxAge: 3600, // Cookie expiration time in seconds (e.g., 1 hour)
         path: '/',    // Cookie path
       });

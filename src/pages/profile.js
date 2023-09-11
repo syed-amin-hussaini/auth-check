@@ -51,8 +51,8 @@ export default function Profile({ session, userCurrent }) {
   //   setPhone(userCurrent?.phone);
   // }, []);
   useEffect(() => {
-    setValue("name", session?.user?.name);
-    setValue("email", session?.user?.email);
+    setValue("name", userCurrent?.name);
+    setValue("email", userCurrent?.email);
     setValue("age", userCurrent?.age);
     setValue("location", userCurrent?.location);
     setValue("phone", userCurrent?.phone);
