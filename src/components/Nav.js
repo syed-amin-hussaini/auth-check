@@ -100,12 +100,16 @@ const Nav = ({ user }) => {
         </div>
       </nav>
       <div className="loader" style={{backgroundImage: `url(${Layer.src})`}}>
+        <span className="text-center">
         <Image
           src={LoaderImage}
           alt="App Loader"
-          width={200} // Set the width of the image
-          height={200} // Set the height of the image
+          width={250} // Set the width of the image
+          height={250} // Set the height of the image
         />
+        <p className="text-white">Loading.</p>
+
+        </span>
       </div>
       {email == "false" && <div  className="alert alert-warning d-flex align-items-center" role="alert">
           <svg
