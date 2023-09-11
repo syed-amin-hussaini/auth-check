@@ -196,7 +196,7 @@ export default function Profile({ session, userCurrent }) {
               }}
               render={({ field }) => (
                 <>
-                  <label>Number </label>
+                  <label>Phone Number</label>
                   <PhoneInput
                     disableDropdown={true}
                     {...field}

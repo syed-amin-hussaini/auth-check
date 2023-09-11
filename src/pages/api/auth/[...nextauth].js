@@ -62,7 +62,7 @@ const nextAuthOptions = (req, res) => {
           // useEffect(() => {
             // setCookie({ res }, 'user', `{\"token\":\"${token}\",\"profile_status\":\"${profile_status}\"}` , {
             setCookie({ res }, 'user', `{\"auth\":\"${auth}\",\"profile_status\":\"${profile_status}\", \"name\":\"${userDetail?.name}\",\"email_status\":\"${userDetail?.email_status}\", \"age\":\"${userDetail?.age ?? ""}\", \"phone\":\"${userDetail?.phone ?? "92"}\", \"location\":\"${userDetail?.location ?? ""}\"}`, {
-              maxAge: 3600, // Cookie expiration time in seconds (e.g., 1 hour)
+              // maxAge: 3600, // Cookie expiration time in seconds (e.g., 1 hour)
               path: '/',    // Cookie path
             });
 

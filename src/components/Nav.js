@@ -37,7 +37,7 @@ const Nav = ({ user }) => {
   console.log({email})
   return (
     <>
-      {/* <nav className="navbar navbar-expand-lg bg-light">
+      <nav className="navbar navbar-expand-lg bg-light">
         <div className="container-fluid">
           <div className="d-flex justify-content-between w-100">
             <Link className="navbar-brand" href="/dashboard">
@@ -96,7 +96,7 @@ const Nav = ({ user }) => {
             </ul>
           </div>
         </div>
-      </nav> */}
+      </nav>
       {email == "false" ? <div className="alert alert-warning d-flex align-items-center" role="alert">
           <svg
             xmlns="http://www.w3.org/2000/svg"
