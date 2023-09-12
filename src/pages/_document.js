@@ -27,6 +27,7 @@ class MyDocument extends Document {
             href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
           />
           <link href="https://db.onlinewebfonts.com/c/eacab73a831fe74a0bed4696d0833f24?family=Pluto+Bold" rel="stylesheet" />
+          <link href="https://db.onlinewebfonts.com/c/de5373290268de4bf704a591f17ef92f?family=Pluto+Regular" rel="stylesheet" />
         </Head>
         <body>
           <script

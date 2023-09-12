@@ -6,14 +6,19 @@ import Nav from "@/components/Nav";
 import { useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
-import PhoneInput from "react-phone-input-2";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { parseCookies } from "nookies";
 import { useRouter } from "next/router";
+import Image from "next/image";
+
+import Almost_1 from "@/public/assets/images/almost-there/screen-1.webp";
+import Almost_2 from "@/public/assets/images/almost-there/screen-2.webp";
+
 
 export default function Profile() {
-  const [phoneLength, setPhoneLength] = useState(0);
+  const [getStated, setGetStated] = useState(false);
+  const [formComplete, setFormComplete] = useState(false);
   const [phone, setPhone] = useState("");
   const [userData, setUserData] = useState();
 
@@ -25,20 +30,21 @@ export default function Profile() {
   const {
     register,
     handleSubmit,
-    control,
     setValue,
     formState: { errors },
   } = useForm({
     criteriaMode: "all",
   });
 
-  const fieldValid = (formatVal, pho) => {
-    return false
-    setPhone(pho);
-    setPhoneLength(formatVal.format.length);
-
-  };
-
+  useEffect(() => {
+    if (router.asPath === "/dashboard") {
+      setGetStated(true)
+      setTimeout(() => {
+        setGetStated(false);
+      }, 5000);
+    }
+  }, [])
+  
   useEffect(() => {
     let cookies = parseCookies();
     if (cookies?.user) {
@@ -55,7 +61,6 @@ export default function Profile() {
   }, [setValue]);
 
   const onSubmit = async (data) => {
-    console.log({phoneLength}, {phone})
 
     // return;
     setSubmit(true);
@@ -72,16 +77,17 @@ export default function Profile() {
         headers: { "Content-Type": "application/json" },
       });
       if (response.status === 200) {
+        setFormComplete(true)
         if (router.asPath === "/dashboard") {
-          router.push("/dashboard");
+          setTimeout(() => { 
+            router.push("/dashboard");
+          }, 5000);
         }
-        toast("Profile Updated");
       }
     } catch (error) {
       const status = error?.response?.status;
       const statusText = error?.response?.statusText;
       console.log(status, statusText);
-      toast.error(statusText);
     }
 
     setSubmit(false);
@@ -93,9 +99,18 @@ export default function Profile() {
         <title>Oreo | Profile</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Nav />
-
+      
       <main className={styles.main}>
+      {
+        getStated && <Image src={Almost_1} fill alt="Almost There Banner" />
+      }
+      {
+        formComplete && <Image src={Almost_2} fill alt="Profile Complete" />
+      }
+        <p className="text-white fw_r text-center">
+          We just need a couple of details about you.Build your Oreo x Monopoly
+          collection and win exciting gifts.
+        </p>
         <form onSubmit={handleSubmit(onSubmit)} className={`${styles.form} row`}>
           <div className={`col-md-12`}>
             <label htmlFor="name">Name</label>
@@ -105,10 +120,10 @@ export default function Profile() {
               className={styles.autoColor}
               maxLength={99}
               {...register("name", {
-                required: "This field is mandatory",
+                required: "Required",
                 pattern: {
                   value: /^([a-zA-Z ]+)$/,
-                  message: "Incorrect Name Format",
+                  message: "Invalid format",
                 },
               })}
             />
@@ -124,11 +139,11 @@ export default function Profile() {
               maxLength={256}
               disabled={emailExit}
               {...register("email", {
-                required: "This field is mandatory",
+                required: "Required",
                 pattern: {
                   value:
                     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                  message: "Incorrect Email Format",
+                  message: "Invalid format",
                 },
               })}
             />
@@ -142,10 +157,10 @@ export default function Profile() {
               className={styles.autoColor}
               maxLength={99}
               {...register("age", {
-                required: "This field is mandatory",
+                required: "Required",
                 pattern: {
-                  value: /\b\d{1,2}\b/gm,
-                  message: "Incorrect Age Format",
+                  value: /^[0-9]{0,2}$/,
+                  message: "Invalid",
                 },
               })}
             />
@@ -158,25 +173,24 @@ export default function Profile() {
             <input
               type="text"
               className={styles.autoColor}
-              maxLength={64}
+              maxLength={30}
               {...register("location", {
-                required: "This field is mandatory",
+                maxLength: 30 
               })}
             />
             <ErrorMessage errors={errors} name="location" as="p" />
           </div>
           <div className={`col-md-12`}>
-            <label htmlFor="phone">Phone Number</label>
+            <label htmlFor="phone">Number</label>
             <br />
             <input
               type="number"
               className={styles.autoColor}
               maxLength={64}
               {...register("phone", {
-                required: "This field is mandatory",
                 pattern: {
                   value: /^(\+92|0092|0)[1-9]\d{9}$/g,
-                  message: "Incorrect Phone Format",
+                  message: "Invalid format",
                 },
               })}
             />
@@ -197,6 +211,9 @@ export default function Profile() {
             </button>
           </div>
         </form>
+        <p className="text-white fw_r text-center">
+          &copy; Oreo Pakistan Instance - All rights reserved
+        </p>
       </main>
     </div>
   );

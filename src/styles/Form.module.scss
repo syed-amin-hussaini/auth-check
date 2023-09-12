@@ -1,8 +1,12 @@
 .main {
   display: grid;
-  height: calc(100vh - 70px);
+  height: 100vh;
   place-items: center;
-    align-items: flex-start;
+  align-items: flex-start;
+  background-image: url( ~/public/assets/images/layer-2.webp);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   .form {
     background-color: #fff;
     width: 300px;
@@ -13,6 +17,7 @@
     label {
       font-weight: bolder;
       margin-bottom: 5px;
+      color: var(--bs-black);
     }
     input,
     .submitBtn {
@@ -24,6 +29,8 @@
     p {
       color:var(--bs-danger);
       margin-bottom: 0;
+      margin-top: 5px;
+      font-size: 12px;
     }
    
     input {
@@ -40,6 +47,7 @@
     .submitBtn {
       background-color: #000;
       color:#fff;
+      font-size: 18px;
     }
   }
 }
