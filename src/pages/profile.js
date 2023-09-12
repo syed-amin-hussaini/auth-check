@@ -33,8 +33,10 @@ export default function Profile() {
   });
 
   const fieldValid = (formatVal, pho) => {
+    return false
     setPhone(pho);
     setPhoneLength(formatVal.format.length);
+
   };
 
   useEffect(() => {
@@ -55,7 +57,7 @@ export default function Profile() {
   const onSubmit = async (data) => {
     console.log({phoneLength}, {phone})
 
-    return;
+    // return;
     setSubmit(true);
     const formData = new FormData();
     formData.append("name", data.name);
@@ -164,41 +166,23 @@ export default function Profile() {
             <ErrorMessage errors={errors} name="location" as="p" />
           </div>
           <div className={`col-md-12`}>
-            <Controller
-              control={control}
-              name="phone"
-              rules={{
+            <label htmlFor="phone">Phone Number</label>
+            <br />
+            <input
+              type="number"
+              className={styles.autoColor}
+              maxLength={64}
+              {...register("phone", {
                 required: "This field is mandatory",
-                minLength: {
-                  value: phoneLength,
+                pattern: {
+                  value: /^(\+92|0092|0)[1-9]\d{9}$/g,
                   message: "Incorrect Phone Format",
                 },
-              }}
-              render={({ field }) => (
-                <>
-                  <label>Number </label>
-                  <PhoneInput
-                    disableDropdown={true}
-                    {...field}
-                    country={"pk"}
-                    containerClass={styles.tel_container}
-                    inputClass={styles.tel_input}
-                    onlyCountries={["pk"]}
-                    buttonClass={`${styles.tel_box} form-country-box`}
-                    onChange={(cur, telDetail, __, formatVal) => {
-                      fieldValid(telDetail, cur);
-                      field.onChange(formatVal);
-                    }}
-                    value={field.value}
-                    inputProps={{
-                      placeholder: "+92 000-0000000",
-                    }}
-                  />
-                </>
-              )}
+              })}
             />
             <ErrorMessage errors={errors} name="phone" as="p" />
           </div>
+         
           <div className={`mt-3`}>
             <button
               type="submit"
