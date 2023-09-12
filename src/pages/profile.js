@@ -1,29 +1,26 @@
+// Import required libraries and components
 import Head from "next/head";
 import "react-phone-input-2/lib/style.css";
 import styles from "@/src/styles/Form.module.scss";
-// import { getSession, useSession } from "next-auth/react";
 import Nav from "@/components/Nav";
 import { useEffect, useState } from "react";
-import { getSession } from "next-auth/react";
-import Drawer from "@/components/Drawer";
-import { Controller, useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import PhoneInput from "react-phone-input-2";
 import axios from "axios";
 import { toast } from "react-toastify";
-
-import nookies, { parseCookies } from "nookies";
+import { parseCookies } from "nookies";
 import { useRouter } from "next/router";
-
 
 export default function Profile() {
   const [phoneLength, setPhoneLength] = useState(0);
-  const [phone, setPhone] = useState(0);
+  const [phone, setPhone] = useState("");
+  const [userData, setUserData] = useState();
 
   const [submit, setSubmit] = useState(false);
   const [emailExit, setEmailExit] = useState(false);
 
-  const router = useRouter()
+  const router = useRouter();
 
   const {
     register,
@@ -34,8 +31,6 @@ export default function Profile() {
   } = useForm({
     criteriaMode: "all",
   });
-  // const { data: session, status } = useSession();
-  // const loading = status === "loading";
 
   const fieldValid = (formatVal, pho) => {
     setPhone(pho);
@@ -45,62 +40,40 @@ export default function Profile() {
   useEffect(() => {
     let cookies = parseCookies();
     if (cookies?.user) {
-      cookies = JSON?.parse(cookies?.user)
-    } 
-    console.log(cookies)
-    console.log("Profile")
-    console.log(cookies.email)
+      cookies = JSON?.parse(cookies?.user);
+      setUserData(cookies)
+      setValue("name", cookies.name || "");
+      setValue("email", cookies.email || "");
+      setValue("age", cookies?.age || "");
+      setValue("location", cookies?.location || "");
+      setValue("phone", cookies?.phone || "");
+      if (cookies.email) setEmailExit(true);
+      setPhone(cookies?.phone || "");
+    }
+  }, [setValue]);
 
-    setValue("name", cookies.name);
-    setValue("email", cookies.email);
-    setValue("age", cookies?.age);
-    setValue("location", cookies?.location);
-    setValue("phone", cookies?.phone);
-    cookies.email && setEmailExit(true);
-    setPhone(cookies?.phone);
-  }, []);
-  // useEffect(() => {
-  //   setValue("name", session?.user?.name);
-  //   setValue("email", session?.user?.email);
-  //   setValue("age", userCurrent?.age);
-  //   setValue("location", userCurrent?.location);
-  //   setValue("phone", userCurrent?.phone);
-  //   session?.user?.email && setEmailExit(true);
-  //   setPhone(userCurrent?.phone);
-  // }, [
-  //   // session?.user?.name,
-  //   // session?.user?.email,
-  //   // setValue,
-  //   // userCurrent?.age,
-  //   // userCurrent?.location,
-  //   // userCurrent?.phone,
-  // ]);
   const onSubmit = async (data) => {
-    setSubmit(true);
+    console.log({phoneLength}, {phone})
 
+    return;
+    setSubmit(true);
     const formData = new FormData();
     formData.append("name", data.name);
     formData.append("email", data.email);
     formData.append("age", data.age);
     formData.append("location", data.location);
     formData.append("phone", phone);
+    formData.append("email_status", userData?.email_status);
 
     try {
-      const response = await axios({
-        method: "post",
-        url: "/api/form-detail",
-        data: formData,
+      const response = await axios.post("/api/form-detail", formData, {
         headers: { "Content-Type": "application/json" },
       });
-      console.log({ response });
       if (response.status === 200) {
-        if (router.asPath == "/dashboard") {
-          alert("asd")
+        if (router.asPath === "/dashboard") {
           router.push("/dashboard");
         }
         toast("Profile Updated");
-        // // router.push("/testing");
-        
       }
     } catch (error) {
       const status = error?.response?.status;
@@ -119,13 +92,9 @@ export default function Profile() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Nav />
-      <Drawer />
-     
+
       <main className={styles.main}>
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className={`${styles.form} row`}
-        >
+        <form onSubmit={handleSubmit(onSubmit)} className={`${styles.form} row`}>
           <div className={`col-md-12`}>
             <label htmlFor="name">Name</label>
             <br />
@@ -173,7 +142,7 @@ export default function Profile() {
               {...register("age", {
                 required: "This field is mandatory",
                 pattern: {
-                  // value: /\b\d{1,2}\b/gm,
+                  value: /\b\d{1,2}\b/gm,
                   message: "Incorrect Age Format",
                 },
               })}
@@ -217,7 +186,6 @@ export default function Profile() {
                     onlyCountries={["pk"]}
                     buttonClass={`${styles.tel_box} form-country-box`}
                     onChange={(cur, telDetail, __, formatVal) => {
-                      // console.log({cur},{telDetail},{__},{formatVal})
                       fieldValid(telDetail, cur);
                       field.onChange(formatVal);
                     }}
