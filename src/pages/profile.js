@@ -212,7 +212,7 @@ export default function Profile() {
           </div>
         </form>
         <p className="text-white fw_r text-center">
-          &copy; Oreo Pakistan Instance - All rights reserved
+          &copy; {new Date().getFullYear()} Oreo Pakistan Instance - All rights reserved
         </p>
       </main>
     </div>
