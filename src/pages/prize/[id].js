@@ -78,7 +78,7 @@ export default function Price() {
           screenshotQuality={1}
           />
         <button onClick={capture}>Capture photo {id}</button>
-        <button onClick={toggleTorch}>
+        <button style={{marginBottom:"40px"}} onClick={toggleTorch}>
           {torchEnabled ? 'Turn Off Torch' : 'Turn On Torch'}
         </button>
         {imgSrc && <img style={{position: "absolute",left: "20%",top: "-20px"}} src={imgSrc} />}
