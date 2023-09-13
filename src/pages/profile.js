@@ -77,7 +77,7 @@ export default function Profile() {
         headers: { "Content-Type": "application/json" },
       });
       if (response.status === 200) {
-        if (router.asPath === "/dashboard") {
+        if (router.asPath.includes("/dashboard")) {
           setFormComplete(true)
           
           setTimeout(() => { 
