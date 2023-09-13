@@ -37,7 +37,7 @@ export default function Profile() {
   });
 
   useEffect(() => {
-    if (router.asPath == "/dashboard") {
+    if (router.asPath.includes("/dashboard")) {
       setGetStated(true);
 
       setTimeout(() => {
