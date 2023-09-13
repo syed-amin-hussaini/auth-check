@@ -33,15 +33,18 @@ export default async function handler(req, res) {
         // Remove unnecessary headers
       },
     });
+    console.log(responseVal.status)
+    console.log(responseVal.data)
 
-    if (responseVal.status === 200) {
-      const serverMsg = responseVal.data.msg;
+    if (responseVal?.data?.status === 'success') {
+      const serverMsg = responseVal?.data?.msg;
       res.status(200).json({
         message: [serverMsg],
       });
     } else {
-      res.status(responseVal.status).json({
-        message: [responseVal.statusText],
+      res.status(422).json({
+        message: responseVal?.data?.message,
+        error: [responseVal?.data?.errors]
       });
     }
   } catch (error) {

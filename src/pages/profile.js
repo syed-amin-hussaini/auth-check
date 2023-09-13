@@ -37,11 +37,12 @@ export default function Profile() {
   });
 
   useEffect(() => {
-    if (router.asPath === "/dashboard") {
-      setGetStated(true)
+    if (router.asPath == "/dashboard") {
+      setGetStated(true);
+
       setTimeout(() => {
         setGetStated(false);
-      }, 5000);
+      }, 6000);
     }
   }, [])
   
@@ -56,12 +57,11 @@ export default function Profile() {
       setValue("location", cookies?.location || "");
       setValue("phone", cookies?.phone || "");
       if (cookies.email) setEmailExit(true);
-      setPhone(cookies?.phone || "");
+      // setPhone(cookies?.phone || "");
     }
   }, [setValue]);
 
   const onSubmit = async (data) => {
-
     // return;
     setSubmit(true);
     const formData = new FormData();
@@ -69,7 +69,7 @@ export default function Profile() {
     formData.append("email", data.email);
     formData.append("age", data.age);
     formData.append("location", data.location);
-    formData.append("phone", phone);
+    formData.append("phone", data.phone);
     formData.append("email_status", userData?.email_status);
 
     try {
@@ -77,10 +77,12 @@ export default function Profile() {
         headers: { "Content-Type": "application/json" },
       });
       if (response.status === 200) {
-        setFormComplete(true)
         if (router.asPath === "/dashboard") {
+          setFormComplete(true)
+          
           setTimeout(() => { 
             router.push("/dashboard");
+            setFormComplete(false)
           }, 5000);
         }
       }
