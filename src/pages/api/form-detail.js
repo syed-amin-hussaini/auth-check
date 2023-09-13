@@ -11,9 +11,7 @@ export default async function handler(req, res) {
     if (userIdCookie) {
       let user = JSON?.parse(userIdCookie);
       userToken = user?.auth?.slice(0, -3);
-      
-
-
+    
       // Destroy the "user" cookie by setting it to an empty string and providing options
       nookies.destroy({ res }, "user", { path: "/" });
 
