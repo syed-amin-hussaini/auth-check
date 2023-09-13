@@ -79,10 +79,8 @@ export default function Profile() {
         if (router.asPath.includes("/dashboard")) {
           setFormComplete(true)
           
-          setTimeout(() => {
-            router.push("/dashboard");
-          }, 5000);
           setTimeout(() => { 
+            router.reload();
             setFormComplete(false);
           }, 6000);
         }
