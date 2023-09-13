@@ -19,7 +19,6 @@ import Almost_2 from "@/public/assets/images/almost-there/screen-2.webp";
 export default function Profile() {
   const [getStated, setGetStated] = useState(false);
   const [formComplete, setFormComplete] = useState(false);
-  const [phone, setPhone] = useState("");
   const [userData, setUserData] = useState();
 
   const [submit, setSubmit] = useState(false);
@@ -42,7 +41,7 @@ export default function Profile() {
 
       setTimeout(() => {
         setGetStated(false);
-      }, 6000);
+      }, 5000);
     }
   }, [])
   
@@ -80,10 +79,12 @@ export default function Profile() {
         if (router.asPath.includes("/dashboard")) {
           setFormComplete(true)
           
+          setTimeout(() => {
+            setFormComplete(false);
+          }, 5000);
           setTimeout(() => { 
             router.push("/dashboard");
-            setFormComplete(false)
-          }, 5000);
+          }, 6000);
         }
       }
     } catch (error) {

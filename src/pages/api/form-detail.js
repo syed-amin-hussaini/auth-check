@@ -18,6 +18,7 @@ export default async function handler(req, res) {
       nookies.destroy({ res }, "user", { path: "/" });
 
       nookies.set({ res }, 'user', `{\"auth\":\"${user?.auth}\",\"profile_status\":\"complete\", \"name\":\"${name}\",\"email\":\"${email}\",\"email_status\":\"${email_status}\", \"age\":\"${age}\", \"phone\":\"${phone}\", \"location\":\"${location}\"}`, {
+        maxAge: 31536000,
         path: '/',    // Cookie path
       });
     }
