@@ -10,6 +10,7 @@ import Uncle from "@/public/assets/images/login/uncle.png";
 import layer from "@/public/assets/images/layer.webp";
 import Facebook from "@/public/assets/images/login/facebook.svg";
 import Google from "@/public/assets/images/login/google.svg";
+import { generateToken, revertToken } from "@/components/GenerateToken";
 
 const Login = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -32,7 +33,7 @@ const Login = () => {
       
       <div
         className={styles.main } style={{backgroundImage: `url(${layer.src})`}}>
-        <Image alt="Logo" src={Logo} style={{width:"85%",objectFit: "contain",margin: "0 0 30px;",paddingBlock:"40px", display: "block"}} />
+        <Image alt="Logo" src={Logo} style={{width:"85%",objectFit: "contain",margin: "0 0 30px",paddingBlock:"40px", display: "block"}} />
         <Image alt="Uncle" src={Uncle} style={{width:"85%",height:"auto",objectFit: "contain",marginBottom: "40px",display: "block"}} />
         
         <div
@@ -58,4 +59,15 @@ const Login = () => {
     </div>
   );
 };
+
+export async function getServerSideProps(context) {
+  const newToken = generateToken("asdasdasdasdasd");
+  const revert = revertToken("asdasdasdasdasdSJH");
+
+  console.log({newToken},{revert})
+  let session = "";
+  return {
+    props: { session }
+  }
+}
 export default Login;

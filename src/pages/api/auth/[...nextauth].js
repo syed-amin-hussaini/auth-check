@@ -4,6 +4,7 @@ import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import FacebookProvider from "next-auth/providers/facebook";
 import { setCookie } from 'nookies';
+import { generateToken } from "@/components/GenerateToken";
 
 function makeid(length) {
   let result = '';
@@ -53,7 +54,9 @@ const nextAuthOptions = (req, res) => {
 
           console.log({ requestData });
           const response = await axios.post(apiUrl, requestData);
-          let auth = response?.data?.token+makeid(3);
+          
+          // let auth = response?.data?.token+makeid(3);
+          let auth = generateToken(response?.data?.token);
           let profile_status = response?.data?.profile_status;
           let userDetail = response?.data?.data;
           // console.log({userDetail})
@@ -62,7 +65,7 @@ const nextAuthOptions = (req, res) => {
           // useEffect(() => {
             // setCookie({ res }, 'user', `{\"token\":\"${token}\",\"profile_status\":\"${profile_status}\"}` , {
             setCookie({ res }, 'user', `{\"auth\":\"${auth}\",\"profile_status\":\"${profile_status}\", \"name\":\"${userDetail?.name}\",\"email_status\":\"${userDetail?.email_status}\",\"email\":\"${userDetail?.email}\", \"age\":\"${userDetail?.age ?? ""}\", \"phone\":\"${userDetail?.phone ?? ""}\", \"location\":\"${userDetail?.location ?? ""}\"}`, {
-              maxAge: 3600, // Cookie expiration time in seconds (e.g., 1 hour)
+              maxAge: 31536000, // Cookie expiration time in seconds (e.g., 1 Year)
               path: '/',    // Cookie path
             });
 

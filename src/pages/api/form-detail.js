@@ -1,3 +1,4 @@
+import { revertToken } from "@/components/GenerateToken";
 import axios from "axios";
 import nookies, { setCookie } from "nookies";
 
@@ -10,13 +11,14 @@ export default async function handler(req, res) {
     let userToken;
     if (userIdCookie) {
       let user = JSON?.parse(userIdCookie);
-      userToken = user?.auth?.slice(0, -3);
+      // userToken = user?.auth?.slice(0, -3);
+      userToken = revertToken(user?.auth);
     
       // Destroy the "user" cookie by setting it to an empty string and providing options
       nookies.destroy({ res }, "user", { path: "/" });
 
       nookies.set({ res }, 'user', `{\"auth\":\"${user?.auth}\",\"profile_status\":\"complete\", \"name\":\"${name}\",\"email\":\"${email}\",\"email_status\":\"${email_status}\", \"age\":\"${age}\", \"phone\":\"${phone}\", \"location\":\"${location}\"}`, {
-        maxAge: 31536000,
+        maxAge: 31536000, // 1 year
         path: '/',    // Cookie path
       });
     }

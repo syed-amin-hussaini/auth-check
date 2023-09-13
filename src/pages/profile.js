@@ -14,26 +14,28 @@ import Image from "next/image";
 
 import Almost_1 from "@/public/assets/images/almost-there/screen-1.webp";
 import Almost_2 from "@/public/assets/images/almost-there/screen-2.webp";
+import CookieImg from "@/public/assets/images/almost-there/cookie.png";
+import Form from "@/components/Form";
 
 
 export default function Profile() {
   const [getStated, setGetStated] = useState(false);
   const [formComplete, setFormComplete] = useState(false);
-  const [userData, setUserData] = useState();
+  // const [userData, setUserData] = useState();
 
-  const [submit, setSubmit] = useState(false);
-  const [emailExit, setEmailExit] = useState(false);
+  // const [submit, setSubmit] = useState(false);
+  // const [emailExit, setEmailExit] = useState(false);
 
   const router = useRouter();
 
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    formState: { errors },
-  } = useForm({
-    criteriaMode: "all",
-  });
+  // const {
+  //   register,
+  //   handleSubmit,
+  //   setValue,
+  //   formState: { errors },
+  // } = useForm({
+  //   criteriaMode: "all",
+  // });
 
   useEffect(() => {
     if (router.asPath.includes("/dashboard")) {
@@ -45,53 +47,55 @@ export default function Profile() {
     }
   }, [])
   
-  useEffect(() => {
-    let cookies = parseCookies();
-    if (cookies?.user) {
-      cookies = JSON?.parse(cookies?.user);
-      setUserData(cookies)
-      setValue("name", cookies.name || "");
-      setValue("email", cookies.email || "");
-      setValue("age", cookies?.age || "");
-      setValue("location", cookies?.location || "");
-      setValue("phone", cookies?.phone || "");
-      if (cookies.email) setEmailExit(true);
-      // setPhone(cookies?.phone || "");
-    }
-  }, [setValue]);
+  const f_complete = () => {
+    setFormComplete(true)
+  }
+  // useEffect(() => {
+  //   let cookies = parseCookies();
+  //   if (cookies?.user) {
+  //     cookies = JSON?.parse(cookies?.user);
+  //     setUserData(cookies)
+  //     setValue("name", cookies.name || "");
+  //     setValue("email", cookies.email || "");
+  //     setValue("age", cookies?.age || "");
+  //     setValue("location", cookies?.location || "");
+  //     setValue("phone", cookies?.phone || "");
+  //     if (cookies.email) setEmailExit(true);
+  //     // setPhone(cookies?.phone || "");
+  //   }
+  // }, [setValue]);
 
-  const onSubmit = async (data) => {
-    // return;
-    setSubmit(true);
-    const formData = new FormData();
-    formData.append("name", data.name);
-    formData.append("email", data.email);
-    formData.append("age", data.age);
-    formData.append("location", data.location);
-    formData.append("phone", data.phone);
-    formData.append("email_status", userData?.email_status);
+  // const onSubmit = async (data) => {
+  //   // return;
+  //   setSubmit(true);
+  //   const formData = new FormData();
+  //   formData.append("name", data.name);
+  //   formData.append("email", data.email);
+  //   formData.append("age", data.age);
+  //   formData.append("location", data.location);
+  //   formData.append("phone", data.phone);
+  //   formData.append("email_status", userData?.email_status);
 
-    try {
-      const response = await axios.post("/api/form-detail", formData, {
-        headers: { "Content-Type": "application/json" },
-      });
-      if (response.status === 200) {
-        if (router.asPath.includes("/dashboard")) {
-          setFormComplete(true)
+  //   try {
+  //     const response = await axios.post("/api/form-detail", formData, {
+  //       headers: { "Content-Type": "application/json" },
+  //     });
+  //     if (response.status === 200) {
+  //       if (router.asPath.includes("/dashboard")) {
+  //         setFormComplete(true)
           
-          setTimeout(() => { 
-            router.push("/dashboard?");
-          }, 6000);
-        }
-      }
-    } catch (error) {
-      const status = error?.response?.status;
-      const statusText = error?.response?.statusText;
-      console.log(status, statusText);
-    }
-
-    setSubmit(false);
-  };
+  //         setTimeout(() => { 
+  //           router.push("/dashboard?");
+  //         }, 5000);
+  //       }
+  //     }
+  //   } catch (error) {
+  //     const status = error?.response?.status;
+  //     const statusText = error?.response?.statusText;
+  //     console.log(status, statusText);
+  //   }
+  //   setSubmit(false);
+  // };
 
   return (
     <div>
@@ -111,7 +115,7 @@ export default function Profile() {
           We just need a couple of details about you.Build your Oreo x Monopoly
           collection and win exciting gifts.
         </p>
-        <form onSubmit={handleSubmit(onSubmit)} className={`${styles.form} row`}>
+        {/* <form onSubmit={handleSubmit(onSubmit)} className={`${styles.form} row`}>
           <div className={`col-md-12`}>
             <label htmlFor="name">Name</label>
             <br />
@@ -210,10 +214,12 @@ export default function Profile() {
               )}
             </button>
           </div>
-        </form>
-        <p className="text-white fw_r text-center">
+        </form> */}
+        <Form  f_complete={f_complete}/>
+        {/* <Image src={CookieImg}/> */}
+        <small className="text-white fw_r text-center">
           &copy; {new Date().getFullYear()} Oreo Pakistan Instance - All rights reserved
-        </p>
+        </small>
       </main>
     </div>
   );

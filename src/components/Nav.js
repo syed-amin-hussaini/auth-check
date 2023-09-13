@@ -20,8 +20,11 @@ const Nav = ({ user }) => {
       console.log(JSON?.parse(cookies?.user)?.email_status)
       let emailStatus = JSON?.parse(cookies?.user)?.email_status;
       setEmail(emailStatus)
-    }else { 
-      router.push("/");
+    } else { 
+      if (router.pathname !== "/privacypolicy" && router.pathname !== "/termsofuse" && router.pathname !== "/faq") {
+        router.push("/");
+      }
+      // if (router.basePath) 
     }
     
   }, [])
