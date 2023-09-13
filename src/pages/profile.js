@@ -80,7 +80,7 @@ export default function Profile() {
           setFormComplete(true)
           
           setTimeout(() => { 
-            router.push("/");
+            router.push("/dashboard?");
           }, 6000);
         }
       }
