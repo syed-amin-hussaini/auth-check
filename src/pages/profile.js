@@ -80,8 +80,7 @@ export default function Profile() {
           setFormComplete(true)
           
           setTimeout(() => { 
-            router.reload();
-            setFormComplete(false);
+            router.push("/");
           }, 6000);
         }
       }
