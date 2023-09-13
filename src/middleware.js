@@ -22,10 +22,8 @@ export default async function middleware(req) {
     // console.log(userCountry)
     // const token = req.cookies.get("token");
     let user = req?.cookies.get("user")?.value;
-    console.log({ user });
     if (user) {
       user = JSON?.parse(user);
-      console.log({ user });
     }
     let userDetail = {
       userStatus: user?.profile_status ?? "",

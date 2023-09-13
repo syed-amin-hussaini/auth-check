@@ -28,7 +28,6 @@ const Nav = ({ user }) => {
     }
     
   }, [])
-    // console.log({ user });
   const { data: session } = useSession();
 
   const handleSignout = (e) => {

@@ -10,19 +10,17 @@ import Uncle from "@/public/assets/images/login/uncle.png";
 import layer from "@/public/assets/images/layer.webp";
 import Facebook from "@/public/assets/images/login/facebook.svg";
 import Google from "@/public/assets/images/login/google.svg";
-import { generateToken, revertToken } from "@/components/GenerateToken";
+import axios from "axios";
 
 const Login = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { data: session, status } = useSession();
   const router = useRouter();
   let cookies = parseCookies();
- console.log(cookies?.user)
   useEffect(() => {
-   
     if (cookies?.user != undefined) {
       router.replace("/dashboard");
-    } 
+    }
   }, []);
   return (
     <div className={{}}>
@@ -30,28 +28,54 @@ const Login = () => {
         <title>Oreo | Login</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      
+
       <div
-        className={styles.main } style={{backgroundImage: `url(${layer.src})`}}>
-        <Image alt="Logo" src={Logo} style={{width:"85%",objectFit: "contain",margin: "0 0 30px",paddingBlock:"40px", display: "block"}} />
-        <Image alt="Uncle" src={Uncle} style={{width:"85%",height:"auto",objectFit: "contain",marginBottom: "40px",display: "block"}} />
-        
+        className={styles.main}
+        style={{ backgroundImage: `url(${layer.src})` }}
+      >
+        <Image
+          alt="Logo"
+          src={Logo}
+          style={{
+            width: "85%",
+            objectFit: "contain",
+            margin: "0 0 30px",
+            paddingBlock: "40px",
+            display: "block",
+          }}
+        />
+        <Image
+          alt="Uncle"
+          src={Uncle}
+          style={{
+            width: "85%",
+            height: "auto",
+            objectFit: "contain",
+            marginBottom: "40px",
+            display: "block",
+          }}
+        />
+
         <div
-          style={{ maxWidth: "90%", width: "100%",marginBottom:"40px" }}
+          style={{ maxWidth: "90%", width: "100%", marginBottom: "40px" }}
           className="text-center"
         >
           <a
             onClick={() => signIn("google")}
             className={`${styles.button} ${styles.button_google}`}
           >
-            <Image alt="Google icon" src={Google} style={{padding:"10px"}} /> 
-              Continue with Google
+            <Image alt="Google icon" src={Google} style={{ padding: "10px" }} />
+            Continue with Google
           </a>
           <a
             onClick={() => signIn("facebook")}
             className={`${styles.button} ${styles.button_facebook}`}
           >
-            <Image alt="Facebook icon" src={Facebook} style={{padding:"10px"}} />
+            <Image
+              alt="Facebook icon"
+              src={Facebook}
+              style={{ padding: "10px" }}
+            />
             Continue with Facebook
           </a>
         </div>
@@ -61,13 +85,27 @@ const Login = () => {
 };
 
 export async function getServerSideProps(context) {
-  const newToken = generateToken("asdasdasdasdasd");
-  const revert = revertToken("asdasdasdasdasdSJH");
+  const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}verify-email-token`;
+  // console.log(context?.query.token)
+  if (context?.query.token) {
+    const response = await axios.post(
+      apiUrl,
+      {
+        email_token: context?.query.token,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    let ret = response.data;
+    console.log({ ret });
+  }
 
-  console.log({newToken},{revert})
   let session = "";
   return {
-    props: { session }
-  }
+    props: { session },
+  };
 }
 export default Login;
