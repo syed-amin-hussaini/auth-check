@@ -17,7 +17,6 @@ import Almost_2 from "@/public/assets/images/almost-there/screen-2.webp";
 import CookieImg from "@/public/assets/images/almost-there/cookie.png";
 import Form from "@/components/Form";
 
-
 export default function Profile() {
   const [getStated, setGetStated] = useState(false);
   const [formComplete, setFormComplete] = useState(false);
@@ -45,11 +44,11 @@ export default function Profile() {
         setGetStated(false);
       }, 5000);
     }
-  }, [])
-  
+  }, []);
+
   const f_complete = () => {
-    setFormComplete(true)
-  }
+    setFormComplete(true);
+  };
   // useEffect(() => {
   //   let cookies = parseCookies();
   //   if (cookies?.user) {
@@ -83,8 +82,8 @@ export default function Profile() {
   //     if (response.status === 200) {
   //       if (router.asPath.includes("/dashboard")) {
   //         setFormComplete(true)
-          
-  //         setTimeout(() => { 
+
+  //         setTimeout(() => {
   //           router.push("/dashboard?");
   //         }, 5000);
   //       }
@@ -103,19 +102,16 @@ export default function Profile() {
         <title>Oreo | Profile</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      
+
       <main className={styles.main}>
-      {
-        getStated && <Image src={Almost_1} fill alt="Almost There Banner" />
-      }
-      {
-        formComplete && <Image src={Almost_2} fill alt="Profile Complete" />
-      }
-        <p className="text-white fw_r text-center">
-          We just need a couple of details about you.Build your Oreo x Monopoly
-          collection and win exciting gifts.
-        </p>
-        {/* <form onSubmit={handleSubmit(onSubmit)} className={`${styles.form} row`}>
+        {getStated && <Image src={Almost_1} fill alt="Almost There Banner" />}
+        {formComplete && <Image src={Almost_2} fill alt="Profile Complete" />}
+        <div className="d-flex justify-content-center flex-column align-items-center h-100">
+          <p className="text-white fw_r text-center p-2 mb-0">
+            We just need a couple of details about you.Build your Oreo x
+            Monopoly collection and win exciting gifts.
+          </p>
+          {/* <form onSubmit={handleSubmit(onSubmit)} className={`${styles.form} row`}>
           <div className={`col-md-12`}>
             <label htmlFor="name">Name</label>
             <br />
@@ -215,11 +211,13 @@ export default function Profile() {
             </button>
           </div>
         </form> */}
-        <Form  f_complete={f_complete}/>
-        {/* <Image src={CookieImg}/> */}
-        <small className="text-white fw_r text-center">
-          &copy; {new Date().getFullYear()} Oreo Pakistan Instance - All rights reserved
-        </small>
+          <Form f_complete={f_complete} />
+          {/* <Image src={CookieImg}/> */}
+          <small className="text-white fw_r text-center p-2">
+            &copy; {new Date().getFullYear()} Oreo Pakistan Instance - All
+            rights reserved
+          </small>
+        </div>
       </main>
     </div>
   );
