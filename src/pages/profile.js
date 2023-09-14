@@ -18,6 +18,7 @@ import Form from "@/components/Form";
 
 export default function Profile() {
   const [getStated, setGetStated] = useState(false);
+  const [firstTime, setFirstTime] = useState(false);
   const [formComplete, setFormComplete] = useState(false);
 
   const router = useRouter();
@@ -29,6 +30,7 @@ export default function Profile() {
 
       if (cookies?.profile_status !== "complete") {
         setGetStated(true);
+        setFirstTime(true);
 
         setTimeout(() => {
           setGetStated(false);
@@ -58,7 +60,7 @@ export default function Profile() {
             We just need a couple of details about you.Build your Oreo x
             Monopoly collection and win exciting gifts.
           </p>
-          <Form f_complete={f_complete} />
+          <Form firstTime={firstTime} f_complete={f_complete} />
           <small className="text-white fw_r text-center p-3">
             &copy; {new Date().getFullYear()} Oreo Pakistan Instance - All
             rights reserved

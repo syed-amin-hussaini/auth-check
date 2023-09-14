@@ -35,14 +35,25 @@
    
     &.button_facebook {
       background-color: #0075ff;
+      &:hover {
+        background-color: #026ae0;
+      }
     }
-    
-    
-    
     &.button_google {
       background-color: #fff;
       border: 1px solid #fafafa;
       color: #9a9a9a;
+      &:hover {
+        background-color: #fafafa;
+      }
+    }
+    &.button_google,
+    &.button_facebook {
+      transition: 700ms all;
+      transform: translateY(0px);
+      &:hover {
+        transform: translateY(1.5px);
+      }
     }
   }
 }

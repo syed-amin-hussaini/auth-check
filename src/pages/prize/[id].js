@@ -1,8 +1,7 @@
 import Head from "next/head";
 // import styles from "../styles/Home.module.css";
-import { getSession, useSession } from "next-auth/react";
 import Nav from "@/components/Nav";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 import Drawer from "@/components/Drawer";
 import Link from "next/link";
 import Webcam from "react-webcam";
@@ -15,9 +14,6 @@ import { useTorchLight } from '@blackbox-vision/use-torch-light';
 
 export default function Price() {
   
-  const { data: session, status } = useSession();
-  const loading = status === "loading";
-
   const router = useRouter();
   const { id } = router.query
 

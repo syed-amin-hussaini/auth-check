@@ -9,7 +9,7 @@ import axios from "axios";
 import { parseCookies } from "nookies";
 import { useRouter } from "next/router";
 
-const Form = ({f_complete}) => {
+const Form = ({f_complete,firstTime}) => {
 
   const [userData, setUserData] = useState();
 
@@ -68,7 +68,7 @@ const Form = ({f_complete}) => {
         headers: { "Content-Type": "application/json" },
       });
       if (response.status === 200) {
-        if (router.asPath.includes("/dashboard")) {
+        if (firstTime) {
           f_complete();
 
           setTimeout(() => {

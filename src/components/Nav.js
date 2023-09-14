@@ -13,20 +13,22 @@ const Nav = ({ user }) => {
   const router = useRouter();
 
   useEffect(() => {
-    const cookies = parseCookies();
-    console.log(cookies.user)
-    if (cookies?.user) {
-      console.log("If")
-      console.log(JSON?.parse(cookies?.user)?.email_status)
-      let emailStatus = JSON?.parse(cookies?.user)?.email_status;
-      setEmail(emailStatus)
-    } else { 
-      if (router.pathname !== "/privacypolicy" && router.pathname !== "/termsofuse" && router.pathname !== "/faq") {
-        router.push("/");
+    const fetchCookie = () => {
+      const cookies = parseCookies();
+      console.log(cookies.user)
+      if (cookies?.user) {
+        console.log("If")
+        console.log(JSON?.parse(cookies?.user)?.email_status)
+        let emailStatus = JSON?.parse(cookies?.user)?.email_status;
+        setEmail(emailStatus)
+      } else { 
+        if (router.pathname !== "/privacypolicy" && router.pathname !== "/termsofuse" && router.pathname !== "/faq") {
+          router.push("/");
+        }
+        // if (router.basePath) 
       }
-      // if (router.basePath) 
     }
-    
+    fetchCookie();
   }, [])
   const { data: session } = useSession();
 

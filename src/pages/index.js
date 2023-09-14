@@ -18,9 +18,12 @@ const Login = () => {
   const router = useRouter();
   let cookies = parseCookies();
   useEffect(() => {
-    if (cookies?.user != undefined) {
-      router.replace("/dashboard");
+    const fetchUser = () => {
+      if (cookies?.user != undefined) {
+        router.replace("/dashboard");
+      }
     }
+    fetchUser();
   }, []);
   return (
     <div className={{}}>
