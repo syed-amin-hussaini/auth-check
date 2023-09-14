@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import axios from "axios";
-import { toast } from "react-toastify";
 import { parseCookies } from "nookies";
 import { useRouter } from "next/router";
 import Image from "next/image";
@@ -51,16 +50,16 @@ export default function Profile() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
+      <main className={`${styles.main} `}> 
         {getStated && <Image src={Almost_1} fill alt="Almost There Banner" />}
         {formComplete && <Image src={Almost_2} fill alt="Profile Complete" />}
         <div className="d-flex justify-content-center flex-column align-items-center h-100">
-          <p className="text-white fw_r text-center p-2 mb-0">
+          <p className="text-white fw_r text-center p-3 mb-0">
             We just need a couple of details about you.Build your Oreo x
             Monopoly collection and win exciting gifts.
           </p>
           <Form f_complete={f_complete} />
-          <small className="text-white fw_r text-center p-2">
+          <small className="text-white fw_r text-center p-3">
             &copy; {new Date().getFullYear()} Oreo Pakistan Instance - All
             rights reserved
           </small>

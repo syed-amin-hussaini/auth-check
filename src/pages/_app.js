@@ -3,8 +3,8 @@ import Head from "next/head";
 import Link from "next/link";
 import Script from "next/script";
 import "@/src/styles/globals.scss";
-import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer } from "react-toastify";
+// import 'react-toastify/dist/ReactToastify.css';
+// import { ToastContainer } from "react-toastify";
 import Image from "next/image";
 import LoaderImage from "@/public/assets/images/loader.gif";
 import Layer from "@/public/assets/images/layer-2.webp";
@@ -39,7 +39,7 @@ function MyApp({ Component, pageProps, session }) {
       </div>
       <Component {...pageProps} />
       
-      <ToastContainer
+      {/* <ToastContainer
         // toastStyle={{background:"#000",color:"#fff"}}
         // progressStyle={{background:"#7F8FBB"}}
         position="bottom-right"
@@ -52,7 +52,7 @@ function MyApp({ Component, pageProps, session }) {
         draggable
         pauseOnHover
         theme="light"
-      />
+      /> */}
     </SessionProvider>
   );
 }

@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import axios from "axios";
-import { toast } from "react-toastify";
 import { parseCookies } from "nookies";
 import { useRouter } from "next/router";
 

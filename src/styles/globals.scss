@@ -4,6 +4,33 @@
   margin: 0;
 }
 
+:root {
+  --bs-warning: #eca941;
+  --bs-danger: #ff0000
+}
+.bg-warning {
+  background-color:  var(--bs-warning) !important
+}
+.bg-danger {
+  background-color:  var(--bs-danger) !important
+}
+.card {
+  border-radius: 14px;
+  // overflow: hidden;
+  .card-header {
+    border-radius: 12px 12px 0 0;
+  }
+} 
+.card .card-header,
+.card {
+  border-width: 2px;  
+  border-color:#000;  
+}
+.float-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 html,
 body {
   max-width: 500px;
