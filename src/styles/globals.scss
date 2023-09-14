@@ -8,6 +8,7 @@ html,
 body {
   max-width: 500px;
   overflow-x: hidden;
+  overflow-y: auto;
   margin: 0vh auto;
   font-family: "Pluto Bold";
   position: relative;
@@ -22,6 +23,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   height: 100vh;
+  overflow-y: auto;
 }
 
 a {

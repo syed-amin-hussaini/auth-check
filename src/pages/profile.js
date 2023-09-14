@@ -20,81 +20,29 @@ import Form from "@/components/Form";
 export default function Profile() {
   const [getStated, setGetStated] = useState(false);
   const [formComplete, setFormComplete] = useState(false);
-  // const [userData, setUserData] = useState();
-
-  // const [submit, setSubmit] = useState(false);
-  // const [emailExit, setEmailExit] = useState(false);
 
   const router = useRouter();
 
-  // const {
-  //   register,
-  //   handleSubmit,
-  //   setValue,
-  //   formState: { errors },
-  // } = useForm({
-  //   criteriaMode: "all",
-  // });
-
   useEffect(() => {
-    if (router.asPath.includes("/dashboard")) {
-      setGetStated(true);
+    let cookies = parseCookies();
+    if (cookies?.user) {
+      cookies = JSON?.parse(cookies?.user);
 
-      setTimeout(() => {
-        setGetStated(false);
-      }, 5000);
+      if (cookies?.profile_status !== "complete") {
+        setGetStated(true);
+
+        setTimeout(() => {
+          setGetStated(false);
+        }, 5000);
+      }
+      console.log(cookies?.profile_status)
     }
   }, []);
 
   const f_complete = () => {
     setFormComplete(true);
   };
-  // useEffect(() => {
-  //   let cookies = parseCookies();
-  //   if (cookies?.user) {
-  //     cookies = JSON?.parse(cookies?.user);
-  //     setUserData(cookies)
-  //     setValue("name", cookies.name || "");
-  //     setValue("email", cookies.email || "");
-  //     setValue("age", cookies?.age || "");
-  //     setValue("location", cookies?.location || "");
-  //     setValue("phone", cookies?.phone || "");
-  //     if (cookies.email) setEmailExit(true);
-  //     // setPhone(cookies?.phone || "");
-  //   }
-  // }, [setValue]);
-
-  // const onSubmit = async (data) => {
-  //   // return;
-  //   setSubmit(true);
-  //   const formData = new FormData();
-  //   formData.append("name", data.name);
-  //   formData.append("email", data.email);
-  //   formData.append("age", data.age);
-  //   formData.append("location", data.location);
-  //   formData.append("phone", data.phone);
-  //   formData.append("email_status", userData?.email_status);
-
-  //   try {
-  //     const response = await axios.post("/api/form-detail", formData, {
-  //       headers: { "Content-Type": "application/json" },
-  //     });
-  //     if (response.status === 200) {
-  //       if (router.asPath.includes("/dashboard")) {
-  //         setFormComplete(true)
-
-  //         setTimeout(() => {
-  //           router.push("/dashboard?");
-  //         }, 5000);
-  //       }
-  //     }
-  //   } catch (error) {
-  //     const status = error?.response?.status;
-  //     const statusText = error?.response?.statusText;
-  //     console.log(status, statusText);
-  //   }
-  //   setSubmit(false);
-  // };
+  
 
   return (
     <div>
@@ -111,108 +59,7 @@ export default function Profile() {
             We just need a couple of details about you.Build your Oreo x
             Monopoly collection and win exciting gifts.
           </p>
-          {/* <form onSubmit={handleSubmit(onSubmit)} className={`${styles.form} row`}>
-          <div className={`col-md-12`}>
-            <label htmlFor="name">Name</label>
-            <br />
-            <input
-              type="text"
-              className={styles.autoColor}
-              maxLength={99}
-              {...register("name", {
-                required: "Required",
-                pattern: {
-                  value: /^([a-zA-Z ]+)$/,
-                  message: "Invalid format",
-                },
-              })}
-            />
-            <ErrorMessage errors={errors} name="name" as="p" />
-          </div>
-
-          <div className={`col-md-12`}>
-            <label htmlFor="email">Email</label>
-            <br />
-            <input
-              type="email"
-              className={styles.autoColor}
-              maxLength={256}
-              disabled={emailExit}
-              {...register("email", {
-                required: "Required",
-                pattern: {
-                  value:
-                    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                  message: "Invalid format",
-                },
-              })}
-            />
-            <ErrorMessage errors={errors} name="email" as="p" />
-          </div>
-          <div className={`col-md-12`}>
-            <label htmlFor="age">Age</label>
-            <br />
-            <input
-              type="number"
-              className={styles.autoColor}
-              maxLength={99}
-              {...register("age", {
-                required: "Required",
-                pattern: {
-                  value: /^[0-9]{0,2}$/,
-                  message: "Invalid",
-                },
-              })}
-            />
-            <ErrorMessage errors={errors} name="age" as="p" />
-          </div>
-
-          <div className={`col-md-12`}>
-            <label htmlFor="location">Location</label>
-            <br />
-            <input
-              type="text"
-              className={styles.autoColor}
-              maxLength={30}
-              {...register("location", {
-                maxLength: 30 
-              })}
-            />
-            <ErrorMessage errors={errors} name="location" as="p" />
-          </div>
-          <div className={`col-md-12`}>
-            <label htmlFor="phone">Number</label>
-            <br />
-            <input
-              type="number"
-              className={styles.autoColor}
-              maxLength={64}
-              {...register("phone", {
-                pattern: {
-                  value: /^(\+92|0092|0)[1-9]\d{9}$/g,
-                  message: "Invalid format",
-                },
-              })}
-            />
-            <ErrorMessage errors={errors} name="phone" as="p" />
-          </div>
-         
-          <div className={`mt-3`}>
-            <button
-              type="submit"
-              className={`${styles.submitBtn}`}
-              disabled={submit}
-            >
-              {submit ? (
-                <i className="fa fa-spinner fa-spin" aria-hidden="true"></i>
-              ) : (
-                <span>Start Collecting</span>
-              )}
-            </button>
-          </div>
-        </form> */}
           <Form f_complete={f_complete} />
-          {/* <Image src={CookieImg}/> */}
           <small className="text-white fw_r text-center p-2">
             &copy; {new Date().getFullYear()} Oreo Pakistan Instance - All
             rights reserved
