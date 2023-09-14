@@ -85,90 +85,92 @@ const Form = ({f_complete}) => {
     setSubmit(false);
   };
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={`${styles.form} row`}>
-      <div className={`col-md-12`}>
-        <label htmlFor="name">Name</label>
-        <br />
-        <input
-          type="text"
-          className={styles.autoColor}
-          maxLength={99}
-          {...register("name", {
-            required: "Required",
-            pattern: {
-              value: /^([a-zA-Z ]+)$/,
-              message: "Invalid format",
-            },
-          })}
-        />
-        <ErrorMessage errors={errors} name="name" as="p" />
-      </div>
+    <form onSubmit={handleSubmit(onSubmit)} className={`${styles.form}`}>
+      <div className={`row`} style={{gap:"15px"}}>
+        <div className={`col-md-12`}>
+          <label htmlFor="name">Name</label>
+          <br />
+          <input
+            type="text"
+            className={styles.autoColor}
+            maxLength={99}
+            {...register("name", {
+              required: "Required",
+              pattern: {
+                value: /^([a-zA-Z ]+)$/,
+                message: "Invalid format",
+              },
+            })}
+          />
+          <ErrorMessage errors={errors} name="name" as="p" />
+        </div>
 
-      <div className={`col-md-12`}>
-        <label htmlFor="email">Email</label>
-        <br />
-        <input
-          type="email"
-          className={styles.autoColor}
-          maxLength={256}
-          disabled={emailExit}
-          {...register("email", {
-            required: "Required",
-            pattern: {
-              value:
-                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-              message: "Invalid format",
-            },
-          })}
-        />
-        <ErrorMessage errors={errors} name="email" as="p" />
-      </div>
-      <div className={`col-md-12`}>
-        <label htmlFor="age">Age</label>
-        <br />
-        <input
-          type="number"
-          className={styles.autoColor}
-          maxLength={99}
-          {...register("age", {
-            required: "Required",
-            pattern: {
-              value: /^[0-9]{0,2}$/,
-              message: "Invalid",
-            },
-          })}
-        />
-        <ErrorMessage errors={errors} name="age" as="p" />
-      </div>
+        <div className={`col-md-12`}>
+          <label htmlFor="email">Email</label>
+          <br />
+          <input
+            type="email"
+            className={styles.autoColor}
+            maxLength={256}
+            disabled={emailExit}
+            {...register("email", {
+              required: "Required",
+              pattern: {
+                value:
+                  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                message: "Invalid format",
+              },
+            })}
+          />
+          <ErrorMessage errors={errors} name="email" as="p" />
+        </div>
+        <div className={`col-md-12`}>
+          <label htmlFor="age">Age</label>
+          <br />
+          <input
+            type="number"
+            className={styles.autoColor}
+            maxLength={99}
+            {...register("age", {
+              required: "Required",
+              pattern: {
+                value: /^[0-9]{0,2}$/,
+                message: "Invalid",
+              },
+            })}
+          />
+          <ErrorMessage errors={errors} name="age" as="p" />
+        </div>
 
-      <div className={`col-md-12`}>
-        <label htmlFor="location">Location</label>
-        <br />
-        <input
-          type="text"
-          className={styles.autoColor}
-          maxLength={30}
-          {...register("location", {
-            maxLength: 30,
-          })}
-        />
-        <ErrorMessage errors={errors} name="location" as="p" />
-      </div>
-      <div className={`col-md-12`}>
-        <label htmlFor="phone">Number</label>
-        <br />
-        <input
-          type="number"
-          className={styles.autoColor}
-          maxLength={64}
-          {...register("phone", {
-            pattern: {
-              value: /^(\+92|0092|0)[1-9]\d{9}$/g,
-              message: "Invalid format",
-            },
-          })}
-        />
-        <ErrorMessage errors={errors} name="phone" as="p" />
+        <div className={`col-md-12`}>
+          <label htmlFor="location">Location</label>
+          <br />
+          <input
+            type="text"
+            className={styles.autoColor}
+            maxLength={30}
+            {...register("location", {
+              maxLength: 30,
+            })}
+          />
+          <ErrorMessage errors={errors} name="location" as="p" />
+        </div>
+        <div className={`col-md-12`}>
+          <label htmlFor="phone">Number</label>
+          <br />
+          <input
+            type="number"
+            className={styles.autoColor}
+            maxLength={64}
+            {...register("phone", {
+              pattern: {
+                value: /^(\+92|0092|0)[1-9]\d{9}$/g,
+                message: "Invalid format",
+              },
+            })}
+          />
+          <ErrorMessage errors={errors} name="phone" as="p" />
+        </div>
       </div>
 
       <div className={`mt-3`}>
