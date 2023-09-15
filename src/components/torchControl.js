@@ -2,11 +2,11 @@ import { useContext, useEffect } from "react";
 // import "./styles.css";
 import { torchContext } from "./useTorch";
 
-export default function TorchControl() {
+export default function TorchControl({}) {
   const { currentTrack, getTorchLight, isTorchSupported } = useContext(
     torchContext
   );
-
+    console.log({currentTrack}, {getTorchLight}, {isTorchSupported})
   const handleOn = (value) => {
     if (!isTorchSupported) {
       alert("No torch detected!");
@@ -33,7 +33,6 @@ export default function TorchControl() {
 
   return (
     <div className="App">
-      <h1>Torch On and Off</h1>
       <div
         style={{
           display: "flex",

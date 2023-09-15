@@ -12,7 +12,7 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 
 import Almost_1 from "@/public/assets/images/almost-there/screen-1.jpg";
-import Almost_2 from "@/public/assets/images/almost-there/screen-2.jpg";
+import Almost_2 from "@/public/assets/images/almost-there/screen-2.webp";
 import CookieImg from "@/public/assets/images/almost-there/cookie.png";
 import Form from "@/components/Form";
 

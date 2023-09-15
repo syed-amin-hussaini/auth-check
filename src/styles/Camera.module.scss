@@ -1,6 +1,6 @@
 .main {
   position: relative;
-  height: calc(100vh - 146px);
+  height: calc(100vh);
   display: grid;
   width: 100%;
   place-items: center;
@@ -9,17 +9,46 @@
     height: 100%;
     width: 100%;
     position: absolute;
-    background-image: url("/assets/images/camera-img-2.png");
+    background-image: url("/assets/images/Mobile-App-Scan.webp");
     background-position: top center;
     background-size: cover;
+    z-index: -1;
   }
+  .logo {
+    margin-top: 20px;
+    width: 80%;
+    height: auto;
+  }
+
   video {
     position: absolute;
-    z-index: -1;
-    top: 61%;
-    transform: translate(-50%, -50%);
+    z-index: -2;
+    top: 20%;
+    transform: translate(-50% ,0);
     left: 50%;
     border-radius: 50%;
+  }
+
+  .torch {
+    .shade {
+      fill: transparent !important;
+    }
+    &.active {
+      .shade {
+        fill: #f5eb2f !important;
+      }
+    }
+  }
+  .btnContainer {
+    width: 60px;
+    height: 60px;
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .cameraContainer {
+    min-height: 500px;
   }
   button {
     position: absolute;
