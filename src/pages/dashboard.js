@@ -21,7 +21,7 @@ export default function Home(props) {
       <Drawer />
                
         <div className="card text-center w-100">
-          <div className="card-header card-header bg-warning fw-bold text-black fs-5">
+          <div className="card-header card-header bg-warning fw-bold text-black fs-4">
             WIN THE GRAND PRIZE
           </div>
           <div className="card-body">
@@ -34,7 +34,7 @@ export default function Home(props) {
         </div>
 
         <div className="card text-center w-100">
-          <div className="card-header bg-danger text-black fs-5">
+          <div className="card-header bg-danger text-black fs-4">
             <b> A CHANCE TO WIN THE BOARD</b>
           </div>
           <div className="card-body">

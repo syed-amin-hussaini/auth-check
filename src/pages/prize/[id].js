@@ -67,8 +67,6 @@ export default function Price() {
         <title>Nextjs | Next-Auth</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Nav />
-      <Drawer />
       <main className={`${styles.main} container-fluid`}>
         <Webcam
           audio={false}

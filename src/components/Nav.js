@@ -23,7 +23,7 @@ const Nav = ({ user }) => {
         let emailStatus = JSON?.parse(cookies?.user)?.email_status;
         setEmail(emailStatus)
       } else { 
-        if (router.pathname !== "/privacypolicy" && router.pathname !== "/termsofuse" && router.pathname !== "/faq") {
+        if (router.pathname !== "/privacypolicy" && router.pathname !== "/termsofuse" && router.pathname !== "/faq" && router.pathname !== "/torchControl") {
           router.push("/");
         }
         // if (router.basePath) 
