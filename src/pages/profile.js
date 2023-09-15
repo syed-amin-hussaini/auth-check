@@ -54,8 +54,8 @@ export default function Profile() {
 
       <main className={`${styles.main} `}> 
         {/* {getStated && <Image src={Almost_1} fill alt="Almost There Banner" />} */}
-        {<Image src={Almost_1} fill alt="Almost There Banner" />}
-        {formComplete && <Image src={Almost_2} fill alt="Profile Complete" />}
+        {getStated && <Image src={Almost_1} fill alt="Almost There Banner" priority />}
+        {formComplete && <Image src={Almost_2} fill alt="Profile Complete" priority />}
         <div className="d-flex justify-content-center flex-column align-items-center h-100">
           <p className="text-white fw_r text-center p-3 mb-0">
             We just need a couple of details about you.Build your Oreo x
