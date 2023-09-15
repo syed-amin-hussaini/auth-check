@@ -89,7 +89,17 @@ input[type="number"] {
   left: 0;
   height: 100vh;
   width: 100%;
-  z-index: 1;
+  z-index: 99;
   background-repeat: no-repeat;
   background-size: cover;
+}
+.alert {
+  position: absolute;
+  top: -300px;
+  transition: 700ms all;
+  width: 300px;
+  
+  &.alert-active {
+    top: 10px;
+  } 
 }

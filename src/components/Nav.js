@@ -6,6 +6,7 @@ import Avatar from "@/src/images/avatar.png";
 import { parseCookies, setCookie, destroyCookie } from 'nookies'
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Alert from "./Alert";
 
 
 const Nav = ({ user }) => {
@@ -103,7 +104,12 @@ const Nav = ({ user }) => {
         </div>
       </nav>
       
-      {email == "false" && <div  className="alert alert-warning d-flex align-items-center" role="alert">
+      {
+        email == "false" && <Alert customClass={"text-center"} action="warning" msg={[{ msg: "Please verify your email" }]} />
+      }
+        {/* <div className="alert alert-warning d-flex align-items-center alert-active" role="alert">
+          <Alert action="alert-warning" msg={["Please verify our email"]} />
+          
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"
@@ -116,8 +122,7 @@ const Nav = ({ user }) => {
             <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
           </svg>
           <div className="ms-2"> Verify email</div>
-        </div>
-      }
+        </div> */}
     </>
   );
 };

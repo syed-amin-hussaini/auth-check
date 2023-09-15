@@ -11,6 +11,7 @@ import { useRouter } from "next/router";
 import axios from "axios";
 
 import { useTorchLight } from '@blackbox-vision/use-torch-light';
+import { HTMLStreamElement, Stream } from "@cloudflare/stream-react";
 
 export default function Price() {
   
@@ -24,7 +25,7 @@ export default function Price() {
   };
 
   // Torch
-  const streamRef = useRef(null);
+  const streamRef = useRef<HTMLStreamElement>(null);
 
   const [on, toggle] = useTorchLight(streamRef.current);
 

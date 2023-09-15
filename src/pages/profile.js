@@ -11,8 +11,8 @@ import { parseCookies } from "nookies";
 import { useRouter } from "next/router";
 import Image from "next/image";
 
-import Almost_1 from "@/public/assets/images/almost-there/screen-1.webp";
-import Almost_2 from "@/public/assets/images/almost-there/screen-2.webp";
+import Almost_1 from "@/public/assets/images/almost-there/screen-1.jpg";
+import Almost_2 from "@/public/assets/images/almost-there/screen-2.jpg";
 import CookieImg from "@/public/assets/images/almost-there/cookie.png";
 import Form from "@/components/Form";
 
@@ -53,7 +53,8 @@ export default function Profile() {
       </Head>
 
       <main className={`${styles.main} `}> 
-        {getStated && <Image src={Almost_1} fill alt="Almost There Banner" />}
+        {/* {getStated && <Image src={Almost_1} fill alt="Almost There Banner" />} */}
+        {<Image src={Almost_1} fill alt="Almost There Banner" />}
         {formComplete && <Image src={Almost_2} fill alt="Profile Complete" />}
         <div className="d-flex justify-content-center flex-column align-items-center h-100">
           <p className="text-white fw_r text-center p-3 mb-0">

@@ -8,13 +8,15 @@ import { ErrorMessage } from "@hookform/error-message";
 import axios from "axios";
 import { parseCookies } from "nookies";
 import { useRouter } from "next/router";
+import Alert from "./Alert";
 
-const Form = ({f_complete,firstTime}) => {
-
+const Form = ({ f_complete, firstTime }) => {
   const [userData, setUserData] = useState();
 
   const [submit, setSubmit] = useState(false);
   const [emailExit, setEmailExit] = useState(false);
+
+  const [formError, setFormError] = useState();
 
   const router = useRouter();
 
@@ -57,7 +59,7 @@ const Form = ({f_complete,firstTime}) => {
     setSubmit(true);
     const formData = new FormData();
     formData.append("name", data.name);
-    formData.append("email", data.email);
+    formData.append("email", userData.email);
     formData.append("age", data.age);
     formData.append("location", data.location);
     formData.append("phone", data.phone);
@@ -77,115 +79,122 @@ const Form = ({f_complete,firstTime}) => {
         }
       }
     } catch (error) {
-      const status = error?.response?.status;
-      const statusText = error?.response?.statusText;
-      console.log(status, statusText);
+      // console.log(error?.response?.data?.error)
+     
+      setFormError(error?.response?.data?.error);
+      // const FormData = error?.response?.data;
+      // const statusText = error?.response?.statusText; 
+      // console.log(statusText);
     }
     setSubmit(false);
   };
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={`${styles.form}`}>
-      <div className={`row`} style={{gap:"15px"}}>
-        <div className={`col-md-12`}>
-          <label htmlFor="name">Name</label>
-          <br />
-          <input
-            type="text"
-            className={styles.autoColor}
-            maxLength={99}
-            {...register("name", {
-              required: "Required",
-              pattern: {
-                value: /^([a-zA-Z ]+)$/,
-                message: "Invalid format",
-              },
-            })}
-          />
-          <ErrorMessage errors={errors} name="name" as="p" />
+    <>
+      {formError && <Alert action="danger" msg={formError} hide={true} />}
+      <form onSubmit={handleSubmit(onSubmit)} className={`${styles.form}`}>
+        <div className={`row`} style={{ gap: "15px" }}>
+          <div className={`col-md-12`}>
+            <label htmlFor="name">Name</label>
+            <br />
+            <input
+              type="text"
+              className={styles.autoColor}
+              maxLength={99}
+              {...register("name", {
+                required: "Required",
+                pattern: {
+                  value: /^([a-zA-Z ]+)$/,
+                  message: "Invalid format",
+                },
+              })}
+            />
+            <ErrorMessage errors={errors} name="name" as="p" />
+          </div>
+
+          <div className={`col-md-12`}>
+            <label htmlFor="email">Email</label>
+            <br />
+            <input
+              type="email"
+              className={styles.autoColor}
+              maxLength={256}
+              disabled={emailExit}
+              {...register("email", {
+                required: "Required",
+                pattern: {
+                  value:
+                    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                  message: "Invalid format",
+                },
+              })}
+            />
+            <ErrorMessage errors={errors} name="email" as="p" />
+          </div>
+          <div className={`col-md-12`}>
+            <label htmlFor="age">Age</label>
+            <br />
+            <input
+              type="number"
+              className={styles.autoColor}
+              maxLength={99}
+              {...register("age", {
+                required: "Required",
+                pattern: {
+                  value: /^[0-9]{0,2}$/,
+                  message: "Invalid",
+                },
+              })}
+            />
+            <ErrorMessage errors={errors} name="age" as="p" />
+          </div>
+
+          <div className={`col-md-12`}>
+            <label htmlFor="location">Location</label>
+            <br />
+            <input
+              type="text"
+              className={styles.autoColor}
+              maxLength={30}
+              {...register("location", {
+                required:"Required",
+                maxLength: 30,
+              })}
+            />
+            <ErrorMessage errors={errors} name="location" as="p" />
+          </div>
+          <div className={`col-md-12`}>
+            <label htmlFor="phone">Number</label>
+            <br />
+            <input
+              type="number"
+              className={styles.autoColor}
+              maxLength={64}
+              {...register("phone", {
+                pattern: {
+                  value: /^(\+92|0092|0)[1-9]\d{9}$/g,
+                  message: "Invalid format",
+                },
+              })}
+            />
+            <ErrorMessage errors={errors} name="phone" as="p" />
+          </div>
         </div>
 
-        <div className={`col-md-12`}>
-          <label htmlFor="email">Email</label>
-          <br />
-          <input
-            type="email"
-            className={styles.autoColor}
-            maxLength={256}
-            disabled={emailExit}
-            {...register("email", {
-              required: "Required",
-              pattern: {
-                value:
-                  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                message: "Invalid format",
-              },
-            })}
-          />
-          <ErrorMessage errors={errors} name="email" as="p" />
+        <div className={`mt-3`}>
+          <button
+            type="submit"
+            className={`${styles.submitBtn}`}
+            disabled={submit}
+          >
+            {submit ? (
+              <i className="fa fa-spinner fa-spin" aria-hidden="true"></i>
+            ) : (
+              <span>Start Collecting</span>
+            )}
+          </button>
         </div>
-        <div className={`col-md-12`}>
-          <label htmlFor="age">Age</label>
-          <br />
-          <input
-            type="number"
-            className={styles.autoColor}
-            maxLength={99}
-            {...register("age", {
-              required: "Required",
-              pattern: {
-                value: /^[0-9]{0,2}$/,
-                message: "Invalid",
-              },
-            })}
-          />
-          <ErrorMessage errors={errors} name="age" as="p" />
-        </div>
-
-        <div className={`col-md-12`}>
-          <label htmlFor="location">Location</label>
-          <br />
-          <input
-            type="text"
-            className={styles.autoColor}
-            maxLength={30}
-            {...register("location", {
-              maxLength: 30,
-            })}
-          />
-          <ErrorMessage errors={errors} name="location" as="p" />
-        </div>
-        <div className={`col-md-12`}>
-          <label htmlFor="phone">Number</label>
-          <br />
-          <input
-            type="number"
-            className={styles.autoColor}
-            maxLength={64}
-            {...register("phone", {
-              pattern: {
-                value: /^(\+92|0092|0)[1-9]\d{9}$/g,
-                message: "Invalid format",
-              },
-            })}
-          />
-          <ErrorMessage errors={errors} name="phone" as="p" />
-        </div>
-      </div>
-
-      <div className={`mt-3`}>
-        <button
-          type="submit"
-          className={`${styles.submitBtn}`}
-          disabled={submit}
-        >
-          {submit ? (
-            <i className="fa fa-spinner fa-spin" aria-hidden="true"></i>
-          ) : (
-            <span>Start Collecting</span>
-          )}
-        </button>
-      </div>
-    </form>
+      </form>
+    </>
   );
 };
 
