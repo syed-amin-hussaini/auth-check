@@ -9,6 +9,7 @@ import Image from "next/image";
 import LoaderImage from "@/public/assets/images/loader.gif";
 import Layer from "@/public/assets/images/layer-2.webp";
 import { useEffect, useState } from "react";
+import { TorchContextProvider } from "../components/torchControl";
 
 
 function MyApp({ Component, pageProps, session }) {
@@ -37,7 +38,7 @@ function MyApp({ Component, pageProps, session }) {
 
         </span>
       </div>
-      <Component {...pageProps} />
+        <Component {...pageProps} />
       
       {/* <ToastContainer
         // toastStyle={{background:"#000",color:"#fff"}}

@@ -21,16 +21,17 @@ export default function Home(props) {
       <Drawer />
                
         <div className="card text-center w-100">
-          <div className="card-header card-header bg-warning fw-bold text-black fs-4">
-            WIN THE GRAND PRIZE
-          </div>
-          <div className="card-body">
-            <p className="card-text">Found Mr Pennybags on the cookie?</p>
-            <p className="card-text">Scan it to win a grand prize.</p>
-            <Link href="/prize/grand" className="btn bg-black text-white fw-bold">
-              Scan your Oreo Cookie
-            </Link>
-          </div>
+          
+            <div className="card-header card-header bg-warning fw-bold text-black fs-4">
+              WIN THE GRAND PRIZE
+            </div>
+            <div className="card-body">
+              <p className="card-text">Found Mr Pennybags on the cookie?</p>
+              <p className="card-text">Scan it to win a grand prize.</p>
+              <Link href="/prize/grand" className="btn bg-black text-white fw-bold">
+                Scan your Oreo Cookie
+              </Link>
+            </div>
         </div>
 
         <div className="card text-center w-100">

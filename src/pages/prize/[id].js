@@ -12,6 +12,9 @@ import axios from "axios";
 
 import { useTorchLight } from '@blackbox-vision/use-torch-light';
 import { HTMLStreamElement, Stream } from "@cloudflare/stream-react";
+import { TorchContextProvider } from "@/components/useTorch";
+import TorchControl from "@/components/torchControl";
+
 
 export default function Price() {
   
@@ -79,7 +82,9 @@ export default function Price() {
         <button onClick={capture}>Capture photo {id}</button>
         <button onClick={toggle} style={{marginBottom:"40px"}}>{on ? 'Disable Torch' : 'Enable Torch'}</button>
         {imgSrc && <img style={{position: "absolute",left: "20%",top: "-20px"}} src={imgSrc} />}
-
+        <TorchContextProvider>
+          <TorchControl />
+        </TorchContextProvider>
       </main>
     </div>
   );
