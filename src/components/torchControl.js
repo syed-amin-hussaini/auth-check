@@ -51,11 +51,11 @@ export default function TorchControl() {
             padding: "8px",
             cursor: "pointer",
             fontSize: "24px",
-            right:"150px"
+            left: "120px"
           }}
           onClick={() => handleOn(true)}
         >
-          ON
+          ON Test
         </button>
         <button
           style={{
