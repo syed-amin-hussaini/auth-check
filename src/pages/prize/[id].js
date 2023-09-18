@@ -35,7 +35,7 @@ export default function Price() {
 
   // Camera
   const videoConstraints = {
-    width: "100%",
+    width: 500,
     height: 500,
     facingMode: "environment",
   };
