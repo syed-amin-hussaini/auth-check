@@ -105,7 +105,7 @@ const Nav = ({ user }) => {
       </nav>
       
       {
-        email == "false" && <Alert customClass={"text-center"} action="warning" msg={[{ msg: "Please verify your email" }]} />
+        email == "false" && <Alert customClass={"text-center p-1"} action="warning" msg={[{ msg: "Please verify your email" }]} />
       }
         {/* <div className="alert alert-warning d-flex align-items-center alert-active" role="alert">
           <Alert action="alert-warning" msg={["Please verify our email"]} />
