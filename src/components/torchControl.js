@@ -3,7 +3,7 @@ import { torchContext } from "./useTorch";
 import styles from "@/src/styles/Camera.module.scss";
 
 export default function TorchControl({ CheckTorch }) {
-  const [torch, setTorch] = useState(false)
+  const [torch, setTorch] = useState(true)
   const { currentTrack, getTorchLight, isTorchSupported } =
     useContext(torchContext);
   

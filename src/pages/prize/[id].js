@@ -124,7 +124,7 @@ export default function Price() {
         </div>
 
         <p className="text-white">
-          places the cookie in the center and tap to scan
+          place the cookie in the center and tap to scan
         </p>
         <button onClick={capture}>Scan {id}</button>
 
