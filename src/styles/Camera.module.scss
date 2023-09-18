@@ -4,6 +4,7 @@
   display: grid;
   width: 100%;
   place-items: center;
+  overflow: hidden;
   &:before {
     content: "";
     height: 100vh;
