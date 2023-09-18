@@ -45,34 +45,42 @@ export default function Price() {
 
   const webcamRef = React.useRef(null);
   const [imgSrc, setImgSrc] = React.useState(null);
+  const [imageSend, setImageSend] = useState(true);
 
-  const capture = async () => {
+  const capture = async (id) => {
     const imageSrc = webcamRef.current.getScreenshot();
+    setImageSend(false)
     setImgSrc(imageSrc);
     let data_i = JSON.stringify({
       img: imageSrc,
     });
     // Camera End
+    setTimeout(() => {
+      setImageSend(true)
+      
+    }, 5000);
+
+
 
     // Send the captured image to a third-party API
-    try {
-      const response = await axios({
-        method: "post",
-        url: "https://obackend.hul-hub.com/api/scan-cookie",
-        data: data_i,
-        headers: { "Content-Type": "application/json" },
-      });
+    // try {
+    //   const response = await axios({
+    //     method: "post",
+    //     url: "https://obackend.hul-hub.com/api/scan-cookie",
+    //     data: data_i,
+    //     headers: { "Content-Type": "application/json" },
+    //   });
 
-      if (response.ok) {
-        console.log({ response });
-        // Handle success
-      } else {
-        console.log("Else");
-        // Handle error
-      }
-    } catch (error) {
-      console.error("Error sending image:", error);
-    }
+    //   if (response.ok) {
+    //     console.log({ response });
+    //     // Handle success
+    //   } else {
+    //     console.log("Else");
+    //     // Handle error
+    //   }
+    // } catch (error) {
+    //   console.error("Error sending image:", error);
+    // }
   };
 
   return (
@@ -81,7 +89,7 @@ export default function Price() {
         <title>Nextjs | Next-Auth</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={`${styles.main} container-fluid`}>
+      <main className={`${styles.main} ${imageSend && styles.active} container-fluid`}>
         <Image
           className={styles.logo}
           src={CompleteLogo}
@@ -145,18 +153,18 @@ export default function Price() {
             screenshotQuality={1}
           />
 
-          {imgSrc && (
+          {/* {imgSrc && (
             <img
               style={{ position: "absolute", left: "20%", top: "-20px" }}
               src={imgSrc}
             />
-          )}
+          )} */}
         </div>
 
         <p className="text-white text-center fw_r" style={{transform: "translateY(20px)"}}>
           place the cookie in the center <br /> and tap to scan
         </p>
-        <button onClick={capture}>Scan {id}</button>
+        <button onClick={()=>capture(id)}>Scan</button>
 
         <Footer />
       </main>

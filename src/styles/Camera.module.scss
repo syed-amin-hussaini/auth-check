@@ -5,15 +5,27 @@
   width: 100%;
   place-items: center;
   overflow: hidden;
+  &:after,
   &:before {
     content: "";
     height: 100vh;
     width: 100%;
     position: absolute;
-    background-image: url("/assets/images/Mobile-App-Scan.webp");
     background-position: 100%;
     background-size: 100%;
     z-index: -1;
+  }
+  &:before {
+    background-image: url("/assets/images/Mobile-App-Scan-1.webp");
+  }
+  // &:not(.active) {
+  //   &:before {
+  //   }
+  // }
+  &.active {
+    &:after {
+      background-image: url("/assets/images/Mobile-App-Scan.webp");
+    }
   }
   .logo {
     margin-block: 20px;
@@ -29,15 +41,15 @@
     z-index: -2;
     position: relative;
     video {
-    //   position: absolute;
-    //   top: 5%;
-    //   transform: translate(-50% ,0);
-    //   left: 50%;
+      //   position: absolute;
+      //   top: 5%;
+      //   transform: translate(-50% ,0);
+      //   left: 50%;
       border-radius: 50%;
       position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
     }
   }
   .cookie {
@@ -49,10 +61,9 @@
     margin-top: 5%;
   }
   .instruction_font {
-    @media(max-width: 600px){
+    @media (max-width: 600px) {
       font-size: 4.2vw;
     }
-
   }
   .torch {
     .shade {
@@ -70,7 +81,7 @@
     cursor: pointer;
     padding: 10px;
   }
-  
+
   button {
     // position: absolute;
     // bottom:10%;
