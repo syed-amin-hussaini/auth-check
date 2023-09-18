@@ -23,10 +23,9 @@
 
   .cameraContainer {
     height: 490px;
-    background-color: rgba(245, 235, 47, 0.1176470588);
     width: 100%;
     overflow: hidden;
-    margin-top: -160px;
+    margin-top: -110px;
     z-index: -2;
     position: relative;
     video {
@@ -66,17 +65,23 @@
     }
   }
   .btnContainer {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     cursor: pointer;
-    svg {
-      width: 100%;
-      height: 100%;
-    }
+    padding: 10px;
   }
   
   button {
-    position: absolute;
-    bottom:10%;
+    // position: absolute;
+    // bottom:10%;
+    padding: 10px 20px;
+    border-radius: 8px;
+    height: auto;
+    background-color: #000;
+    color: #fff;
+    font-size: 18px;
+    border: 0;
+    min-width: 290px;
+    margin-top: -20px;
   }
 }

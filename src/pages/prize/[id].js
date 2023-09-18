@@ -14,6 +14,7 @@ import CompleteLogo from "@/public/assets/images/complete-logo.png";
 import Image from "next/image";
 import ReactTooltip, { Tooltip } from "react-tooltip";
 import TooltipButton from "@/components/TooltipButton";
+import { translate } from "mongodb/lib/core/topologies/read_preference";
 
 export default function Price() {
   // // Torch
@@ -22,7 +23,7 @@ export default function Price() {
   // const CheckTorch = (torch) => {
   //   console.log("CheckTorch")
   //   console.log({torch})
-    
+
   // }
 
   // useEffect(() => {
@@ -88,33 +89,49 @@ export default function Price() {
           height="40px"
           alt="Complete Logo"
         />
-        <div className="d-flex justify-content-between w-100 px-3">
+        <div
+          className="d-flex justify-content-between w-100 px-3"
+        >
           {/* <TorchContextProvider>
             <TorchControl />
           </TorchContextProvider> */}
-          {/* <span id="my-anchor-element" className={`p-3 bg-white rounded-circle ${styles.btnContainer}`}>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-lg" viewBox="0 0 16 16">
-              <path fill-rule="evenodd" d="M4.475 5.458c-.284 0-.514-.237-.47-.517C4.28 3.24 5.576 2 7.825 2c2.25 0 3.767 1.36 3.767 3.215 0 1.344-.665 2.288-1.79 2.973-1.1.659-1.414 1.118-1.414 2.01v.03a.5.5 0 0 1-.5.5h-.77a.5.5 0 0 1-.5-.495l-.003-.2c-.043-1.221.477-2.001 1.645-2.712 1.03-.632 1.397-1.135 1.397-2.028 0-.979-.758-1.698-1.926-1.698-1.009 0-1.71.529-1.938 1.402-.066.254-.278.461-.54.461h-.777ZM7.496 14c.622 0 1.095-.474 1.095-1.09 0-.618-.473-1.092-1.095-1.092-.606 0-1.087.474-1.087 1.091S6.89 14 7.496 14Z"/>
-            </svg>
-          </span>
-          <Tooltip
-            anchorSelect="#my-anchor-element"
-            content="Hello world!"
-            place="left"
-            openOnClick={true}
-          /> */}
-          <TooltipButton id={"tooltip-1"} text={"This is the rare Oreo cookie you <br>need to look for! If you've found it, <br>place it in the centre and upload."} />
+          <TooltipButton
+            id={"tooltip-1"}
+            text={
+              "This is the rare Oreo cookie you <br>need to look for! If you've found it, <br>place it in the centre and upload."
+            }
+          />
           <Link
-            className={`p-3 bg-black rounded-circle ${styles.btnContainer}`}
+            className={`bg-black rounded-circle ${styles.btnContainer}`}
             href="/dashboard"
           >
-            <svg
+            {/* <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="#fff"
               viewBox="0 0 30 30"
+              height="100%"
+              width="100%"
             >
               {" "}
               <path d="M 7 4 C 6.744125 4 6.4879687 4.0974687 6.2929688 4.2929688 L 4.2929688 6.2929688 C 3.9019687 6.6839688 3.9019687 7.3170313 4.2929688 7.7070312 L 11.585938 15 L 4.2929688 22.292969 C 3.9019687 22.683969 3.9019687 23.317031 4.2929688 23.707031 L 6.2929688 25.707031 C 6.6839688 26.098031 7.3170313 26.098031 7.7070312 25.707031 L 15 18.414062 L 22.292969 25.707031 C 22.682969 26.098031 23.317031 26.098031 23.707031 25.707031 L 25.707031 23.707031 C 26.098031 23.316031 26.098031 22.682969 25.707031 22.292969 L 18.414062 15 L 25.707031 7.7070312 C 26.098031 7.3170312 26.098031 6.6829688 25.707031 6.2929688 L 23.707031 4.2929688 C 23.316031 3.9019687 22.682969 3.9019687 22.292969 4.2929688 L 15 11.585938 L 7.7070312 4.2929688 C 7.5115312 4.0974687 7.255875 4 7 4 z" />
+            </svg> */}
+            <svg
+              version="1.1"
+              x="0"
+              y="0"
+              viewBox="0 0 24 24"
+              class=""
+            >
+              <g>
+                <path
+                  fill="#fff"
+                  fill-rule="evenodd"
+                  d="M5.293 5.293a1 1 0 0 1 1.414 0L12 10.586l5.293-5.293a1 1 0 1 1 1.414 1.414L13.414 12l5.293 5.293a1 1 0 0 1-1.414 1.414L12 13.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L10.586 12 5.293 6.707a1 1 0 0 1 0-1.414z"
+                  clip-rule="evenodd"
+                  data-original="#fff"
+                  class=""
+                ></path>
+              </g>
             </svg>
           </Link>
         </div>
@@ -134,11 +151,10 @@ export default function Price() {
               src={imgSrc}
             />
           )}
-          
         </div>
 
-        <p className="text-white text-center fw_r">
-          place the cookie in the center and tap to scan
+        <p className="text-white text-center fw_r" style={{transform: "translateY(20px)"}}>
+          place the cookie in the center <br /> and tap to scan
         </p>
         <button onClick={capture}>Scan {id}</button>
 

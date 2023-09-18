@@ -9,12 +9,12 @@ const TooltipButton = ({ id, text }) => {
     <>
       <span
         data-tooltip-id={id}
-        className={`p-3 bg-white rounded-circle ${styles.btnContainer}`}
+        className={`bg-white rounded-circle ${styles.btnContainer}`}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
+          height="100%"
+          width="100%"
           fill="currentColor"
           class="bi bi-question-lg"
           viewBox="0 0 16 16"
@@ -36,7 +36,7 @@ const TooltipButton = ({ id, text }) => {
         effect="solid"
       >
         <div>
-          <h6 className="text-start" style={{ color: "#0064d5" }}>
+          <h6 className="text-start" style={{ color: "#0073b9" }}>
             Instruction
           </h6>
           <div class={styles.cookie}>
@@ -45,6 +45,7 @@ const TooltipButton = ({ id, text }) => {
               alt=""
               class="expTwoCookie"
               style={{ width: "40%", height: "auto" }}
+              priority
             />
             {/* <Image
               src="/assets/images/Mr.Monopoly-cookie.png"
