@@ -1,12 +1,14 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { torchContext } from "./useTorch";
 import styles from "@/src/styles/Camera.module.scss";
 
-export default function TorchControl({CheckTorch}) {
+export default function TorchControl({ CheckTorch }) {
+  const [torch, setTorch] = useState(false)
   const { currentTrack, getTorchLight, isTorchSupported } =
     useContext(torchContext);
   
-  const handleOn = (value) => {
+  const handleOn = () => {
+   
     if (!isTorchSupported) {
       alert("No torch detected!");
       return;
@@ -15,13 +17,14 @@ export default function TorchControl({CheckTorch}) {
       currentTrack.applyConstraints({
         advanced: [
           {
-            torch: value,
+            torch,
           },
         ],
       });
     } catch (err) {
       console.log("err");
     }
+    setTorch(!torch)
   };
   
 
@@ -35,7 +38,7 @@ export default function TorchControl({CheckTorch}) {
   return (
     <span
       className={`p-3 bg-black rounded-circle ${styles.btnContainer}`}
-      onClick={() => handleOn(false)}
+      onClick={() => handleOn()}
       // style={!isTorchSupported && { visibility:"hidden",pointerEvents:"none"}}
     >
       <svg
