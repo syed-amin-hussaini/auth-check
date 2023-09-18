@@ -22,19 +22,23 @@
   }
 
   .cameraContainer {
-    max-height: 490px;
+    height: 490px;
     background-color: rgba(245, 235, 47, 0.1176470588);
     width: 100%;
     overflow: hidden;
     margin-top: -160px;
-    // transform: translateY(-110px) translateX(-10px);
     z-index: -2;
+    position: relative;
     video {
     //   position: absolute;
     //   top: 5%;
     //   transform: translate(-50% ,0);
     //   left: 50%;
       border-radius: 50%;
+      position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
     }
   }
 
