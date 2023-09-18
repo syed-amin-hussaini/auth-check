@@ -49,7 +49,7 @@ export default function TorchControl({ CheckTorch }) {
         // xmlns:xlink="http://www.w3.org/1999/xlink"
         // xmlns:svgjs="http://svgjs.com/svgjs"
         // xml:space="preserve"
-        className={`${styles.torch} ${torch && styles.active}`}
+        className={`${styles.torch} ${!torch && styles.active}`}
         x="0"
         y="0"
         viewBox="0 0 458.017 458.017"
