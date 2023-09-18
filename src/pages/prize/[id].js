@@ -87,9 +87,10 @@ export default function Price() {
           alt="Complete Logo"
         />
         <div className="d-flex justify-content-between w-100 px-3">
-          <TorchContextProvider>
+          {/* <TorchContextProvider>
             <TorchControl />
-          </TorchContextProvider>
+          </TorchContextProvider> */}
+         
           <Link
             className={`p-3 bg-black rounded-circle ${styles.btnContainer}`}
             href="/dashboard"
@@ -123,7 +124,7 @@ export default function Price() {
           
         </div>
 
-        <p className="text-white">
+        <p className="text-white text-center fw_r">
           place the cookie in the center and tap to scan
         </p>
         <button onClick={capture}>Scan {id}</button>

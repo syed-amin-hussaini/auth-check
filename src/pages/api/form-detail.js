@@ -9,18 +9,20 @@ export default async function handler(req, res) {
 
     const userIdCookie = cookies["user"];
     let userToken;
+    let user;
     if (userIdCookie) {
-      let user = JSON?.parse(userIdCookie);
+      user = JSON?.parse(userIdCookie);
+      // let user = JSON?.parse(userIdCookie);
       // userToken = user?.auth?.slice(0, -3);
       userToken = revertToken(user?.auth);
     
-      // Destroy the "user" cookie by setting it to an empty string and providing options
-      nookies.destroy({ res }, "user", { path: "/" });
+      // // Destroy the "user" cookie by setting it to an empty string and providing options
+      // nookies.destroy({ res }, "user", { path: "/" });
 
-      nookies.set({ res }, 'user', `{\"auth\":\"${user?.auth}\",\"profile_status\":\"complete\", \"name\":\"${name}\",\"email\":\"${email}\",\"email_status\":\"${email_status}\", \"age\":\"${age}\", \"phone\":\"${phone}\", \"location\":\"${location}\"}`, {
-        maxAge: 31536000, // 1 year
-        path: '/',    // Cookie path
-      });
+      // nookies.set({ res }, 'user', `{\"auth\":\"${user?.auth}\",\"profile_status\":\"complete\", \"name\":\"${name}\",\"email\":\"${email}\",\"email_status\":\"${email_status}\", \"age\":\"${age}\", \"phone\":\"${phone}\", \"location\":\"${location}\"}`, {
+      //   maxAge: 31536000, // 1 year
+      //   path: '/',    // Cookie path
+      // });
     }
 
     const responseVal = await axios({
@@ -39,6 +41,13 @@ export default async function handler(req, res) {
 
     if (responseVal?.data?.status === 'success') {
       const serverMsg = responseVal?.data?.msg;
+
+      nookies.destroy({ res }, "user", { path: "/" });
+
+      nookies.set({ res }, 'user', `{\"auth\":\"${user?.auth}\",\"profile_status\":\"complete\", \"name\":\"${name}\",\"email\":\"${email}\",\"email_status\":\"${email_status}\", \"age\":\"${age}\", \"phone\":\"${phone}\", \"location\":\"${location}\"}`, {
+        maxAge: 31536000, // 1 year
+        path: '/',    // Cookie path
+      });
       res.status(200).json({
         message: [serverMsg],
       });

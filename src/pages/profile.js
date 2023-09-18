@@ -11,7 +11,7 @@ import { parseCookies } from "nookies";
 import { useRouter } from "next/router";
 import Image from "next/image";
 
-import Almost_1 from "@/public/assets/images/almost-there/screen-1.jpg";
+import Almost_1 from "@/public/assets/images/almost-there/screen-1.webp";
 import Almost_2 from "@/public/assets/images/almost-there/screen-2.webp";
 import CookieImg from "@/public/assets/images/almost-there/cookie.png";
 import Form from "@/components/Form";
@@ -58,7 +58,7 @@ export default function Profile() {
         {formComplete && <Image src={Almost_2} fill alt="Profile Complete" priority />}
         <div className="d-flex justify-content-center flex-column align-items-center h-100">
           <p className="text-white fw_r text-center p-3 mb-0">
-            We just need a couple of details about you.Build your Oreo x
+            We just need a couple of details about you. Build your Oreo x
             Monopoly collection and win exciting gifts.
           </p>
           <Form firstTime={firstTime} f_complete={f_complete} />
