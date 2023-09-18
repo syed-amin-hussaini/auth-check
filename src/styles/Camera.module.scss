@@ -6,12 +6,12 @@
   place-items: center;
   &:before {
     content: "";
-    height: 100%;
+    height: 100vh;
     width: 100%;
     position: absolute;
     background-image: url("/assets/images/Mobile-App-Scan.webp");
     background-position: top center;
-    background-size: cover;
+    background-size: 100%;
     z-index: -1;
   }
   .logo {
