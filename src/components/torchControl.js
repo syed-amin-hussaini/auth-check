@@ -36,7 +36,7 @@ export default function TorchControl({CheckTorch}) {
     <span
       className={`p-3 bg-black rounded-circle ${styles.btnContainer}`}
       onClick={() => handleOn(false)}
-      style={!isTorchSupported && { visibility:"hidden",pointerEvents:"none"}}
+      // style={!isTorchSupported && { visibility:"hidden",pointerEvents:"none"}}
     >
       <svg
         // xmlns="http://www.w3.org/2000/svg"
