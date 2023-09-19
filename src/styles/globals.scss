@@ -31,7 +31,6 @@
   justify-content: center;
   align-items: center;
 }
-html,
 body {
   max-width: 500px;
   overflow-x: hidden;
@@ -40,6 +39,19 @@ body {
   font-family: "Pluto Bold";
   position: relative;
   height: 100vh;
+}
+html {
+  &::before {
+    background-color: #0050a2;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -2;
+  }
+
 }
 .fw_r {
   font-family: "Pluto Regular";

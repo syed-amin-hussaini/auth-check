@@ -10,7 +10,7 @@ export default function NotAllow() {
   return (
     <div className={{}}>
       <Head>
-        <title>Nextjs | Next-Auth</title>
+        <title>Oreo | Not Allow</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
      <h1>Not Allow</h1>

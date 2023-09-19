@@ -11,13 +11,13 @@ export default function PrivacyPolicy() {
   return (
     <div className={{}}>
       <Head>
-        <title>Nextjs | Next-Auth</title>
+        <title>Oreo | Privacy Policy</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Nav />
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
+      <div className="container">
+        <div className="row">
+          <div className="col-md-12">
             <h1>Privacy Policy for Oreo Pakistan</h1>
             <p>
               At Oreo, accessible from auth-check.vercel.app, one of our main

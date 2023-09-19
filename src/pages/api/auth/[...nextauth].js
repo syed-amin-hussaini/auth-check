@@ -63,7 +63,7 @@ const nextAuthOptions = (req, res) => {
           // Use the useEffect hook to set the cookie on the client side
           // useEffect(() => {
             // setCookie({ res }, 'user', `{\"token\":\"${token}\",\"profile_status\":\"${profile_status}\"}` , {
-            setCookie({ res }, 'user', `{\"auth\":\"${auth}\",\"profile_status\":\"${profile_status}\", \"name\":\"${userDetail?.name}\",\"email_status\":\"${userDetail?.email_status}\",\"email\":\"${userDetail?.email}\", \"age\":\"${userDetail?.age ?? ""}\", \"phone\":\"${userDetail?.phone ?? ""}\", \"location\":\"${userDetail?.location ?? ""}\"}`, {
+            setCookie({ res }, 'user', `{\"id\":\"${userDetail.id}\", \"auth\":\"${auth}\",\"profile_status\":\"${profile_status}\", \"name\":\"${userDetail?.name}\",\"email_status\":\"${userDetail?.email_status}\",\"email\":\"${userDetail?.email}\", \"age\":\"${userDetail?.age ?? ""}\", \"phone\":\"${userDetail?.phone ?? ""}\", \"location\":\"${userDetail?.location ?? ""}\"}`, {
               maxAge: 31536000, // Cookie expiration time in seconds (e.g., 1 Year)
               path: '/',    // Cookie path
             });

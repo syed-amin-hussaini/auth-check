@@ -11,7 +11,7 @@ export default function TermsOfUse() {
   return (
     <div className={{}}>
       <Head>
-        <title>Nextjs | Next-Auth</title>
+        <title>Oreo | Term and Conditions</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Nav />

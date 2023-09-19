@@ -1,0 +1,62 @@
+.main {
+  position: relative;
+  height: calc(100vh);
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+  &:before {
+    content: "";
+    height: 100vh;
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    background-position: 100%;
+    background-size: 100%;
+    background-image: url("/assets/images/thankyou/layer-3.png");
+    z-index: -1;
+  }
+ 
+  .logo {
+    margin-block: 20px;
+    width: 300px;
+    height: auto;
+  }
+
+  .thankyou_text {
+    max-width: 80%;
+    height: auto;
+    margin: auto;
+    display: block;
+  }
+  .thankyou_content {
+    width: 330px;
+  }
+  .thankyou_image {
+    max-width: 80%;
+    height: auto;
+    margin: -130px auto 60px;
+    display: block;
+  }
+}
+
+.curved_text{
+  position:relative;
+  display:inline-block;
+  width: 500px !important;
+  height: 300px !important;
+  margin:0 auto;
+  font-size:20px;
+  color: #fff;
+  span{
+    min-width:0.5em;
+    text-align:center;
+    padding:0;
+    margin:0;
+  }
+}

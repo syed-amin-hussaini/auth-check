@@ -1,30 +1,13 @@
-import { revertToken } from "@/components/GenerateToken";
+import { cookieDataServer, revertToken } from "@/components/GenerateToken";
 import axios from "axios";
 import nookies, { setCookie } from "nookies";
 
 export default async function handler(req, res) {
   try {
-    const cookies = nookies.get({ req });
     let {name,age,phone,location,email,email_status} = req?.body;
-
-    const userIdCookie = cookies["user"];
-    let userToken;
-    let user;
-    if (userIdCookie) {
-      user = JSON?.parse(userIdCookie);
-      // let user = JSON?.parse(userIdCookie);
-      // userToken = user?.auth?.slice(0, -3);
-      userToken = revertToken(user?.auth);
+    let cookies = cookieDataServer(req)
+    let userToken = revertToken(cookies?.auth);
     
-      // // Destroy the "user" cookie by setting it to an empty string and providing options
-      // nookies.destroy({ res }, "user", { path: "/" });
-
-      // nookies.set({ res }, 'user', `{\"auth\":\"${user?.auth}\",\"profile_status\":\"complete\", \"name\":\"${name}\",\"email\":\"${email}\",\"email_status\":\"${email_status}\", \"age\":\"${age}\", \"phone\":\"${phone}\", \"location\":\"${location}\"}`, {
-      //   maxAge: 31536000, // 1 year
-      //   path: '/',    // Cookie path
-      // });
-    }
-
     const responseVal = await axios({
       method: "POST",
       url: `${process.env.NEXT_PUBLIC_API_URL}update-profile`,
@@ -44,7 +27,7 @@ export default async function handler(req, res) {
 
       nookies.destroy({ res }, "user", { path: "/" });
 
-      nookies.set({ res }, 'user', `{\"auth\":\"${user?.auth}\",\"profile_status\":\"complete\", \"name\":\"${name}\",\"email\":\"${email}\",\"email_status\":\"${email_status}\", \"age\":\"${age}\", \"phone\":\"${phone}\", \"location\":\"${location}\"}`, {
+      nookies.set({ res }, 'user', `{\"id\":\"${cookies.id}\",\"auth\":\"${cookies?.auth}\",\"profile_status\":\"complete\", \"name\":\"${name}\",\"email\":\"${email}\",\"email_status\":\"${email_status}\", \"age\":\"${age}\", \"phone\":\"${phone}\", \"location\":\"${location}\"}`, {
         maxAge: 31536000, // 1 year
         path: '/',    // Cookie path
       });
