@@ -16,13 +16,13 @@ export default function Home(props) {
         <title>Oreo | Dashboard</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="container-fluid main float-center flex-column gap-4">
+      <main className="container-fluid main float-center flex-column gap-4 px-5">
       <Nav />
       <Drawer />
                
         <div className="card text-center w-100">
           
-            <div className="card-header bg-warning text-black fs-5">
+            <div className="card-header bg-warning text-black fs-6">
               WIN THE GRAND PRIZE
             </div>
             <div className="card-body">
@@ -35,7 +35,7 @@ export default function Home(props) {
         </div>
 
         <div className="card text-center w-100">
-          <div className="card-header bg-danger text-black fs-5">
+          <div className="card-header bg-danger text-black fs-6">
             <b> A CHANCE TO WIN THE BOARD</b>
           </div>
           <div className="card-body">
