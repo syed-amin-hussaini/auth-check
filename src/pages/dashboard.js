@@ -16,7 +16,7 @@ export default function Home(props) {
         <title>Oreo | Dashboard</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="container-fluid main float-center flex-column gap-4 px-5">
+      <main className="container-fluid main float-center flex-column gap-4 px-3">
       <Nav />
       <Drawer />
                
