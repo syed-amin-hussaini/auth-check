@@ -15,6 +15,7 @@ export default function Home(props) {
       <Head>
         <title>Oreo | Dashboard</title>
         <link rel="icon" href="/favicon.ico" />
+        <link href="https://db.onlinewebfonts.com/c/7001cb455721479a34c81bc405ad96d4?family=Pluto+Black" rel="stylesheet" />
       </Head>
       <main className="container-fluid main float-center flex-column gap-4 px-3">
       <Nav />
@@ -22,12 +23,12 @@ export default function Home(props) {
                
         <div className="card text-center w-100">
           
-            <div className="card-header bg-warning text-black fs-6">
+            <div className="card-header bg-warning text-black fw_b fs-6">
               WIN THE GRAND PRIZE
             </div>
             <div className="card-body">
-              <p className="card-text">Found Mr Pennybags on the cookie?</p>
-              <p className="card-text">Scan it to win a grand prize.</p>
+              <p className="card-text fw_r">Found Mr Pennybags on the cookie?</p>
+              <p className="card-text fw_r">Scan it to win a grand prize.</p>
               <Link href="/prize/grand" className="btn bg-black text-white fw-bold">
                 Scan your Oreo Cookie
               </Link>
@@ -35,11 +36,11 @@ export default function Home(props) {
         </div>
 
         <div className="card text-center w-100">
-          <div className="card-header bg-danger text-black fs-6">
+          <div className="card-header bg-danger text-black fw_b fs-6">
             <b> A CHANCE TO WIN THE BOARD</b>
           </div>
           <div className="card-body">
-            <p className="card-text">
+            <p className="card-text fw_r">
               Scan and collect all 5 limited edition cookies for a chance to win
               Oreo X Monopoly board.
             </p>
