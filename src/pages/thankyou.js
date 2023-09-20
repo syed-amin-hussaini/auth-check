@@ -8,15 +8,9 @@ import CurvedText from './CurvedText';
 import Uncle from '@/public/assets/images/thankyou/uncle.webp';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
+import Layer from '@/public/assets/images/thankyou/layer-3.png';
 
-const Thankyou = ({ content, image,name }) => {
-  const router = useRouter();
-  
-  console.log(content, image,name) // Alerts 'Someone'
-
-  useEffect(() => {
-      console.log(name) // Alerts 'Someone'
-  }, [router.query]);
+const Thankyou = ({ content, image }) => {
   return (
     <div>
        <Head>
@@ -25,14 +19,13 @@ const Thankyou = ({ content, image,name }) => {
       </Head>
       <main
         className={`${styles.main} container-fluid`}
+        style={{backgroundImage:`url(${Layer.src})`}}
       >
          <Image
-          className={`${styles.logo}  m-auto`}
+          className={`${styles.logo}`}
           src={CompleteLogo}
-          width="80px"
-          height="40px"
           alt="Complete Logo"
-        />
+          />
         <CurvedText image={image} />
         <p className={`${styles.thankyou_content} fs-5 fw_r mb-5 text-white`}>
           {content}

@@ -27,7 +27,6 @@ const cookieDataClient = () => {
 const cookieDataServer = (req) => {
   const cookies = nookies.get({req});
   const userIdCookie = cookies["user"];
-  console.log(userIdCookie)
     let user;
     if (userIdCookie) {
       user = JSON?.parse(userIdCookie)

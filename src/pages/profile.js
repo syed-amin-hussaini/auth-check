@@ -15,6 +15,8 @@ import Almost_1 from "@/public/assets/images/almost-there/screen-1.webp";
 import Almost_2 from "@/public/assets/images/almost-there/screen-2.webp";
 import CookieImg from "@/public/assets/images/almost-there/cookie.png";
 import Form from "@/components/Form";
+import Layer1 from "@/components/Layer1";
+import Layer2 from "@/components/Layer2";
 
 export default function Profile() {
   const [getStated, setGetStated] = useState(false);
@@ -36,7 +38,6 @@ export default function Profile() {
           setGetStated(false);
         }, 5000);
       }
-      console.log(cookies?.profile_status)
     }
   }, []);
 
@@ -54,10 +55,11 @@ export default function Profile() {
 
       <main className={`${styles.main} `}> 
         {/* {getStated && <Image src={Almost_1} fill alt="Almost There Banner" />} */}
-        {getStated && <Image src={Almost_1} fill alt="Almost There Banner" priority />}
-        {formComplete && <Image src={Almost_2} fill alt="Profile Complete" priority />}
+        {getStated && <Layer2 name="#APlayfulTwist" style="0" classes="position-absolute start-0 top-0" />}
+        {formComplete && <Layer1 name="#APlayfulTwist" style="0" classes="position-absolute start-0 top-0" /> }
+
         <div className="d-flex justify-content-center flex-column align-items-center h-100">
-          <p className="text-white fw_r text-center p-3 mb-0">
+          <p className="text-white fw_r text-center p-3 mb-0 w-75">
             We just need a couple of details about you. Build your Oreo x
             Monopoly collection and win exciting gifts.
           </p>

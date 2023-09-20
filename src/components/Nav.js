@@ -16,10 +16,7 @@ const Nav = ({ user }) => {
   useEffect(() => {
     const fetchCookie = () => {
       const cookies = parseCookies();
-      console.log(cookies.user)
       if (cookies?.user) {
-        console.log("If")
-        console.log(JSON?.parse(cookies?.user)?.email_status)
         let emailStatus = JSON?.parse(cookies?.user)?.email_status;
         setEmail(emailStatus)
       } else { 
@@ -40,7 +37,6 @@ const Nav = ({ user }) => {
   };
 
   // if (!session) return;
-  console.log({email})
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-light">

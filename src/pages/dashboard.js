@@ -54,8 +54,7 @@ export default function Home(props) {
   );
 }
 export async function getServerSideProps(context) {
-  const session = await getSession(context)
-  console.log({session})
+  const session = await getSession(context);
   // if (!session) {
   //   return {
   //     redirect: {

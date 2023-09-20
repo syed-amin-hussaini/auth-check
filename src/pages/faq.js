@@ -6,7 +6,6 @@ import Nav from "@/components/Nav";
 export default function Faq() {
   const { data: session, status } = useSession();
   const loading = status === "loading";
-  console.log({ session });
 
   return (
     <div className={{}}>

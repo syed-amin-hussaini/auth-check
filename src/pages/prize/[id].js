@@ -17,6 +17,7 @@ import TooltipButton from "@/components/TooltipButton";
 import { translate } from "mongodb/lib/core/topologies/read_preference";
 import Thankyou from "../thankyou";
 import { cookieDataClient } from "@/components/GenerateToken";
+import { axiosCall } from "@/components/Axios";
 
 export default function Price() {
   // // Torch
@@ -47,28 +48,37 @@ export default function Price() {
 
   const webcamRef = React.useRef(null);
   const [imgSrc, setImgSrc] = React.useState(null);
+  const [thankYouMsg, setThankYouMsg] = React.useState('');
   const [imageSend, setImageSend] = useState(true);
   const [imageVerify, setImageVerify] = useState(false);
 
-  const capture = async (id) => {
+  const capture = async () => {
     const imageSrc = webcamRef.current.getScreenshot();
-    let userData = await cookieDataClient()
-    console.log({userData})
+    let userData = await cookieDataClient();
+
     setImageSend(false);
-    setImgSrc(imageSrc);
+    // setImgSrc(imageSrc);
     let data_i = JSON.stringify({
-      // user_id: userData?.,
-      type: "grandprice",
+      user_id: userData?.id,
+      type: id,
       img: imageSrc,
     });
-    console.log({imageSrc})
     // Camera End
-    setTimeout(() => {
-      setImageSend(true);
-      setImageVerify(true)
-      // router.push("/thankyou",)
-      
-    }, 5000);
+    try {
+      // Send the captured image to a third-party API
+      let res = await axiosCall("/api/scanCookie", data_i);
+      // console.log("axiosCall")
+      // console.log( res?.data.result)
+      // console.log( res)
+      if (res?.data?.result?.status === "success") {
+        setImageSend(true);
+        setImageVerify(true)
+        setImgSrc(res?.data?.result?.cookie_img);
+        setThankYouMsg(res?.data?.result?.msg);
+      }
+    } catch (error) {
+      console.log(error)
+    }
 
     // Send the captured image to a third-party API
     // try {
@@ -103,7 +113,7 @@ export default function Price() {
         <title>Oreo | Cookie Scan</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {/* {!imageVerify ? */}
+      {!imageVerify ?
         <main
           className={`${styles.main} ${
             imageSend && styles.active
@@ -188,8 +198,8 @@ export default function Price() {
 
           <Footer />
         </main>
-      {/* ': */}
-      {/* <Thankyou  /> } */}
+      :
+      <Thankyou image={imgSrc} content={thankYouMsg} /> }
     </div>
   );
 }

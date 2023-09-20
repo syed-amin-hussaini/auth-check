@@ -19,8 +19,6 @@ export default async function handler(req, res) {
         // Remove unnecessary headers
       },
     });
-    console.log(responseVal.status)
-    console.log(responseVal.data)
 
     if (responseVal?.data?.status === 'success') {
       const serverMsg = responseVal?.data?.msg;

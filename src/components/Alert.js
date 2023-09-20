@@ -18,7 +18,6 @@ const Alert = ({customClass = "", action, msg, hide = false}) => {
     setAlert(false)
     setEntries([]);
   }
-  console.log({entries})
   return (
     <div
       className={`custom-alert alert alert-${action} ${entries?.length !== 0 ? "alert-active" :""} alert-dismissible fade ${alert && "show"} ${customClass}`}

@@ -5,6 +5,7 @@
   width: 100%;
   flex-direction: column;
   align-items: center;
+  justify-content: space-around;
   text-align: center;
 
   overflow-x: hidden;
@@ -18,29 +19,40 @@
     position: absolute;
     background-position: 100%;
     background-size: 100%;
-    background-image: url("/assets/images/thankyou/layer-3.png");
+    // background-image: url("/assets/images/thankyou/layer-3.png");
     z-index: -1;
   }
  
   .logo {
-    margin-block: 20px;
-    width: 300px;
+    margin: 40px auto 140px;
+    width: 80%;
     height: auto;
   }
 
-  .thankyou_text {
+  .curved_text_container {
+    // background-color: orange;
     max-width: 80%;
+    position: relative;
+    margin-bottom:50px;
+  }
+  .thankyou_text {
+    max-width: 100%;
     height: auto;
-    margin: auto;
-    display: block;
+    /* margin: auto; */
+    /* display: block; */
+    position: absolute;
+    top: -75px;
+    left: 0;
   }
   .thankyou_content {
-    width: 330px;
+    max-width: 330px;
   }
   .thankyou_image {
+    // max-width: 80%;
+    // transform: translateY(-10px);
     max-width: 80%;
     height: auto;
-    margin: -130px auto 60px;
+    margin: 0 auto 0;
     display: block;
   }
 }

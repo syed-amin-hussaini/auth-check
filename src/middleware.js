@@ -37,7 +37,6 @@ export default async function middleware(req) {
     //   req,
     //   secret: process.env.JWT_SECRET,
     // });
-    // console.log("asd " + sessions);
 
     if (userCountry === 'Pakistans' && req.url !== '/notallow') {
       return NextResponse.rewrite(new URL('/notallow', req.url))

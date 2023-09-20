@@ -29,7 +29,6 @@ export default function TorchControl({ CheckTorch }) {
   
 
   useEffect(() => {
-    console.log("isTorchSupported " + !isTorchSupported)
     if (!currentTrack) {
       getTorchLight();
     }

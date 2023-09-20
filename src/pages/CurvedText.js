@@ -42,7 +42,7 @@ function updateCurvedText(curvedText, radius) {
 }
 
 const CurvedText = ({ image }) => {
-  console.log(image)
+  // console.log(image)
 
 //   useEffect(() => {
 //     var curvedText = document.querySelector(".curved-text");
@@ -50,13 +50,16 @@ const CurvedText = ({ image }) => {
 //   }, []);
 
   return (
-    <div>
+    <div className={`${styles.curved_text_container}`}>
       {/* <div className={`${styles.curved_text} curved-text`}>
         THANK YOU FOR YOUR SUBMISSION
       </div> */}
       
-      <Image alt="Thank you test" className={`mt-5 ${styles.thankyou_text}`} src={ThankYouText}/> 
-      <Image alt="Scanner Cookie Image" className={styles.thankyou_image} width={300} height={300} src={image}/> 
+      <Image alt="Thank you test" className={`mt-5 ${styles.thankyou_text}`} width={500} height={500} src={ThankYouText}/> 
+      <div>
+
+      </div>
+      <Image alt="Scanner Cookie Image" className={styles.thankyou_image} width={"80%"} height={"80%"} src={image} /> 
     </div>
   );
 };

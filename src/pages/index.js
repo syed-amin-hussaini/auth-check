@@ -11,6 +11,7 @@ import layer from "@/public/assets/images/layer.webp";
 import Facebook from "@/public/assets/images/login/facebook.svg";
 import Google from "@/public/assets/images/login/google.svg";
 import axios from "axios";
+import Layer1 from "@/components/Layer1";
 
 const Login = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -22,7 +23,7 @@ const Login = () => {
       if (cookies?.user != undefined) {
         router.replace("/dashboard");
       }
-    }
+    };
     fetchUser();
   }, []);
   return (
@@ -31,8 +32,8 @@ const Login = () => {
         <title>Oreo | Login</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <div
+      <Layer1>
+        {/* <div
         className={styles.main}
         style={{ backgroundImage: `url(${layer.src})` }}
       >
@@ -57,7 +58,7 @@ const Login = () => {
             marginBottom: "40px",
             display: "block",
           }}
-        />
+        /> */}
 
         <div
           style={{ maxWidth: "90%", width: "100%", marginBottom: "40px" }}
@@ -82,7 +83,8 @@ const Login = () => {
             Continue with Facebook
           </a>
         </div>
-      </div>
+      </Layer1>
+      {/* </div> */}
     </div>
   );
 };

@@ -15,7 +15,6 @@ function App() {
   }, []);
   const onSubmit = (data) => {
     // Handle form submission here
-    console.log(data);
   };
 
   const phoneNumberRegex = /^\+(?:[0-9] ?){6,14}[0-9]$/; // Adjust the regex pattern as needed
