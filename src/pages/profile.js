@@ -17,6 +17,7 @@ import CookieImg from "@/public/assets/images/almost-there/cookie.png";
 import Form from "@/components/Form";
 import Layer1 from "@/components/Layer1";
 import Layer2 from "@/components/Layer2";
+import Footer from "@/components/Footer";
 
 export default function Profile() {
   const [getStated, setGetStated] = useState(false);
@@ -60,16 +61,17 @@ export default function Profile() {
 
         <div className="d-flex justify-content-center flex-column align-items-center h-100">
           <div className="row m-0">
-            <p className="col-10 col-sm-8 fw_r m-auto mb-0 px-1 py-3 text-center text-white">
+            <p className="col-11 col-sm-8 fw_r m-auto mb-0 px-1 py-3 text-center text-white">
               We just need a couple of details about you. Build your Oreo x
               Monopoly collection and win exciting gifts.
             </p>
           </div>
           <Form firstTime={firstTime} f_complete={f_complete} />
-          <small className="text-white fw_r text-center p-3">
+          {/* <small className="text-white fw_r text-center p-3">
             &copy; {new Date().getFullYear()} Oreo Pakistan Instance - All
             rights reserved
-          </small>
+          </small> */}
+          <Footer className="p-3" />
         </div>
       </main>
     </div>
