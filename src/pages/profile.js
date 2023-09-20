@@ -59,8 +59,8 @@ export default function Profile() {
         {formComplete && <Layer1 name="#APlayfulTwist" style="0" classes="position-absolute start-0 top-0" /> }
 
         <div className="d-flex justify-content-center flex-column align-items-center h-100">
-          <div className="row">
-            <p className="col-10 col-sm-8 fw_r m-auto mb-0 p-3 text-center text-white">
+          <div className="row m-0">
+            <p className="col-10 col-sm-8 fw_r m-auto mb-0 px-1 py-3 text-center text-white">
               We just need a couple of details about you. Build your Oreo x
               Monopoly collection and win exciting gifts.
             </p>
