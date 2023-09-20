@@ -37,10 +37,12 @@ const Layer2 = ({name="",classes="",style=""}) => {
             display: "block",
           }}
         />
-        <div className='mb-3 bg-danger p-2 text-center w-100 '>
-          <p className='text-white w-75 m-auto fs-5 mb-2'>
+        <div className='mb-3 bg-danger row py-2 text-center w-100'>
+          <p className='col-10 col-sm-7 text-white  m-auto fs-6 mb-2'>
             We just need a couple of details about you. Build your
           </p>
+          <div className='col-sm-12'>
+
           <Image
           alt="Logo"
           src={Logo}
@@ -53,9 +55,13 @@ const Layer2 = ({name="",classes="",style=""}) => {
             display: "block",
           }}
           />
-          <p className='text-white px-2 m-auto fs-4'>
-            Collection & Win Exciting Gifts.
-          </p>
+          </div>
+          <div className='col-sm-12 col-md-12'>
+            <p className='text-white px-2 m-auto fs-5'>
+              Collection & Win Exciting Gifts.
+            </p>
+
+          </div>
         </div>
       </div>
     </div>
