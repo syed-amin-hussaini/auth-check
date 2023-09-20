@@ -9,7 +9,7 @@ import styles from "@/src/styles/login.module.scss";
 const Layer2 = ({name="",classes="",style=""}) => {
   return (
     
-    <div>
+    <div clas>
        <div
         className={`${styles.main} ${classes}`}
         style={{ backgroundImage: `url(${layer.src}) ` }}
@@ -57,9 +57,9 @@ const Layer2 = ({name="",classes="",style=""}) => {
           />
           </div>
           <div className='col-sm-12 col-md-12'>
-            <p className='text-white px-2 m-auto fs-5'>
+            <h5 className='text-white m-auto'>
               Collection & Win Exciting Gifts.
-            </p>
+            </h5>
 
           </div>
         </div>
