@@ -1,6 +1,6 @@
 import Head from "next/head";
 // import styles from "../styles/Home.module.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Webcam from "react-webcam";
 
@@ -14,8 +14,7 @@ import { cookieDataClient } from "@/components/GenerateToken";
 import { axiosCall } from "@/components/Axios";
 import Thankyou from "@/pages/thankyou";
 
-export default function Camera() {
-  
+export default function Camera({cookieStatus}) {
 
   const router = useRouter();
   const { id } = router.query;
@@ -66,6 +65,17 @@ export default function Camera() {
       console.log(error)
     }
   };
+
+  // Cookie status checking
+  useEffect(() => {
+    console.log({cookieStatus})
+    if (cookieStatus?.status == "block") {
+      console.log("asdas")
+      setThankYouMsg(cookieStatus?.msg)
+      setImgSrc(cookieStatus?.cookie_img)
+      setImageVerify(true)
+    }
+  }, [cookieStatus])
 
   return (
     <div>
