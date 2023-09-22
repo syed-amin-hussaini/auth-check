@@ -68,7 +68,6 @@ export default function Camera({cookieStatus}) {
 
   // Cookie status checking
   useEffect(() => {
-    console.log({cookieStatus})
     if (cookieStatus?.status == "block") {
       console.log("asdas")
       setThankYouMsg(cookieStatus?.msg)

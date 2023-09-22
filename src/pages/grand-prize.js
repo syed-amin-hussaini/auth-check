@@ -13,8 +13,8 @@ export async function getServerSideProps({req, res}) {
   let user = cookieDataServer(req);
   let userId = parseInt(user?.id);
   let userAuth = revertToken(user?.auth); 
-  // const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}cookie-status?user_id=${userId}`; 
-  const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}cookie-status?user_id=4`; 
+  const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}cookie-status?user_id=${userId}`; 
+  // const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}cookie-status?user_id=4`; 
  
   const response = await axios.get(
     apiUrl,
