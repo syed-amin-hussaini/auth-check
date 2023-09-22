@@ -27,8 +27,8 @@ export async function getServerSideProps({req, res}) {
   );
   let result = response?.data ?? "";
 
-  console.log("Cookie Check");
-  console.log({ result });
+  // console.log("Cookie Check");
+  // console.log({ result });
   return {
     props: result,
   };

@@ -14,7 +14,7 @@ import { cookieDataClient } from "@/components/GenerateToken";
 import { axiosCall } from "@/components/Axios";
 import Thankyou from "@/pages/thankyou";
 
-export default function Camera({cookieStatus}) {
+export default function Camera({ cookieStatus }) {
 
   const router = useRouter();
   const { id } = router.query;
@@ -68,13 +68,12 @@ export default function Camera({cookieStatus}) {
 
   // Cookie status checking
   useEffect(() => {
-    if (cookieStatus?.status == "block") {
-      console.log("asdas")
+    if (cookieStatus?.status === "blocked") {
       setThankYouMsg(cookieStatus?.msg)
       setImgSrc(cookieStatus?.cookie_img)
       setImageVerify(true)
     }
-  }, [cookieStatus])
+  }, [])
 
   return (
     <div>
