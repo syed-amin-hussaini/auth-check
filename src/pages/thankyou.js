@@ -21,6 +21,16 @@ const Thankyou = ({ content, image }) => {
         className={`${styles.main} container-fluid`}
         style={{backgroundImage:`url(${Layer.src})`}}
       >
+         {/* <Image
+          // className={`${styles.logo}`}
+          src={Layer}
+          alt="Complete Logo"
+          layout="fill"
+          objectFit="cover"
+          objectPosition="center"
+          priority
+          style={{zIndex: -2}}
+          /> */}
          <Image
           className={`${styles.logo}`}
           src={CompleteLogo}

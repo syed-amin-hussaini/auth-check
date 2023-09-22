@@ -22,7 +22,7 @@
     // background-image: url("/assets/images/thankyou/layer-3.png");
     z-index: -1;
   }
- 
+
   .logo {
     margin: 40px auto 140px;
     width: 80%;
@@ -33,10 +33,12 @@
     // background-color: orange;
     max-width: 80%;
     position: relative;
-    margin-bottom:50px;
+    margin-bottom: 50px;
+
   }
   .thankyou_text {
     max-width: 100%;
+    width: 100%;
     height: auto;
     /* margin: auto; */
     /* display: block; */
@@ -50,25 +52,37 @@
   .thankyou_image {
     // max-width: 80%;
     // transform: translateY(-10px);
-    max-width: 80%;
+    max-width: 85%;
     height: auto;
     margin: 0 auto 0;
     display: block;
+     // .next-image {
+    //   max-width: 100%;
+      // div {
+      //   position: unset !important;
+      //   padding: 0px !important;
+      // img {
+        position: unset !important;
+        width: 100% !important;
+        max-height: 100% !important;
+      // }
+    // }
+  // }
   }
 }
 
-.curved_text{
-  position:relative;
-  display:inline-block;
+.curved_text {
+  position: relative;
+  display: inline-block;
   width: 500px !important;
   height: 300px !important;
-  margin:0 auto;
-  font-size:20px;
+  margin: 0 auto;
+  font-size: 20px;
   color: #fff;
-  span{
-    min-width:0.5em;
-    text-align:center;
-    padding:0;
-    margin:0;
+  span {
+    min-width: 0.5em;
+    text-align: center;
+    padding: 0;
+    margin: 0;
   }
 }

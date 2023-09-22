@@ -1,0 +1,31 @@
+.main {
+  // background-image: url("/assets/images/layer.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .collection_cookie {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    margin-bottom: 40px;
+    div {
+      width: calc(33% - 60px);
+      height: auto;
+      span {
+        right: 20px;
+        padding: 5px;
+        background: #e75d0a;
+        border-radius: 50%;
+        height: 25px;
+        width: 25px;
+        z-index: 1;
+      }
+    }
+  }
+}

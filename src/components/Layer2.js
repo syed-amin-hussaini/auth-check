@@ -9,7 +9,7 @@ import styles from "@/src/styles/login.module.scss";
 const Layer2 = ({name="",classes="",style=""}) => {
   return (
     
-    <div clas>
+    <div>
        <div
         className={`${styles.main} ${classes}`}
         style={{ backgroundImage: `url(${layer.src}) ` }}

@@ -56,10 +56,11 @@ const CurvedText = ({ image }) => {
       </div> */}
       
       <Image alt="Thank you test" className={`mt-5 ${styles.thankyou_text}`} width={500} height={500} src={ThankYouText}/> 
-      <div>
+      {/* <div style={{width:"80%",height:"80%"}}> */}
+        {/* <Image alt="Scanner Cookie Image" className={styles.thankyou_image}  layout='fill' src={image} />  */}
+        <Image alt="Scanner Cookie Image" className={styles.thankyou_image} src={image} width={0} height={0} layout="responsive" objectFit="cover"/> 
+      {/* </div> */}
 
-      </div>
-      <Image alt="Scanner Cookie Image" className={styles.thankyou_image} width={"80%"} height={"80%"} src={image} /> 
     </div>
   );
 };

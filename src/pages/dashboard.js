@@ -6,9 +6,7 @@ import React, { useEffect, useState, useRef} from "react";
 import Drawer from "@/components/Drawer";
 import Link from "next/link";
 
-export default function Home(props) {
-  const { data: session, status } = useSession();
-  const loading = status === "loading";
+export default function Home() {
 
   return (
     <div>
@@ -29,7 +27,7 @@ export default function Home(props) {
             <div className="card-body">
               <p className="card-text fw_r">Found Mr Pennybags on the cookie?</p>
               <p className="card-text fw_r">Scan it to win a grand prize.</p>
-              <Link href="/prize/grand" className="btn bg-black text-white fw-bold">
+              <Link href="/grand-prize" className="btn bg-black text-white fw-bold">
                 Scan your Oreo Cookie
               </Link>
             </div>
@@ -44,7 +42,7 @@ export default function Home(props) {
               Scan and collect all 5 limited edition cookies for a chance to win
               Oreo X Monopoly board.
             </p>
-            <Link href="/prize/collect" className="btn bg-black text-white fw-bold">
+            <Link href="/collect" className="btn bg-black text-white fw-bold">
               Build your collection
             </Link>
           </div>
