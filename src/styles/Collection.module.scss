@@ -17,14 +17,22 @@
     div {
       width: calc(33% - 60px);
       height: auto;
-      span {
+      .status_icon {
         right: 20px;
         padding: 5px;
-        background: #e75d0a;
         border-radius: 50%;
         height: 25px;
         width: 25px;
         z-index: 1;
+        &.pending {
+          background: var(--bs-warning);
+        }
+        &.complete {
+          background: var(--bs-success);
+        }
+        &.failed {
+          background: var(--bs-danger);
+        }
       }
     }
   }
