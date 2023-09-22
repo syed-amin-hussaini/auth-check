@@ -32,6 +32,7 @@ export default function Camera() {
   const [thankYouMsg, setThankYouMsg] = React.useState('');
   const [imageSend, setImageSend] = useState(true);
   const [imageVerify, setImageVerify] = useState(false);
+  const [imageMsg, setImageMsg] = useState("Scan");
 
   const capture = async () => {
     const imageSrc = webcamRef.current.getScreenshot();
@@ -51,11 +52,15 @@ export default function Camera() {
       // console.log("axiosCall")
       // console.log( res?.data.result)
       // console.log( res)
-      if (res?.data?.result?.status === "success") {
+      if (res?.data?.result?.status === "success"  || res?.data?.result?.status === "failed") {
         setImageSend(true);
         setImageVerify(true)
+        console.log(res?.data?.result?.cookie_img)
         setImgSrc(res?.data?.result?.cookie_img);
         setThankYouMsg(res?.data?.result?.msg);
+      } else if (res?.data?.result?.status === "retry") {
+        setImageMsg("Scan Again")
+        setImageSend(true);
       }
     } catch (error) {
       console.log(error)
@@ -148,7 +153,7 @@ export default function Camera() {
                 Scanning in process...
               </p>
             )}
-            {imageSend && <button onClick={() => capture(id)}>Scan</button>}
+            {imageSend && <button onClick={() => capture(id)}> {imageMsg} </button>}
           </div>
 
           <Footer />
