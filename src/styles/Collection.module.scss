@@ -14,8 +14,9 @@
     gap: 30px;
     justify-content: center;
     margin-bottom: 40px;
+    width: 80% !important;
     div {
-      width: calc(100% - 70%);
+      width: calc(100% - 71%);
       @media (min-width:568px) {
         width: 21%;
       }

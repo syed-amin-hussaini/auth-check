@@ -83,8 +83,8 @@ const Index = ({ result,cookieArray }) => {
                     src={
                       "https://www.oreostayplayful.com/assets/images/Cookie1.png"
                     }
-                    width={100}
-                    height={100}
+                    width={90}
+                    height={90}
                     layout="cover"
                     objectFit="cover"
                     objectPosition="center"
