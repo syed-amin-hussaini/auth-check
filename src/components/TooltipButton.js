@@ -1,10 +1,17 @@
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Tooltip as ReactTooltip } from "react-tooltip";
-import UncleCookie from "@/public/assets/images/camera/Mr.Monopoly-cookie.png";
+
 import styles from "@/src/styles/Camera.module.scss";
 
-const TooltipButton = ({ id, text }) => {
+const TooltipButton = ({ id, text, image=[], multiple = false }) => {
+  const [cookieArray, setCookieArray] = useState([])
+  
+  useEffect(() => {
+    setCookieArray(image)
+  }, [image, multiple])
+  
+  console.log({ cookieArray });
   return (
     <>
       <span
@@ -40,43 +47,30 @@ const TooltipButton = ({ id, text }) => {
             Instruction
           </h6>
           <div className={styles.cookie}>
-            <Image
-              src={UncleCookie}
-              alt=""
-              className="expTwoCookie"
-              style={{ width: "40%", height: "auto" }}
-              priority
-            />
-            {/* <Image
-              src="/assets/images/Mr.Monopoly-cookie.png"
-              alt=""
-              className="expTwoCookie"
-              style=""
-            />
-            <Image
-              src="./assets/Mr.Monopoly-cookie.png"
-              alt=""
-              id="expOneCookie"
-              style="width: 15%; display: none;"
-            />
-            <Image
-              src="/assets/images/Mr.Monopoly-cookie.png"
-              alt=""
-              className="expTwoCookie"
-              style=""
-            />
-            <Image
-              src="/assets/images/Mr.Monopoly-cookie.png"
-              alt=""
-              className="expTwoCookie"
-              style=""
-            />
-            <Image
-              src="/assets/images/Mr.Monopoly-cookie.png"
-              alt=""
-              className="expTwoCookie"
-              style=""
-            /> */}
+            {multiple ? (
+              <>
+                {cookieArray?.map((item,i) => {
+                  {/* return <h1 key={i}>{i}</h1> */}
+                  return <Image key={i}
+                    src={item}
+                    alt=""
+                    className="expTwoCookie"
+                    height={80}
+                    width={80}
+                    priority
+                  />
+                })}
+                
+              </>
+            ) : (
+              <Image
+                src={image}
+                alt=""
+                className="expTwoCookie"
+                style={{ width: "40%", height: "auto" }}
+                priority
+              />
+            )}
           </div>
           <p
             className={`fw_r d-block mt-2 ${styles.instruction_font}`}

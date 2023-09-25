@@ -28,7 +28,7 @@ export default function Home() {
               <p className="card-text fw_r">Found Mr Pennybags on the cookie?</p>
               <p className="card-text fw_r mb-4">Scan it to win a grand prize.</p>
               <Link href="/grand-prize" className="btn bg-black text-white fw-bold">
-                Scan your Oreo Cookie
+                Scan your Oreo cookie
               </Link>
             </div>
         </div>

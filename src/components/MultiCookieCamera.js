@@ -1,44 +1,20 @@
 import Head from "next/head";
 // import styles from "../styles/Home.module.css";
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Webcam from "react-webcam";
 
 import styles from "@/src/styles/Camera.module.scss";
 import { useRouter } from "next/router";
-import axios from "axios";
-import { TorchContextProvider, torchContext } from "@/components/useTorch";
-import TorchControl from "@/components/torchControl";
 import Footer from "@/components/Footer";
 import CompleteLogo from "@/public/assets/images/complete-logo.png";
 import Image from "next/image";
-import ReactTooltip, { Tooltip } from "react-tooltip";
 import TooltipButton from "@/components/TooltipButton";
-import { translate } from "mongodb/lib/core/topologies/read_preference";
-import Thankyou from "../thankyou";
 import { cookieDataClient } from "@/components/GenerateToken";
 import { axiosCall } from "@/components/Axios";
+import Thankyou from "@/pages/thankyou";
 
-export default function Price() {
-  // // Torch
-  // const [torch, setTorch] = useState(false)
-
-  // const CheckTorch = (torch) => {
-  //   console.log("CheckTorch")
-  //   console.log({torch})
-
-  // }
-
-  // useEffect(() => {
-  //   console.log("useEffect")
-  //   CheckTorch();
-  // }, [])
-
-  // Torch end
-
-  const router = useRouter();
-  const { id } = router.query;
-
+export default function MultiCookieCamera({ cookieStatus,image }) {
   // Camera
   const videoConstraints = {
     width: 500,
@@ -51,8 +27,9 @@ export default function Price() {
   const [thankYouMsg, setThankYouMsg] = React.useState('');
   const [imageSend, setImageSend] = useState(true);
   const [imageVerify, setImageVerify] = useState(false);
+  const [imageMsg, setImageMsg] = useState("Scan");
 
-  const capture = async () => {
+  const capture = async ( ) => {
     const imageSrc = webcamRef.current.getScreenshot();
     let userData = await cookieDataClient();
 
@@ -60,7 +37,7 @@ export default function Price() {
     // setImgSrc(imageSrc);
     let data_i = JSON.stringify({
       user_id: userData?.id,
-      type: id,
+      type: "grandprice",
       img: imageSrc,
     });
     // Camera End
@@ -70,42 +47,29 @@ export default function Price() {
       // console.log("axiosCall")
       // console.log( res?.data.result)
       // console.log( res)
-      if (res?.data?.result?.status === "success") {
+      if (res?.data?.result?.status === "success"  || res?.data?.result?.status === "failed") {
         setImageSend(true);
         setImageVerify(true)
+        console.log(res?.data?.result?.cookie_img)
         setImgSrc(res?.data?.result?.cookie_img);
         setThankYouMsg(res?.data?.result?.msg);
+      } else if (res?.data?.result?.status === "retry") {
+        setImageMsg("Scan Again")
+        setImageSend(true);
       }
     } catch (error) {
       console.log(error)
     }
-
-    // Send the captured image to a third-party API
-    // try {
-    //   const response = await axios({
-    //     method: "post",
-    //     url: "https://obackend.hul-hub.com/api/scan-cookie",
-    //     data: data_i,
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //       'Authorization': 'Bearer 1|yC7fICr8O4NSwjkFq6xBsDuMMBDtoPFXkXKIj1Qp'
-    //     },
-    //   });
-
-    //   if (response.ok) {
-    //     console.log({ response });
-    //     setImageSend(true);
-    //     setImageVerify(true)
-    //     // Handle success
-    //   } else {
-    //     setImageSend(false);
-    //     console.log("Else");
-    //     // Handle error
-    //   }
-    // } catch (error) {
-    //   console.error("Error sending image:", error);
-    // }
   };
+
+  // Cookie status checking
+  useEffect(() => {
+    if (cookieStatus?.status === "blocked") {
+      setThankYouMsg(cookieStatus?.msg)
+      setImgSrc(cookieStatus?.cookie_img)
+      setImageVerify(true)
+    }
+  }, [])
 
   return (
     <div>
@@ -131,10 +95,12 @@ export default function Price() {
               <TorchControl />
             </TorchContextProvider> */}
             <TooltipButton
-              id={"tooltip-1"}
+              id={"tooltip-2"}
               text={
-                "This is the rare Oreo cookie you <br>need to look for! If you've found it, <br>place it in the centre and upload."
+                "Select one of the 5 limited edition <br>Oreo x Monopoly cookies and upload <br>to complete your collection."
               }
+              multiple={true}
+              image={image}
             />
             <Link
               className={`bg-black rounded-circle ${styles.btnContainer}`}
@@ -193,7 +159,7 @@ export default function Price() {
                 Scanning in process...
               </p>
             )}
-            {imageSend && <button onClick={() => capture(id)}>Scan</button>}
+            {imageSend && <button onClick={() => capture()}> {imageMsg} </button>}
           </div>
 
           <Footer />

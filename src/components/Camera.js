@@ -13,6 +13,7 @@ import TooltipButton from "@/components/TooltipButton";
 import { cookieDataClient } from "@/components/GenerateToken";
 import { axiosCall } from "@/components/Axios";
 import Thankyou from "@/pages/thankyou";
+import UncleCookie from "@/public/assets/images/camera/Mr.Monopoly-cookie.png";
 
 export default function Camera({ cookieStatus }) {
 
@@ -100,6 +101,7 @@ export default function Camera({ cookieStatus }) {
             </TorchContextProvider> */}
             <TooltipButton
               id={"tooltip-1"}
+              image={UncleCookie}
               text={
                 "This is the rare Oreo cookie you <br>need to look for! If you've found it, <br>place it in the centre and upload."
               }
