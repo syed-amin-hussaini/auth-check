@@ -95,7 +95,7 @@ const Index = ({ result, cookieArray }) => {
                     layout="cover"
                     objectFit="cover"
                     objectPosition="center"
-                    style={item.status == "open" && { opacity: "0.4" }}
+                    style={item.status == "open" && { opacity: "0.6" }}
                   />
                 </div>
               );

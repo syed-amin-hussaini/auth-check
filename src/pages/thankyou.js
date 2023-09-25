@@ -10,9 +10,9 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Layer from '@/public/assets/images/thankyou/layer-3.png';
 
-const Thankyou = ({ content, image }) => {
+const Thankyou = ({ content, image, index="" }) => {
   return (
-    <div>
+    <div className='w-100 position-absolute top-0 start-0' style={{zIndex:index}}>
        <Head>
         <title>Oreo / Thank You</title>
         <link rel="icon" href="/favicon.ico" />
