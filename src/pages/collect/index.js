@@ -47,7 +47,7 @@ const Index = ({ result, cookieArray }) => {
             style={{
               width: "85%",
               objectFit: "contain",
-              margin: "0 0 30px",
+              margin: "0 0 0px",
               paddingBlock: "40px",
               display: "block",
             }}
@@ -103,7 +103,7 @@ const Index = ({ result, cookieArray }) => {
           </div>
           <div className="row p-2 text-center w-100">
             <div className="col-sm-12 p-0">
-              <h1 className="col-9 m-auto p-0 fs-2 text-white mb-5">
+              <h1 className="col-9 m-auto p-0 fs-2 text-white mb-4">
                 You're doing great!{" "}
                 <span className="fw_r fs-3">
                   {" "}
