@@ -45,10 +45,10 @@ const Index = ({ result,cookieArray }) => {
             }}
           />
           <div className="row m-0">
-            <p className="col-12 col-sm-9 m-auto p-0 fw_r fs-5 text-white mb-5">
+            <p className="col-9  m-auto p-0 fw_r fs-5 text-white mb-5">
               Collect all 5 embossed cookie, and win the Oreo x Monopoly board!
             </p>
-            <h1 className="col-12 col-sm-9 m-auto p-0 fs-2 text-white mb-5">
+            <h1 className="col-7 m-auto p-0 fs-2 text-white mb-5">
               Tap the missing cookie to scan
             </h1>
           </div>
@@ -96,7 +96,7 @@ const Index = ({ result,cookieArray }) => {
           </div>
           <div className="row p-2 text-center w-100">
             <div className="col-sm-12 p-0">
-              <h1 className="col-12 col-sm-9 m-auto p-0 fs-2 text-white mb-5">
+              <h1 className="col-8 m-auto p-0 fs-2 text-white mb-5">
                 You're doing great!{" "}
                 <span className="fw_r fs-3">
                   {" "}
