@@ -14,7 +14,7 @@ import { cookieDataClient } from "@/components/GenerateToken";
 import { axiosCall } from "@/components/Axios";
 import Thankyou from "@/pages/thankyou";
 
-export default function MultiCookieCamera({ cookieStatus,image,handleClick }) {
+export default function MultiCookieCamera({ cookieStatus,image, handleClick }) {
   // Camera
   const videoConstraints = {
     width: 500,
@@ -103,7 +103,7 @@ export default function MultiCookieCamera({ cookieStatus,image,handleClick }) {
               image={image}
             />
             <span
-              onClick={()=>handleClick(false)}
+              onClick={()=>handleClick()}
               className={`bg-black rounded-circle ${styles.btnContainer}`}
               // href="/collect"
             >

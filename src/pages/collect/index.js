@@ -7,20 +7,28 @@ import styles from "@/src/styles/Collection.module.scss";
 import Footer from "@/components/Footer";
 import Head from "next/head";
 import MultiCookieCamera from "@/components/MultiCookieCamera";
+import { useRouter } from "next/router";
+import { handleCallback } from "mongodb/lib/utils";
 
-const Index = ({ result,cookieArray }) => {
+const Index = ({ result, cookieArray }) => {
+  
+  const router = useRouter();
+
   const [camera, setCamera] = useState(false);
   const [cookieImage, setCookieImage] = useState(false);
 
   const CurrentCookie = (boardId, value) => {
     setCamera(true);
-    console.log({ boardId }, { value });
+    // console.log({ boardId }, { value });
+  };
+  const handleClick = () => {
+    console.log("asdasdasd")
+    router.replace(router.asPath)
+    setCamera(false);
   };
 
   // console.log({result})
   let { boardId, cookieLeft, cookieCollect } = result;
-  console.log("cookieArray -----")
-  console.log({cookieArray})
 
   return (
     <>
@@ -54,7 +62,6 @@ const Index = ({ result,cookieArray }) => {
           </div>
           <div className={`${styles.collection_cookie} text-center w-100`}>
             {cookieCollect.map((item, i) => {
-              console.log({ item });
               return (
                 <div
                   className="position-relative cursor-pointer"
@@ -114,7 +121,7 @@ const Index = ({ result,cookieArray }) => {
           style={camera ? { zIndex: 10 } : { zIndex: -10 }}
         >
           {/* <MultiCookieCamera handleClick={handleClick} image={cookieArray} /> */}
-          <MultiCookieCamera handleClick={setCamera} image={cookieArray} />
+          <MultiCookieCamera handleClick={()=> handleClick()} image={cookieArray} />
         </div>
       </div>
     </>

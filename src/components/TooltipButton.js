@@ -11,7 +11,6 @@ const TooltipButton = ({ id, text, image=[], multiple = false }) => {
     setCookieArray(image)
   }, [image, multiple])
   
-  console.log({ cookieArray });
   return (
     <>
       <span
