@@ -38,6 +38,7 @@ const TooltipButton = ({ id, text, image=[], multiple = false }) => {
         openOnClick={true}
         style={{
           padding: "20px 15px",
+          maxWidth:"90%"
         }}
         className="opacity-100 bg-white text-black text-center"
         effect="solid"
