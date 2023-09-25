@@ -14,7 +14,7 @@ import { cookieDataClient } from "@/components/GenerateToken";
 import { axiosCall } from "@/components/Axios";
 import Thankyou from "@/pages/thankyou";
 
-export default function MultiCookieCamera({ cookieStatus,image }) {
+export default function MultiCookieCamera({ cookieStatus,image,handleClick }) {
   // Camera
   const videoConstraints = {
     width: 500,
@@ -61,7 +61,7 @@ export default function MultiCookieCamera({ cookieStatus,image }) {
       console.log(error)
     }
   };
-
+  
   // Cookie status checking
   useEffect(() => {
     if (cookieStatus?.status === "blocked") {
@@ -102,9 +102,10 @@ export default function MultiCookieCamera({ cookieStatus,image }) {
               multiple={true}
               image={image}
             />
-            <Link
+            <span
+              onClick={()=>handleClick(false)}
               className={`bg-black rounded-circle ${styles.btnContainer}`}
-              href="/dashboard"
+              // href="/collect"
             >
               {/* <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -128,7 +129,7 @@ export default function MultiCookieCamera({ cookieStatus,image }) {
                   ></path>
                 </g>
               </svg>
-            </Link>
+            </span>
           </div>
           <div className={styles.cameraContainer}>
             <div className={styles.scanning_bar} />

@@ -15,7 +15,10 @@
     justify-content: center;
     margin-bottom: 40px;
     div {
-      width: calc(33% - 60px);
+      width: calc(100% - 70%);
+      @media (min-width:568px) {
+        width: 21%;
+      }
       height: auto;
       .status_icon {
         right: 20px;

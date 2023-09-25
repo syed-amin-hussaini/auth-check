@@ -16,6 +16,7 @@ const Index = ({ result,cookieArray }) => {
     setCamera(true);
     console.log({ boardId }, { value });
   };
+
   // console.log({result})
   let { boardId, cookieLeft, cookieCollect } = result;
   console.log("cookieArray -----")
@@ -112,7 +113,8 @@ const Index = ({ result,cookieArray }) => {
           className="position-absolute top-0 w-100 start-0"
           style={camera ? { zIndex: 10 } : { zIndex: -10 }}
         >
-          <MultiCookieCamera image={cookieArray} />
+          {/* <MultiCookieCamera handleClick={handleClick} image={cookieArray} /> */}
+          <MultiCookieCamera handleClick={setCamera} image={cookieArray} />
         </div>
       </div>
     </>
