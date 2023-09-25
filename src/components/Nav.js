@@ -3,13 +3,14 @@ import { useSession, signOut, getSession } from "next-auth/react";
 import Image from "next/image";
 import logo from "@/src/images/logo.png";
 import Avatar from "@/src/images/avatar.png";
-import { parseCookies, setCookie, destroyCookie } from "nookies";
+import { parseCookies, setCookie, destroyCookie } from 'nookies'
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Alert from "./Alert";
 
+
 const Nav = ({ user }) => {
-  const [email, setEmail] = useState();
+  const [email, setEmail] = useState()
   const router = useRouter();
 
   useEffect(() => {
@@ -17,29 +18,18 @@ const Nav = ({ user }) => {
       const cookies = parseCookies();
       if (cookies?.user) {
         let emailStatus = JSON?.parse(cookies?.user)?.email_status;
-        setEmail(emailStatus);
-      } else {
-        if (
-          router.pathname !== "/privacypolicy" &&
-          router.pathname !== "/termsofuse" &&
-          router.pathname !== "/faq" &&
-          router.pathname !== "/torchControl"
-        ) {
+        setEmail(emailStatus)
+      } else { 
+        if (router.pathname !== "/privacypolicy" && router.pathname !== "/termsofuse" && router.pathname !== "/faq" && router.pathname !== "/torchControl") {
           router.push("/");
         }
-        // if (router.basePath)
+        // if (router.basePath) 
       }
 
-      let portrait = window.matchMedia("(orientation: portrait)");
-
-      portrait.addEventListener("change", function (e) {
-        if (e.matches) {
-          alert("portrait")
-        } 
-      });
-    };
+      
+    }
     fetchCookie();
-  }, []);
+  }, [])
   const { data: session } = useSession();
 
   const handleSignout = (e) => {
@@ -111,15 +101,11 @@ const Nav = ({ user }) => {
           </div>
         </div>
       </nav>
-
-      {email == "false" && (
-        <Alert
-          customClass={"text-center p-1"}
-          action="warning"
-          msg={[{ msg: "Please verify your email" }]}
-        />
-      )}
-      {/* <div className="alert alert-warning d-flex align-items-center alert-active" role="alert">
+      
+      {
+        email == "false" && <Alert customClass={"text-center p-1"} action="warning" msg={[{ msg: "Please verify your email" }]} />
+      }
+        {/* <div className="alert alert-warning d-flex align-items-center alert-active" role="alert">
           <Alert action="alert-warning" msg={["Please verify our email"]} />
           
           <svg
