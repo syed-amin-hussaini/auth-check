@@ -14,7 +14,12 @@ import { cookieDataClient } from "@/components/GenerateToken";
 import { axiosCall } from "@/components/Axios";
 import Thankyou from "@/pages/thankyou";
 
-export default function MultiCookieCamera({ cookieStatus,image, handleClick }) {
+export default function MultiCookieCamera({
+  cookieStatus,
+  cookieDetail,
+  handleClick,
+}) {
+  const router = useRouter();
   // Camera
   const videoConstraints = {
     width: 500,
@@ -29,47 +34,60 @@ export default function MultiCookieCamera({ cookieStatus,image, handleClick }) {
   const [imageVerify, setImageVerify] = useState(false);
   const [imageMsg, setImageMsg] = useState("Scan");
 
-  const capture = async ( ) => {
+  const capture = async () => {
     const imageSrc = webcamRef.current.getScreenshot();
     let userData = await cookieDataClient();
-
+    let { collection_id, product_id } = cookieDetail;
     setImageSend(false);
     // setImgSrc(imageSrc);
     let data_i = JSON.stringify({
       user_id: userData?.id,
-      type: "grandprice",
+      collection_id,
+      product_id,
       img: imageSrc,
     });
     // Camera End
     try {
       // Send the captured image to a third-party API
-      let res = await axiosCall("/api/scanCookie", data_i);
+      let res = await axiosCall("/api/scanCookie?type=grand", data_i);
       // console.log("axiosCall")
       // console.log( res?.data.result)
       // console.log( res)
-      if (res?.data?.result?.status === "success"  || res?.data?.result?.status === "failed") {
+      if (
+        res?.data?.result?.status === "success" ||
+        res?.data?.result?.status === "failed"
+      ) {
         setImageSend(true);
-        setImageVerify(true)
-        console.log(res?.data?.result?.cookie_img)
+        setImageVerify(true);
+        console.log(res?.data?.result?.cookie_img);
         setImgSrc(res?.data?.result?.cookie_img);
         setThankYouMsg(res?.data?.result?.msg);
       } else if (res?.data?.result?.status === "retry") {
-        setImageMsg("Scan Again")
+        setImageMsg("Scan Again");
         setImageSend(true);
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
-  
+
   // Cookie status checking
   useEffect(() => {
     if (cookieStatus?.status === "blocked") {
-      setThankYouMsg(cookieStatus?.msg)
-      setImgSrc(cookieStatus?.cookie_img)
-      setImageVerify(true)
+      setThankYouMsg(cookieStatus?.msg);
+      setImgSrc(cookieStatus?.cookie_img);
+      setImageVerify(true);
     }
-  }, [])
+  }, []);
+
+  const handleBack = () => {
+    if (imageVerify) {
+      handleClick()
+      setImageVerify(false);
+      setThankYouMsg("");
+      setImgSrc("");
+    }
+  }
 
   return (
     <div>
@@ -77,7 +95,7 @@ export default function MultiCookieCamera({ cookieStatus,image, handleClick }) {
         <title>Oreo | Cookie Scan</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      
+
       <main
         className={`${styles.main} ${
           imageSend && styles.active
@@ -100,12 +118,11 @@ export default function MultiCookieCamera({ cookieStatus,image, handleClick }) {
               "Select one of the 5 limited edition <br>Oreo x Monopoly cookies and upload <br>to complete your collection."
             }
             multiple={true}
-            image={image}
+            image={cookieDetail?.cookieArray}
           />
           <span
-            onClick={()=>handleClick()}
+            onClick={() => handleClick()}
             className={`bg-black rounded-circle ${styles.btnContainer}`}
-            // href="/collect"
           >
             {/* <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -165,9 +182,13 @@ export default function MultiCookieCamera({ cookieStatus,image, handleClick }) {
 
         <Footer />
       </main>
-      
-      <Thankyou index={imageVerify ? "10":"-10"} image={imgSrc} content={thankYouMsg} /> 
-      
+
+      <Thankyou
+        index={imageVerify ? "10" : "-10"}
+        image={imgSrc}
+        content={thankYouMsg}
+        handleBack={handleBack}
+      />
     </div>
   );
 }

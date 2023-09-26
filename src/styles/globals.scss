@@ -6,13 +6,13 @@
 
 :root {
   --bs-warning: #eca941;
-  --bs-danger: #ff0000
+  --bs-danger: #ff0000;
 }
 .bg-warning {
-  background-color:  var(--bs-warning) !important
+  background-color: var(--bs-warning) !important;
 }
 .bg-danger {
-  background-color:  var(--bs-danger) !important
+  background-color: var(--bs-danger) !important;
 }
 .card {
   border-radius: 14px;
@@ -20,11 +20,11 @@
   .card-header {
     border-radius: 12px 12px 0 0;
   }
-} 
+}
 .card .card-header,
 .card {
-  border-width: 2px;  
-  border-color:#000;  
+  border-width: 2px;
+  border-color: #000;
 }
 .float-center {
   display: flex;
@@ -51,7 +51,6 @@ html {
     width: 100%;
     z-index: -2;
   }
-
 }
 .fw_r {
   font-family: "Pluto Regular";
@@ -113,11 +112,56 @@ input[type="number"] {
   top: -300px;
   transition: 700ms all;
   width: 300px;
-  
+
   &.alert-active {
     top: 10px;
-  } 
+  }
 }
 .cursor-pointer {
   cursor: pointer;
+}
+
+/* Portrait orientation */
+// @media screen and (orientation: portrait) {
+//   body {
+//     background-color: orange;
+//   }
+// }
+/* Landscape orientation */
+// @media screen and (orientation: landscape) {
+  // @media screen and ( max-width :1024px) and (min-device-pixel-ratio : 2.0)
+  @media screen and ( max-width :1024px)
+  and (orientation: landscape) {
+  html {
+    position: relative;
+    background-image: url("/assets/images/rotate-1.png");
+    &:before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #000000;
+      z-index: 3002;
+      background-image: url("/assets/images/tiltBG.jpg");
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+    &:after {
+      content: "";
+      z-index: 3002;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      background-image: url("/assets/images/rotate-3.svg");
+      background-size: 150px;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+  }
 }

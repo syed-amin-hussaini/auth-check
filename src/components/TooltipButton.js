@@ -9,7 +9,7 @@ const TooltipButton = ({ id, text, image=[], multiple = false }) => {
   
   useEffect(() => {
     setCookieArray(image)
-  }, [image, multiple])
+  }, [multiple])
   
   return (
     <>

@@ -10,13 +10,15 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Layer from '@/public/assets/images/thankyou/layer-3.png';
 
-const Thankyou = ({ content, image, index="" }) => {
+const Thankyou = ({ content, image, index="", handleBack = ""}) => {
+  useEffect(() => {
+    setTimeout(() => {
+      return handleBack();
+    }, 3000);
+  }, [index])
+
   return (
     <div className='w-100 position-absolute top-0 start-0' style={{zIndex:index}}>
-       <Head>
-        <title>Oreo / Thank You</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
       <main
         className={`${styles.main} container-fluid`}
         style={{backgroundImage:`url(${Layer.src})`}}
@@ -31,6 +33,7 @@ const Thankyou = ({ content, image, index="" }) => {
           priority
           style={{zIndex: -2}}
           /> */}
+        
          <Image
           className={`${styles.logo}`}
           src={CompleteLogo}

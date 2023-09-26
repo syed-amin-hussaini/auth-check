@@ -28,8 +28,8 @@ export default function Camera({ cookieStatus }) {
   };
 
   const webcamRef = React.useRef(null);
-  const [imgSrc, setImgSrc] = React.useState(null);
-  const [thankYouMsg, setThankYouMsg] = React.useState('');
+  const [imgSrc, setImgSrc] = React.useState();
+  const [thankYouMsg, setThankYouMsg] = React.useState();
   const [imageSend, setImageSend] = useState(true);
   const [imageVerify, setImageVerify] = useState(false);
   const [imageMsg, setImageMsg] = useState("Scan");
