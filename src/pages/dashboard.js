@@ -20,7 +20,6 @@ export default function Home() {
       <Drawer />
                
         <div className="card text-center w-100">
-          
             <div className="card-header bg-warning text-black fw_b fs-6">
               WIN THE GRAND PRIZE
             </div>
