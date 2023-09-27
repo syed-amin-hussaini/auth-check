@@ -13,6 +13,8 @@ export default function Home() {
         // App is in the background, take appropriate actions
         // For example, prevent the default behavior of the back button
         window.history.pushState({}, "");
+        console.log("window.history")
+        console.log(window.history)
       }
     };
 
