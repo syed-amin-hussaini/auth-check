@@ -12,6 +12,8 @@ import Layer from '@/public/assets/images/thankyou/layer-3.png';
 
 const Thankyou = ({ content, image, index="", handleBack = ""}) => {
   useEffect(() => {
+    
+    if (!image) return; 
     setTimeout(() => {
       return handleBack();
     }, 3000);
@@ -38,11 +40,11 @@ const Thankyou = ({ content, image, index="", handleBack = ""}) => {
           className={`${styles.logo}`}
           src={CompleteLogo}
           alt="Complete Logo"
-          />
+          /> 
         <CurvedText image={image} />
-        <p className={`${styles.thankyou_content} fs-5 fw_r mb-5 text-white`}>
+        {content && <p className={`${styles.thankyou_content} fs-5 fw_r mb-5 text-white`}>
           {content}
-        </p>
+        </p>}
         <h1 className='fs-1 text-white mb-5'>Stay playful</h1>
         <Footer className={"mb-3"} />
       </main>
@@ -50,9 +52,9 @@ const Thankyou = ({ content, image, index="", handleBack = ""}) => {
   )
 }
 
-Thankyou.defaultProps = {
-  image: Uncle,
-  content: "Your cookie will be analyzed, and we'll let you know if you're eligible to claim the prize.",
-};
+// Thankyou.defaultProps = {
+//   image: Uncle,
+//   content: "Your cookie will be analyzed, and we'll let you know if you're eligible to claim the prize.",
+// };
 
 export default Thankyou

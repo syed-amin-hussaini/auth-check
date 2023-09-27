@@ -39,20 +39,17 @@ export default function MultiCookieCamera({
     let userData = await cookieDataClient();
     let { collection_id, product_id } = cookieDetail;
     setImageSend(false);
-    // setImgSrc(imageSrc);
     let data_i = JSON.stringify({
       user_id: userData?.id,
       collection_id,
       product_id,
       img: imageSrc,
     });
+
     // Camera End
     try {
       // Send the captured image to a third-party API
       let res = await axiosCall("/api/scanCookie?type=grand", data_i);
-      // console.log("axiosCall")
-      // console.log( res?.data.result)
-      // console.log( res)
       if (
         res?.data?.result?.status === "success" ||
         res?.data?.result?.status === "failed"
@@ -73,6 +70,8 @@ export default function MultiCookieCamera({
 
   // Cookie status checking
   useEffect(() => {
+    console.log("cookieDetail?.cookieArray")
+    console.log(cookieDetail?.cookieArray)
     if (cookieStatus?.status === "blocked") {
       setThankYouMsg(cookieStatus?.msg);
       setImgSrc(cookieStatus?.cookie_img);
