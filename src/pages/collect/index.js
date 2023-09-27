@@ -8,9 +8,9 @@ import Footer from "@/components/Footer";
 import Head from "next/head";
 import MultiCookieCamera from "@/components/MultiCookieCamera";
 import { useRouter } from "next/router";
-import { handleCallback } from "mongodb/lib/utils";
 import { axiosCall } from "@/components/Axios";
 import { cookieDataServer, revertToken } from "@/components/GenerateToken";
+import { motion } from "framer-motion";
 
 const Index = ({ result, cookieArray }) => {
   let { collection_id, cookieLeft, cookieCollect } = result;
@@ -70,7 +70,10 @@ const Index = ({ result, cookieArray }) => {
           <div className={`${styles.collection_cookie} text-center w-100`}>
             {cookieCollect.map((item, i) => {
               return (
-                <div
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay:(i * 0.2), duration: 1 }}
                   className="position-relative cursor-pointer"
                   style={
                     item.status === "complete" || item.status === "adminApproval"
@@ -105,7 +108,7 @@ const Index = ({ result, cookieArray }) => {
                     objectPosition="center"
                     style={item.status == "pending" && { opacity: "0.6" }}
                   />
-                </div>
+                </motion.div>
               );
             })}
           </div>
