@@ -16,6 +16,8 @@ export default function Home() {
         console.log("window.history")
         console.log(window.history)
       }
+      console.log("document.visibilityState")
+      console.log(document.visibilityState)
     };
 
     const handleBeforeUnload = (event) => {
