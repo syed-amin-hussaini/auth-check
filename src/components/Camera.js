@@ -106,9 +106,9 @@ export default function Camera({ cookieStatus }) {
               "This is the rare Oreo cookie you <br>need to look for! If you've found it, <br>place it in the centre and upload."
             }
           />
-          <Link
+          <span
             className={`bg-black rounded-circle ${styles.btnContainer}`}
-            href="/dashboard"
+            onClick={()=> history.go(-1)}
           >
             {/* <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -132,7 +132,7 @@ export default function Camera({ cookieStatus }) {
                 ></path>
               </g>
             </svg>
-          </Link>
+          </span>
         </div>
         <div className={styles.cameraContainer}>
           <div className={styles.scanning_bar} />
