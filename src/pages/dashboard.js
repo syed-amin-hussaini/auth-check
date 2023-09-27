@@ -8,9 +8,16 @@ import Link from "next/link";
 
 export default function Home() {
   useEffect(() => {
-    window.addEventListener("load", function () {
-      window.history.pushState({}, "");
-    });
+    const handleBeforeUnload = (event) => {
+      // Prompt the user before they leave the page
+      event.returnValue = 'Are you sure you want to leave?';
+    };
+  
+    window.addEventListener('beforeunload', handleBeforeUnload);
+  
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
   }, []);
   return (
     <div>
