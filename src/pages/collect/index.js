@@ -68,7 +68,7 @@ const Index = ({ result, cookieArray }) => {
             </h1>
           </div>
           <div className={`${styles.collection_cookie} text-center w-100`}>
-            {cookieCollect.map((item, i) => {
+            {cookieCollect.map((item, index) => {
               return (
                 <div
                   className="position-relative cursor-pointer"
@@ -82,7 +82,7 @@ const Index = ({ result, cookieArray }) => {
                     item.status !== "adminApproval" &&
                     CurrentCookie(collection_id, item)
                   }
-                  key={item.product_id}
+                  key={index}
                 >
                   <span
                     className={` position-absolute float-center ${
