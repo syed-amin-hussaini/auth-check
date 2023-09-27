@@ -8,14 +8,24 @@ import Link from "next/link";
 
 export default function Home() {
   useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'hidden') {
+        // App is in the background, take appropriate actions
+        // For example, prevent the default behavior of the back button
+        window.history.pushState({}, "");
+      }
+    };
+
     const handleBeforeUnload = (event) => {
       // Prompt the user before they leave the page
       event.returnValue = 'Are you sure you want to leave?';
     };
-  
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
     window.addEventListener('beforeunload', handleBeforeUnload);
-  
+
     return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
       window.removeEventListener('beforeunload', handleBeforeUnload);
     };
   }, []);
