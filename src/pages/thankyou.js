@@ -67,7 +67,7 @@ const Thankyou = ({ content, image, index = 0, handleBack = "" }) => {
             </svg>
           </span>
           <Image
-            className={`${styles.logo}`}
+            className={`ps-2 ${styles.logo}`}
             src={CompleteLogo}
             alt="Complete Logo"
           />
