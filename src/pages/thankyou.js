@@ -4,7 +4,7 @@ import styles from "@/src/styles/Thankyou.module.scss";
 import CompleteLogo from "@/public/assets/images/complete-logo.png";
 import Image from "next/image";
 import Footer from "@/components/Footer";
-import Uncle from "@/public/assets/images/thankyou/uncle.webp";
+import Uncle from "@/public/assets/images/thankyou/uncle.png";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import Layer from "@/public/assets/images/thankyou/layer-3.png";
@@ -112,10 +112,10 @@ const Thankyou = ({ content, image, index = 0, handleBack = "" }) => {
   );
 };
 
-// Thankyou.defaultProps = {
-//   image: Uncle,
-//   content:
-//     "Your cookie will be analyzed, and we'll let you know if you're eligible to claim the prize.",
-// };
+Thankyou.defaultProps = {
+  image: Uncle,
+  content:
+    "Your cookie will be analyzed, and we'll let you know if you're eligible to claim the prize.",
+};
 
 export default Thankyou;
