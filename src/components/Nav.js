@@ -25,8 +25,6 @@ const Nav = ({ user }) => {
         }
         // if (router.basePath) 
       }
-
-      
     }
     fetchCookie();
   }, [])
@@ -41,7 +39,7 @@ const Nav = ({ user }) => {
   // if (!session) return;
   return (
     <>
-      <nav className="navbar navbar-expand-lg bg-light">
+      {/* <nav className="navbar navbar-expand-lg bg-light">
         <div className="container-fluid">
           <div className="d-flex justify-content-between w-100">
             <Link className="navbar-brand" href="/dashboard">
@@ -100,10 +98,10 @@ const Nav = ({ user }) => {
             </ul>
           </div>
         </div>
-      </nav>
+      </nav> */}
       
       {
-        email == "false" && <Alert customClass={"text-center p-1"} action="warning" msg={[{ msg: "Please verify your email" }]} />
+        email == "false" && router.pathname == "/dashboard"  && <Alert customClass={"text-center p-1"} action="warning" msg={[{ msg: "Please verify your email" }]} />
       }
         {/* <div className="alert alert-warning d-flex align-items-center alert-active" role="alert">
           <Alert action="alert-warning" msg={["Please verify our email"]} />

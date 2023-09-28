@@ -26,7 +26,7 @@ function MyApp({ Component, pageProps, session }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         
       </Head>
-      <div className="loader" style={{backgroundColor:"#fff",backgroundImage: `url(${Layer.src})`, display: `${loader ? 'grid' :'none'}` }}>
+      <div className="loader" style={{backgroundColor:"#0050a2",backgroundImage: `url(${Layer.src})`, display: `${loader ? 'grid' :'none'}` }}>
         <span className="text-center">
         <Image
           src={LoaderImage}

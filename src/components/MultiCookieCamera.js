@@ -15,7 +15,6 @@ import { axiosCall } from "@/components/Axios";
 import Thankyou from "@/pages/thankyou";
 
 export default function MultiCookieCamera({
-  cookieStatus,
   cookieDetail,
   handleClick,
 }) {
@@ -33,6 +32,7 @@ export default function MultiCookieCamera({
   const [imageSend, setImageSend] = useState(true);
   const [imageVerify, setImageVerify] = useState(false);
   const [imageMsg, setImageMsg] = useState("Scan");
+  const [imageArr, setImageArr] = useState();
 
   const capture = async () => {
     const imageSrc = webcamRef.current.getScreenshot();
@@ -70,14 +70,9 @@ export default function MultiCookieCamera({
 
   // Cookie status checking
   useEffect(() => {
-    // console.log("cookieDetail?.cookieArray")
-    // console.log(cookieDetail?.cookieArray)
-    if (cookieStatus?.status === "blocked") {
-      setThankYouMsg(cookieStatus?.msg);
-      setImgSrc(cookieStatus?.cookie_img);
-      setImageVerify(true);
-    }
-  }, []);
+    setImageArr(cookieDetail?.cookieArray);
+    
+  }, [cookieDetail?.cookieArray]);
 
   const handleBack = () => {
     if (imageVerify) {
@@ -117,7 +112,7 @@ export default function MultiCookieCamera({
               "Select one of the 5 limited edition <br>Oreo x Monopoly cookies and upload <br>to complete your collection."
             }
             multiple={true}
-            image={cookieDetail?.cookieArray}
+            image={imageArr}
           />
           <span
             onClick={() => handleClick()}

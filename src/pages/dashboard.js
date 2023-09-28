@@ -33,7 +33,6 @@ export default function Home() {
       </Head>
       <main className="container-fluid main float-center flex-column gap-4 px-3">
         <Nav />
-        <Drawer />
 
         <div className="card text-center w-100">
           <div className="card-header bg-warning text-black fw_b fs-6">

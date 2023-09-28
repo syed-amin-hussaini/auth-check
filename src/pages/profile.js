@@ -53,7 +53,7 @@ export default function Profile() {
         <title>Oreo | Profile</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
+      <Nav />
       <main className={`${styles.main} `}> 
         {/* {getStated && <Image src={Almost_1} fill alt="Almost There Banner" />} */}
         {getStated && <Layer2 name="#APlayfulTwist" style="0" classes="position-absolute start-0 top-0" />}

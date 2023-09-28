@@ -5,13 +5,7 @@ import { Tooltip as ReactTooltip } from "react-tooltip";
 import styles from "@/src/styles/Camera.module.scss";
 
 const TooltipButton = ({ id, text, image=[], multiple = false }) => {
-  const [cookieArray, setCookieArray] = useState([])
-  
-  useEffect(() => {
-    setCookieArray(image)
-    console.log(image)
-  })
-  
+
   return (
     <>
       <span
@@ -50,7 +44,7 @@ const TooltipButton = ({ id, text, image=[], multiple = false }) => {
           <div className={styles.cookie}>
             {multiple ? (
               <>
-                {cookieArray?.map((item,i) => {
+                {image?.map((item,i) => {
                   {/* return <h1 key={i}>{i}</h1> */}
                   return <Image key={i}
                     src={item}

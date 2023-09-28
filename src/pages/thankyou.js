@@ -4,11 +4,12 @@ import styles from "@/src/styles/Thankyou.module.scss";
 import CompleteLogo from "@/public/assets/images/complete-logo.png";
 import Image from "next/image";
 import Footer from "@/components/Footer";
-import CurvedText from "./CurvedText";
 import Uncle from "@/public/assets/images/thankyou/uncle.webp";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import Layer from "@/public/assets/images/thankyou/layer-3.png";
+import CurvedText from "@/components/CurvedText";
+import Nav from "@/components/Nav";
 
 const Thankyou = ({ content, image, index = 0, handleBack = "" }) => {
   useEffect(() => {
@@ -23,6 +24,7 @@ const Thankyou = ({ content, image, index = 0, handleBack = "" }) => {
       className="w-100 position-absolute top-0 start-0"
       style={{ zIndex: index }}
     >
+      <Nav />
       <main
         className={`${styles.main} container-fluid`}
         style={{ backgroundImage: `url(${Layer.src})` }}
@@ -38,7 +40,7 @@ const Thankyou = ({ content, image, index = 0, handleBack = "" }) => {
           style={{zIndex: -2}}
           /> */}
 
-        <div className="d-flex justify-content-between align-items-center w-100 px-3 my-5">
+        <div className={`d-flex justify-content-between align-items-center w-100 px-3 ${styles.logoContainer}`}>
           <span
             onClick={() => handleBack()}
             className={`bg-white rounded-circle ${styles.btnContainer}`}
@@ -60,7 +62,6 @@ const Thankyou = ({ content, image, index = 0, handleBack = "" }) => {
                   fill="#000"
                   opacity="1"
                   data-original="#000"
-                  class=""
                 ></path>
               </g>
             </svg>

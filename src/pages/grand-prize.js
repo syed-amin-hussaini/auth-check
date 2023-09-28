@@ -1,11 +1,15 @@
 import Camera from '@/components/Camera'
 import { cookieDataServer, revertToken } from '@/components/GenerateToken';
+import Nav from '@/components/Nav';
 import axios from 'axios';
 import React from 'react'
 
 const GrandPrize = (result) => {
   return (
+    <>
+    <Nav />
     <Camera cookieStatus={result} />
+    </>
   )
 }
 
