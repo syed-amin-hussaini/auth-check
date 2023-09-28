@@ -5,6 +5,7 @@
   width: 100%;
   place-items: center;
   overflow: hidden;
+  background-color: #0050a2;
   &:after,
   &:before {
     content: "";
@@ -13,7 +14,9 @@
     position: absolute;
     background-position: 100%;
     background-size: 100%;
-    z-index: -1;
+    // z-index: -1;
+    z-index: 1;
+    pointer-events: none;
   }
   &:before {
     background-image: url("/assets/images/Mobile-App-Scan-1.webp");
@@ -37,7 +40,8 @@
     animation-iteration-count: infinite;
     // animation-play-state: paused;
     animation-play-state: running;
-    z-index: 2;
+    // z-index: 2;
+    z-index: 1;
   }
   .logo {
     margin-block: 20px;
@@ -51,7 +55,7 @@
     width: 100%;
     overflow: hidden;
     margin-top: -110px;
-    z-index: -2;
+    z-index: 0;
     position: relative;
 
     video {

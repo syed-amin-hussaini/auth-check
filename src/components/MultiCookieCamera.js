@@ -81,17 +81,17 @@ export default function MultiCookieCamera({
 
   const handleBack = () => {
     if (imageVerify) {
-      handleClick()
+      handleClick();
       setImageVerify(false);
       setThankYouMsg("");
       setImgSrc("");
     }
-  }
+  };
 
   return (
     <div>
       <Head>
-        <title>Oreo | Cookie Scan</title>
+        <title>Oreo | Multi Cookie Scan</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -101,13 +101,13 @@ export default function MultiCookieCamera({
         } container-fluid`}
       >
         <Image
-          className={styles.logo}
+          className={`z_2 ${styles.logo}`}
           src={CompleteLogo}
           width="80px"
           height="40px"
           alt="Complete Logo"
         />
-        <div className="d-flex justify-content-between w-100 px-3">
+        <div className="z_2 d-flex justify-content-between w-100 px-3">
           {/* <TorchContextProvider>
             <TorchControl />
           </TorchContextProvider> */}
@@ -157,16 +157,9 @@ export default function MultiCookieCamera({
             screenshotFormat="image/jpeg"
             screenshotQuality={1}
           />
-
-          {/* {imgSrc && (
-            <img
-              style={{ position: "absolute", left: "20%", top: "-20px" }}
-              src={imgSrc}
-            />
-          )} */}
         </div>
 
-        <div style={{ minHeight: "120px" }}>
+        <div className="z_2" style={{ minHeight: "120px" }}>
           {imageSend ? (
             <p className="text-white text-center fw_r pb-2">
               place the cookie in the center <br /> and tap to scan
@@ -179,7 +172,7 @@ export default function MultiCookieCamera({
           {imageSend && <button onClick={() => capture()}> {imageMsg} </button>}
         </div>
 
-        <Footer />
+        <Footer className="z_2" />
       </main>
 
       <Thankyou

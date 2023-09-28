@@ -16,7 +16,6 @@ import Thankyou from "@/pages/thankyou";
 import UncleCookie from "@/public/assets/images/camera/Mr.Monopoly-cookie.png";
 
 export default function Camera({ cookieStatus }) {
-
   const router = useRouter();
   const { id } = router.query;
 
@@ -52,29 +51,37 @@ export default function Camera({ cookieStatus }) {
       // console.log("axiosCall")
       // console.log( res?.data.result)
       // console.log( res)
-      if (res?.data?.result?.status === "success"  || res?.data?.result?.status === "failed") {
+      if (
+        res?.data?.result?.status === "success" ||
+        res?.data?.result?.status === "failed"
+      ) {
         setImageSend(true);
-        setImageVerify(true)
+        setImageVerify(true);
         // console.log(res?.data?.result?.cookie_img)
         setImgSrc(res?.data?.result?.cookie_img);
         setThankYouMsg(res?.data?.result?.msg);
       } else if (res?.data?.result?.status === "retry") {
-        setImageMsg("Scan Again")
+        setImageMsg("Scan Again");
         setImageSend(true);
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
+    }
+  };
+  const handleBack = () => {
+    if (imageVerify) {
+      history.go(-1);
     }
   };
 
   // Cookie status checking
   useEffect(() => {
     if (cookieStatus?.status === "blocked") {
-      setThankYouMsg(cookieStatus?.msg)
-      setImgSrc(cookieStatus?.cookie_img)
-      setImageVerify(true)
+      setThankYouMsg(cookieStatus?.msg);
+      setImgSrc(cookieStatus?.cookie_img);
+      setImageVerify(true);
     }
-  }, [])
+  }, []);
 
   return (
     <div>
@@ -82,20 +89,20 @@ export default function Camera({ cookieStatus }) {
         <title>Oreo | Cookie Scan</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      
+
       <main
         className={`${styles.main} ${
           imageSend && styles.active
         } container-fluid`}
       >
         <Image
-          className={styles.logo}
+          className={`z_2 ${styles.logo}`}
           src={CompleteLogo}
           width="80px"
           height="40px"
           alt="Complete Logo"
         />
-        <div className="d-flex justify-content-between w-100 px-3">
+        <div className="z_2 d-flex justify-content-between w-100 px-3">
           {/* <TorchContextProvider>
             <TorchControl />
           </TorchContextProvider> */}
@@ -108,7 +115,7 @@ export default function Camera({ cookieStatus }) {
           />
           <span
             className={`bg-black rounded-circle ${styles.btnContainer}`}
-            onClick={()=> history.go(-1)}
+            onClick={() => history.go(-1)}
           >
             {/* <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -144,16 +151,9 @@ export default function Camera({ cookieStatus }) {
             screenshotFormat="image/jpeg"
             screenshotQuality={1}
           />
-
-          {/* {imgSrc && (
-            <img
-              style={{ position: "absolute", left: "20%", top: "-20px" }}
-              src={imgSrc}
-            />
-          )} */}
         </div>
 
-        <div style={{ minHeight: "120px" }}>
+        <div className="z_2" style={{ minHeight: "120px" }}>
           {imageSend ? (
             <p className="text-white text-center fw_r pb-2">
               place the cookie in the center <br /> and tap to scan
@@ -163,13 +163,20 @@ export default function Camera({ cookieStatus }) {
               Scanning in process...
             </p>
           )}
-          {imageSend && <button onClick={() => capture(id)}> {imageMsg} </button>}
+          {imageSend && (
+            <button onClick={() => capture(id)}> {imageMsg} </button>
+          )}
         </div>
 
-        <Footer />
+        <Footer className="z_2" />
       </main>
-      
-      <Thankyou index={imageVerify ? "10":"-10"} image={imgSrc} content={thankYouMsg} /> 
+
+      <Thankyou
+        index={imageVerify ? "10" : "-10"}
+        handleBack={handleBack}
+        image={imgSrc}
+        content={thankYouMsg}
+      />
     </div>
   );
 }
