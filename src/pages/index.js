@@ -15,13 +15,13 @@ import nookies, { setCookie } from "nookies";
 
 const Login = ({ emailVerifyState,userValue }) => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  console.log({userValue});
+  // console.log({userValue});
   const router = useRouter();
   let cookies = parseCookies();
   useEffect(() => {
     const fetchUser = () => {
-      console.log("emailVerifyState && userValue")
-      console.log(emailVerifyState && userValue)
+      // console.log("emailVerifyState && userValue")
+      // console.log(emailVerifyState && userValue)
       if (userValue && !router?.query?.token) {
         router.replace("/dashboard");
       }
@@ -93,7 +93,7 @@ export async function getServerSideProps({req, res,query}) {
  
 
   let emailVerifyState = false;
-  console.log(Object.keys(query).length !== 0)
+  // console.log(Object.keys(query).length !== 0)
   if (Object.keys(query).length !== 0) {
     const response = await axios.post(
       apiUrl,
@@ -107,13 +107,13 @@ export async function getServerSideProps({req, res,query}) {
       }
     );
     let result = response.data;
-    console.log(result)
+    // console.log(result)
     if (result?.status === "success") {
       emailVerifyState = true;
 
       if (userValue) {
         nookies.destroy({ res }, "user", { path: "/" });
-        console.log({ userValue });
+        // console.log({ userValue });
   
         nookies.set({ res }, 'user', `{\"id\":\"${userValue.id}\",\"auth\":\"${userValue?.auth}\",\"profile_status\":\"${userValue?.profile_status}\", \"name\":\"${userValue?.name}\",\"email\":\"${userValue?.email}\",\"email_status\":\"true\", \"age\":\"${userValue?.age}\", \"phone\":\"${userValue?.phone}\", \"location\":\"${userValue?.location}\"}`, {
           maxAge: 31536000, // 1 year

@@ -30,8 +30,8 @@ export default async function middleware(req) {
       userToken: user?.auth,
       userCountry: userCountry,
     };
-    console.log("Cookie Result");
-    console.log({ userDetail });
+    // console.log("Cookie Result");
+    // console.log({ userDetail });
 
     // const sessions = await getToken({
     //   req,

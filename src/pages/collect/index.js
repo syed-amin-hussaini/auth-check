@@ -28,7 +28,7 @@ const Index = ({ result, cookieArray }) => {
       product_id,
       cookieArray,
     });
-    console.log({ cookieDetail });
+    // console.log({ cookieDetail });
   };
   const handleClick = () => {
     router.replace(router.asPath);
@@ -139,7 +139,7 @@ const Index = ({ result, cookieArray }) => {
 };
 
 export async function getServerSideProps({ req, res }) {
-  console.log("GetServerSideProps");
+  // console.log("GetServerSideProps");
   // pending
   // complete
   // failed
@@ -156,7 +156,7 @@ export async function getServerSideProps({ req, res }) {
       "Get"
     );
     result = result?.data;
-    console.log( result );
+    // console.log( result );
   } catch (error) {
     console.log({ error });
   }

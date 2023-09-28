@@ -21,7 +21,7 @@ app.post("/api/thirdparty", (req, res) => {
     const requestData = req.body;
 
     // Process the requestData as needed
-    console.log("Received data:", requestData);
+    // console.log("Received data:", requestData);
 
     // Respond with a success message
     res.status(200).json(

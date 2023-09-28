@@ -55,7 +55,7 @@ export default function Camera({ cookieStatus }) {
       if (res?.data?.result?.status === "success"  || res?.data?.result?.status === "failed") {
         setImageSend(true);
         setImageVerify(true)
-        console.log(res?.data?.result?.cookie_img)
+        // console.log(res?.data?.result?.cookie_img)
         setImgSrc(res?.data?.result?.cookie_img);
         setThankYouMsg(res?.data?.result?.msg);
       } else if (res?.data?.result?.status === "retry") {

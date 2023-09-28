@@ -51,7 +51,7 @@ const nextAuthOptions = (req, res) => {
             source: user?.account?.provider,
           };
 
-          console.log({ requestData });
+          // console.log({ requestData });
           const response = await axios.post(apiUrl, requestData);
           
           // let auth = response?.data?.token+makeid(3);
@@ -68,7 +68,7 @@ const nextAuthOptions = (req, res) => {
               path: '/',    // Cookie path
             });
 
-          console.log("Third-party API response:", response?.data);
+          // console.log("Third-party API response:", response?.data);
         } catch (error) {
           console.error("API Error:", error);
         }
