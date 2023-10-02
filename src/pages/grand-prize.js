@@ -15,6 +15,12 @@ const GrandPrize = (result) => {
 
 export async function getServerSideProps({req, res}) {
   let user = cookieDataServer(req);
+  if (!user) return {
+    redirect: {
+      permanent: false,
+      destination: "/"
+    }
+  };
   let userId = parseInt(user?.id);
   let userAuth = revertToken(user?.auth); 
   const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}cookie-status?user_id=${userId}`; 

@@ -169,7 +169,8 @@ export async function getServerSideProps({ req, res }) {
     // console.log( result );
   } catch (error) {
     // console.log(error);
-    // console.log(error?.response?.data?.message, =" ,"Unauthenticated.");
+    console.log("error?.response");
+    console.log(error);
     if (error?.response?.data?.message === "Unauthenticated.") {
       nookies.destroy({ res }, "user", { path: "/" });
       return {
