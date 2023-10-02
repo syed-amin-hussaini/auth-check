@@ -75,6 +75,7 @@ export default function MultiCookieCamera({
 
   const handleBack = () => {
     if (imageVerify) {
+      router.replace(router.asPath);
       handleClick();
       setImageVerify(false);
       setThankYouMsg("");

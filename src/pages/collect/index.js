@@ -12,6 +12,7 @@ import { handleCallback } from "mongodb/lib/utils";
 import { axiosCall } from "@/components/Axios";
 import { cookieDataServer, revertToken } from "@/components/GenerateToken";
 import Nav from "@/components/Nav";
+import nookies, { setCookie } from "nookies";
 
 const Index = ({ result, cookieArray }) => {
   let { collection_id, cookieLeft, cookieCollect } = result;
@@ -146,6 +147,13 @@ export async function getServerSideProps({ req, res }) {
   // complete
   // failed
   let user = cookieDataServer(req);
+  if (!user) return {
+    redirect: {
+      permanent: false,
+      destination: "/"
+    }
+  };
+
   let token = revertToken(user?.auth);
   let result;
   try {
@@ -160,7 +168,17 @@ export async function getServerSideProps({ req, res }) {
     result = result?.data;
     // console.log( result );
   } catch (error) {
-    console.log({ error });
+    // console.log(error);
+    // console.log(error?.response?.data?.message, =" ,"Unauthenticated.");
+    if (error?.response?.data?.message === "Unauthenticated.") {
+      nookies.destroy({ res }, "user", { path: "/" });
+      return {
+        redirect: {
+          permanent: false,
+          destination: "/"
+        }
+      };
+    }
   }
 
   let cookieArray = result?.cookieCollect?.map((item, i) => item.img_path);

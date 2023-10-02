@@ -13,7 +13,7 @@ const generateToken = (token) => {
   return token + result;
 };
 const revertToken = (token) => {
-  return token.slice(0, -3);
+  return token?.slice(0, -3);
 };
 
 const cookieDataClient = () => {
