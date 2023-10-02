@@ -37,12 +37,11 @@ export default function MultiCookieCamera({
   const capture = async () => {
     const imageSrc = webcamRef.current.getScreenshot();
     let userData = await cookieDataClient();
-    let { collection_id, product_id } = cookieDetail;
     setImageSend(false);
     let data_i = JSON.stringify({
       user_id: userData?.id,
-      collection_id,
-      product_id,
+      collection_id:cookieDetail?.collection_id,
+      product_id:cookieDetail?.product_id,
       img: imageSrc,
     });
 
