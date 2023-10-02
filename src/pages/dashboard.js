@@ -8,19 +8,19 @@ import Link from "next/link";
 
 export default function Home() {
   useEffect(() => {
-    // const handleBeforeUnload = (event) => {
-    //   // Prompt the user before they leave the page
-    //   const confirmationMessage = "Are you sure you want to leave?";
-    //   event.returnValue = confirmationMessage;
-    //   return confirmationMessage;
-    // };
+    const handleBeforeUnload = (event) => {
+      // Prompt the user before they leave the page
+      // const confirmationMessage = "Are you sure you want to leave?";
+      // event.returnValue = confirmationMessage;
+      return event.returnValue  = "";
+    };
 
-    // window.addEventListener('beforeunload', handleBeforeUnload);
-    window.addEventListener('beforeunload');
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    // window.addEventListener('beforeunload');
 
     return () => {
-      // window.removeEventListener('beforeunload', handleBeforeUnload);
-      window.removeEventListener('beforeunload');
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+      // window.removeEventListener('beforeunload');
     };
   }, []);
   return (
