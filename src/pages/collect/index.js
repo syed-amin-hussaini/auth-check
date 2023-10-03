@@ -15,7 +15,7 @@ import Nav from "@/components/Nav";
 import nookies, { setCookie } from "nookies";
 
 const Index = ({ result, cookieArray }) => {
-  let { collection_id, cookieLeft, cookieCollect } = result;
+  let { collection_id, cookieLeft, cookieCollect = [] } = result;
 
   const router = useRouter();
 
@@ -166,7 +166,7 @@ export async function getServerSideProps({ req, res }) {
       "Get"
     );
     result = result?.data;
-    // console.log( result );
+    console.log( {result} );
   } catch (error) {
     // console.log(error);
     console.log("error?.response");
