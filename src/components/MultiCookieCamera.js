@@ -11,7 +11,7 @@ import CompleteLogo from "@/public/assets/images/complete-logo.png";
 import Image from "next/image";
 import TooltipButton from "@/components/TooltipButton";
 import { cookieDataClient } from "@/components/GenerateToken";
-import { axiosCall } from "@/components/Axios";
+import { abortRequest, restartCall } from "@/components/Axios";
 import Thankyou from "@/pages/thankyou";
 
 export default function MultiCookieCamera({
@@ -48,7 +48,7 @@ export default function MultiCookieCamera({
     // Camera End
     try {
       // Send the captured image to a third-party API
-      let res = await axiosCall("/api/scanCookie?type=grand", data_i);
+      let res = await restartCall("/api/scanCookie?type=grand", data_i);
       if (
         res?.data?.result?.status === "success" ||
         res?.data?.result?.status === "failed"
@@ -81,6 +81,12 @@ export default function MultiCookieCamera({
       setThankYouMsg("");
       setImgSrc("");
     }
+  };
+  const cameraBack = async () => {
+    setImageSend(true)
+    handleClick()
+    let res = await abortRequest();
+    console.log({res})
   };
 
   return (
@@ -115,7 +121,7 @@ export default function MultiCookieCamera({
             image={imageArr}
           />
           <span
-            onClick={() => handleClick()}
+            onClick={() => cameraBack() }
             className={`bg-black rounded-circle ${styles.btnContainer}`}
           >
             {/* <svg

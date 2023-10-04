@@ -1,20 +1,55 @@
 import axios from "axios";
 
-const axiosCall = async (url, body, token= "", method="post") => {
-  //  url: "https://obackend.hul-hub.com/api/scan-cookie",
-  // let tokenBearer = token.length != 0 && { Authorization: `Bearer ${token}` };
+let controller = new AbortController();
+
+const axiosCall = async (
+  url = "",
+  body = "",
+  token = "",
+  method = "post",
+  abort = false
+) => {
   const headers = {
     "Content-Type": "application/json",
-    "Authorization": token.length != 0 ? `Bearer ${token}` : ""
-    // Authorization: `Bearer ${userToken}`,
+    Authorization: token.length !== 0 ? `Bearer ${token}` : "",
+  };
+
+  if (abort) {
+    // If the call is aborted, create a new AbortController
+    controller.abort();
+    controller = new AbortController();
   }
-  const response = await axios({
-    method,
-    url,
-    data: body,
-    headers
-  });
-  return response;
+
+  try {
+    const response = await axios({
+      signal: controller.signal,
+      method,
+      url,
+      data: body,
+      headers,
+    });
+
+    return response;
+  } catch (error) {
+    if (axios.isCancel(error)) {
+      // Handle cancellation
+      console.log("Request canceled:", error.message);
+    } else {
+      // Handle other errors
+      console.error("Request failed:", error.message);
+    }
+  }
 };
 
-export { axiosCall };
+// Function to abort the request
+const abortRequest = () => {
+  controller.abort();
+};
+
+// Function to restart the call
+const restartCall = (url = "", body = "", token = "", method = "post", abort = true ) => {
+  // Set the 'abort' parameter to true to indicate that the previous call was aborted
+  return axiosCall(url,body,token,method,abort);
+};
+
+export { axiosCall, abortRequest, restartCall };

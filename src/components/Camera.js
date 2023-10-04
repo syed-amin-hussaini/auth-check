@@ -65,7 +65,7 @@ export default function Camera({ cookieStatus }) {
         setImageSend(true);
       }
     } catch (error) {
-      console.log(error);
+      console.log({error});
     }
   };
   const handleBack = () => {

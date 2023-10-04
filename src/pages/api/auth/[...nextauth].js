@@ -70,7 +70,7 @@ const nextAuthOptions = (req, res) => {
 
           // console.log("Third-party API response:", response?.data);
         } catch (error) {
-          console.error("API Error:", error);
+          console.log("API Error:", error);
         }
         return true;
       },
