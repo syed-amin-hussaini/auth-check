@@ -5,7 +5,7 @@ import axios from "axios";
 import React from "react";
 import nookies, { setCookie } from "nookies";
 
-const GrandPrize = (result) => {
+const GrandPrize = ({result}) => {
   return (
     <>
       <Nav />
@@ -36,7 +36,7 @@ export async function getServerSideProps({ req, res }) {
         Authorization: `Bearer ${userAuth}`,
       },
     });
-    console.log({ result });
+    console.log( result?.data );
     result = result?.data ?? "";
   } catch (error) {
     console.log("error?.response");
