@@ -10,7 +10,7 @@ import { parseCookies } from "nookies";
 import { useRouter } from "next/router";
 import Alert from "./Alert";
 
-const Form = ({ f_complete, firstTime }) => {
+const Form = ({ f_complete, firstTime, cityOptions }) => {
   const [userData, setUserData] = useState();
 
   const [submit, setSubmit] = useState(false);
@@ -28,6 +28,20 @@ const Form = ({ f_complete, firstTime }) => {
   } = useForm({
     criteriaMode: "all",
   });
+  // function getYesterdayDate() {
+    // Get the current date
+    var currentDate = new Date();
+
+    // Calculate yesterday's date by subtracting one day
+    var yesterdayDate = new Date(currentDate);
+    yesterdayDate.setDate(currentDate.getDate() - 1);
+
+    // Format the date as YYYY-MM-DD
+    var formattedYesterdayDate = yesterdayDate.toISOString().split("T")[0];
+
+  //   return formattedYesterdayDate;
+  // }
+
 
   // useEffect(() => {
   //   if (router.asPath.includes("/dashboard")) {
@@ -80,10 +94,10 @@ const Form = ({ f_complete, firstTime }) => {
       }
     } catch (error) {
       // console.log(error?.response?.data?.error)
-     
+
       setFormError(error?.response?.data?.error);
       // const FormData = error?.response?.data;
-      // const statusText = error?.response?.statusText; 
+      // const statusText = error?.response?.statusText;
       // console.log(statusText);
     }
     setSubmit(false);
@@ -134,15 +148,11 @@ const Form = ({ f_complete, firstTime }) => {
             <label htmlFor="age">Age</label>
             <br />
             <input
-              type="number"
+              type="date"
               className={styles.autoColor}
-              maxLength={99}
+              max={formattedYesterdayDate}
               {...register("age", {
                 required: "Required",
-                pattern: {
-                  value: /^[0-9]{0,2}$/,
-                  message: "Invalid",
-                },
               })}
             />
             <ErrorMessage errors={errors} name="age" as="p" />
@@ -151,15 +161,22 @@ const Form = ({ f_complete, firstTime }) => {
           <div className={`col-md-12`}>
             <label htmlFor="location">Location</label>
             <br />
-            <input
+            {/* <input
               type="text"
               className={styles.autoColor}
               maxLength={30}
               {...register("location", {
-                required:"Required",
+                required: "Required",
                 maxLength: 30,
               })}
-            />
+            /> */}
+            <select className={`form-control ${styles.autoColor}` } {...register("location", { required: true })}>
+              <option value="" selected disabled>Select City</option>
+              {
+                cityOptions?.map((item) => <option key={item?.id} value={item.id}>{ item.name}</option>
+                )
+              }
+            </select>
             <ErrorMessage errors={errors} name="location" as="p" />
           </div>
           <div className={`col-md-12`}>
@@ -169,6 +186,7 @@ const Form = ({ f_complete, firstTime }) => {
               type="number"
               className={styles.autoColor}
               maxLength={64}
+              placeholder="03XXXXXXXXX"
               {...register("phone", {
                 pattern: {
                   value: /^(\+92|0092|0)[1-9]\d{9}$/g,

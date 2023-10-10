@@ -19,12 +19,10 @@ import Layer1 from "@/components/Layer1";
 import Layer2 from "@/components/Layer2";
 import Footer from "@/components/Footer";
 
-export default function Profile() {
+export default function Profile({cityOptions}) {
   const [getStated, setGetStated] = useState(false);
   const [firstTime, setFirstTime] = useState(false);
   const [formComplete, setFormComplete] = useState(false);
-
-  const router = useRouter();
 
   useEffect(() => {
     let cookies = parseCookies();
@@ -42,11 +40,14 @@ export default function Profile() {
     }
   }, []);
 
+  // useEffect(() => {
+    // console.log({cityOptions})
+  // }, [cityOptions])
+
   const f_complete = () => {
     setFormComplete(true);
   };
   
-
   return (
     <div>
       <Head>
@@ -66,7 +67,7 @@ export default function Profile() {
               Monopoly collection and win exciting gifts.
             </p>
           </div>
-          <Form firstTime={firstTime} f_complete={f_complete} />
+          <Form cityOptions={cityOptions} firstTime={firstTime} f_complete={f_complete} />
           {/* <small className="text-white fw_r text-center p-3">
             &copy; {new Date().getFullYear()} Oreo Pakistan Instance - All
             rights reserved
@@ -76,4 +77,28 @@ export default function Profile() {
       </main>
     </div>
   );
+}
+export async function getServerSideProps({req, res}) {
+  const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}get-cities`;
+
+  let cityOptions;
+ 
+  
+    const response = await axios.get(
+      apiUrl,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    let result = response.data;
+    // console.log(result)
+  if (result?.status === "success") {
+      cityOptions= result?.cities;
+    
+    }
+  return {
+    props: {cityOptions},
+  };
 }
