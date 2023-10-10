@@ -36,7 +36,7 @@ export default function Home() {
       <main className="container-fluid main float-center flex-column gap-4 px-3">
         <Nav />
 
-        <div className="card text-center w-100">
+        <div className="card text-center w-75">
           <div className="card-header bg-warning text-black fw_b fs-6">
             WIN THE GRAND PRIZE
           </div>
@@ -52,7 +52,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="card text-center w-100">
+        <div className="card text-center w-75">
           <div className="card-header bg-danger text-black fw_b fs-6">
             <b> A CHANCE TO WIN THE BOARD</b>
           </div>
