@@ -103,9 +103,7 @@ export default function Camera({ cookieStatus }) {
           alt="Complete Logo"
         />
         <div className="z_2 d-flex justify-content-between w-100 px-3">
-          {/* <TorchContextProvider>
-            <TorchControl />
-          </TorchContextProvider> */}
+
           <TooltipButton
             id={"tooltip-1"}
             image={UncleCookie}
