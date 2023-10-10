@@ -16,6 +16,8 @@ const Form = ({ f_complete, firstTime, cityOptions }) => {
   const [submit, setSubmit] = useState(false);
   const [emailExit, setEmailExit] = useState(false);
 
+  const [selectOpt, setSelectOpt] = useState();
+
   const [formError, setFormError] = useState();
 
   const router = useRouter();
@@ -28,7 +30,7 @@ const Form = ({ f_complete, firstTime, cityOptions }) => {
   } = useForm({
     criteriaMode: "all",
   });
-  // function getYesterdayDate() {
+
     // Get the current date
     var currentDate = new Date();
 
@@ -39,19 +41,7 @@ const Form = ({ f_complete, firstTime, cityOptions }) => {
     // Format the date as YYYY-MM-DD
     var formattedYesterdayDate = yesterdayDate.toISOString().split("T")[0];
 
-  //   return formattedYesterdayDate;
-  // }
-
-
-  // useEffect(() => {
-  //   if (router.asPath.includes("/dashboard")) {
-  //     setGetStated(true);
-
-  //     setTimeout(() => {
-  //       setGetStated(false);
-  //     }, 5000);
-  //   }
-  // }, []);
+  
 
   useEffect(() => {
     let cookies = parseCookies();
@@ -62,6 +52,7 @@ const Form = ({ f_complete, firstTime, cityOptions }) => {
       setValue("email", cookies.email || "");
       setValue("age", cookies?.age || "");
       setValue("location", cookies?.location || "");
+      setSelectOpt(cookies?.location || "");
       setValue("phone", cookies?.phone || "");
       if (cookies.email) setEmailExit(true);
       // setPhone(cookies?.phone || "");
@@ -170,8 +161,8 @@ const Form = ({ f_complete, firstTime, cityOptions }) => {
                 maxLength: 30,
               })}
             /> */}
-            <select className={`form-control ${styles.autoColor}` } {...register("location", { required: true })}>
-              <option value="" selected disabled>Select City</option>
+            <select value={selectOpt} defaultValue="def" className={`form-control ${styles.autoColor}` } {...register("location", { required: true })}>
+              <option value="def"  disabled>Select City</option>
               {
                 cityOptions?.map((item) => <option key={item?.id} value={item.id}>{ item.name}</option>
                 )

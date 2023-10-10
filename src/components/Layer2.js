@@ -6,13 +6,13 @@ import Uncle from "@/public/assets/images/almost-there/chacha.webp";
 import layer from "@/public/assets/images/layer-2.webp";
 import styles from "@/src/styles/login.module.scss";
 
-const Layer2 = ({name="",classes="",style=""}) => {
+const Layer2 = ({name="",classes="",style=0,ScrollDown}) => {
   return (
     
     <div>
        <div
         className={`${styles.main} ${classes}`}
-        style={{ backgroundImage: `url(${layer.src}) ` }}
+        style={{ backgroundImage: `url(${layer.src})`,transform: `translateY(${style})` }}
       >
         <Image
           alt="Logo"
@@ -20,7 +20,7 @@ const Layer2 = ({name="",classes="",style=""}) => {
           style={{
             width: "85%",
             objectFit: "contain",
-            margin: style || "0 0 30px",
+            margin: 0,
             paddingBlock: "40px",
             display: "block",
           }}
@@ -37,7 +37,7 @@ const Layer2 = ({name="",classes="",style=""}) => {
             display: "block",
           }}
         />
-        <div className='mb-3 bg-danger row p-2 text-center w-100'>
+        <div className='mb-5 bg-danger row p-2 text-center w-100'>
           <p className='col-10 col-sm-7 text-white  m-auto fs-6 mb-2 p-0'>
             We just need a couple of details about you. Build your
           </p>
@@ -62,6 +62,13 @@ const Layer2 = ({name="",classes="",style=""}) => {
             </h5>
 
           </div>
+        </div>
+        <div className="containerArrows" onClick={()=>ScrollDown()}>  
+          {/* <div className="arrows"> </div>
+           */}
+           <div class="chevron"></div>
+  <div class="chevron"></div>
+  <div class="chevron"></div>
         </div>
       </div>
     </div>

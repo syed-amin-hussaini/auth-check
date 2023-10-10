@@ -23,6 +23,7 @@ export default function Profile({cityOptions}) {
   const [getStated, setGetStated] = useState(false);
   const [firstTime, setFirstTime] = useState(false);
   const [formComplete, setFormComplete] = useState(false);
+  const [down, setDown] = useState("-0vh");
 
   useEffect(() => {
     let cookies = parseCookies();
@@ -47,6 +48,10 @@ export default function Profile({cityOptions}) {
   const f_complete = () => {
     setFormComplete(true);
   };
+  const ScrollDown = () => {
+    console.log("asdasd")
+    setDown("-100vh")
+  };
   
   return (
     <div>
@@ -57,10 +62,10 @@ export default function Profile({cityOptions}) {
       <Nav />
       <main className={`${styles.main} `}> 
         {/* {getStated && <Image src={Almost_1} fill alt="Almost There Banner" />} */}
-        {getStated && <Layer2 name="#APlayfulTwist" style="0" classes="position-absolute start-0 top-0" />}
+        <Layer2 ScrollDown={ScrollDown} classes={styles.layer_1} name="#APlayfulTwist" style={down}  />
         {formComplete && <Layer1 name="#APlayfulTwist" style="0" classes="position-absolute start-0 top-0" /> }
 
-        <div className="d-flex justify-content-center flex-column align-items-center h-100">
+        <div id="fromScroll" style={{height:"100vh",overflowY:"auto",transform: `translateY(${down})`}}  className={`d-flex justify-content-center flex-column align-items-center ${styles.layer_1}`}>
           <div className="row m-0">
             <p className="col-11 col-sm-8 fw_r m-auto mb-0 px-1 py-3 text-center text-white">
               We just need a couple of details about you. Build your Oreo x
