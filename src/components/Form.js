@@ -140,6 +140,7 @@ const Form = ({ f_complete, firstTime, cityOptions }) => {
             <br />
             <input
               type="date"
+              placeholder="yyyy-mm-dd"
               className={styles.autoColor}
               max={formattedYesterdayDate}
               {...register("age", {
