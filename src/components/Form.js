@@ -137,6 +137,7 @@ const Form = ({ f_complete, firstTime, cityOptions }) => {
           </div>
           <div className={`col-md-12`}>
             <label htmlFor="age">Age</label>
+            
             <br />
             <input
               type="date"
