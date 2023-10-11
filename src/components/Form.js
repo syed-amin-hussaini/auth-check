@@ -166,7 +166,7 @@ const Form = ({ f_complete, firstTime }) => {
             <label htmlFor="phone">Number</label>
             <br />
             <input
-              type="number"
+              type="tel"
               className={styles.autoColor}
               maxLength={64}
               {...register("phone", {
