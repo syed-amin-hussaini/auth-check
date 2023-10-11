@@ -38,6 +38,8 @@ export default function Profile() {
         setTimeout(() => {
           setGetStated(false);
         }, 5000);
+      } else {
+        router.push('/dashboard')
       }
     }
   }, []);
