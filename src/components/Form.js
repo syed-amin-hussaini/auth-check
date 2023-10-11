@@ -59,7 +59,7 @@ const Form = ({ f_complete, firstTime }) => {
     setSubmit(true);
     const formData = new FormData();
     formData.append("name", data.name);
-    formData.append("email", userData.email);
+    formData.append("email", userData.email || data.email);
     formData.append("age", data.age);
     formData.append("location", data.location);
     formData.append("phone", data.phone);
