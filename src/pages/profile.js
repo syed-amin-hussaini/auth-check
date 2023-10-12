@@ -51,10 +51,6 @@ export default function Profile() {
 
   return (
     <div>
-      <Head>
-        <title>Oreo | Profile</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
       <Nav />
       <main className={`${styles.main} `}> 
         {/* {getStated && <Image src={Almost_1} fill alt="Almost There Banner" />} */}
