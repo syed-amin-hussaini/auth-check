@@ -10,9 +10,9 @@ export default function Home() {
   useEffect(() => {
     const handleBeforeUnload = (event) => {
       // Prompt the user before they leave the page
-      // const confirmationMessage = "Are you sure you want to leave?";
-      // event.returnValue = confirmationMessage;
-      return event.returnValue  = "";
+      const confirmationMessage = "Are you sure you want to leave?";
+      event.returnValue = confirmationMessage;
+      // return event.returnValue  = "";
     };
 
     window.addEventListener('beforeunload', handleBeforeUnload);
