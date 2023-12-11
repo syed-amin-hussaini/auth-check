@@ -7,19 +7,28 @@ import { parseCookies, setCookie, destroyCookie } from 'nookies'
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Alert from "./Alert";
+import LoginPop from "./LoginPop";
 
 
-const Nav = ({ user }) => {
-  const [email, setEmail] = useState()
+const Nav = () => {
+  const [userLogin, setUserLogin] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
     const fetchCookie = () => {
       const cookies = parseCookies();
       if (cookies?.user) {
-        let emailStatus = JSON?.parse(cookies?.user)?.email_status;
-        setEmail(emailStatus)
+        console.log("cookies?.user in")
+        setUserLogin(false)
+        // let emailStatus = JSON?.parse(cookies?.user)?.email_status;
+        // let username = JSON?.parse(cookies?.user)?.name;
+        // console.log({username})
+        // setEmail(emailStatus)
+        // setName(username)
+
       } else { 
+        setUserLogin(true)
+        console.log("cookies?.user out" )
         if (router.pathname !== "/privacypolicy" && router.pathname !== "/termsofuse" && router.pathname !== "/faq" && router.pathname !== "/torchControl") {
           router.push("/");
         }
@@ -29,20 +38,20 @@ const Nav = ({ user }) => {
     fetchCookie();
   }, [])
   const { data: session } = useSession();
-
+  console.log({session})
+  
   const handleSignout = (e) => {
     e.preventDefault();
     destroyCookie(null, "user", { path: "/" });
     signOut();
   };
-
   // if (!session) return;
   return (
     <>
       {/* <nav className="navbar navbar-expand-lg bg-light">
         <div className="container-fluid">
           <div className="d-flex justify-content-between w-100">
-            <Link className="navbar-brand" href="/dashboard">
+            <Link className="navbar-brand" href="/index">
               <Image src={logo} alt="logo" width={30} height={30} />
             </Link>
             <button
@@ -74,9 +83,9 @@ const Nav = ({ user }) => {
                     height={35}
                   />
 
-                  <h5 className="me-3 ms-1 mt-1 text-danger text-capitalize">
-                    {session?.user?.name || "guest"}
-                  </h5>
+                  {/* <h5 className="me-3 ms-1 mt-1 text-danger text-capitalize">
+                    {name|| "guest"}
+                  </h5> * /}
                 </a>
                 <ul className="dropdown-menu">
                   <li>
@@ -100,9 +109,9 @@ const Nav = ({ user }) => {
         </div>
       </nav> */}
       
-      {
+      {/* {
         email == "false" && router.pathname == "/dashboard"  && <Alert customClass={"text-center p-1"} action="warning" msg={[{ msg: "Please verify your email" }]} />
-      }
+      } */}
         {/* <div className="alert alert-warning d-flex align-items-center alert-active" role="alert">
           <Alert action="alert-warning" msg={["Please verify our email"]} />
           
@@ -119,6 +128,7 @@ const Nav = ({ user }) => {
           </svg>
           <div className="ms-2"> Verify email</div>
         </div> */}
+       {userLogin && <LoginPop userStatus={userLogin} />}
     </>
   );
 };

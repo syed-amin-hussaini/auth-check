@@ -64,9 +64,9 @@ const Layer2 = ({ name = "", classes = "", style = 0, ScrollDown }) => {
           </div>
         </div>
         <div className="containerArrows" onClick={() => ScrollDown()}>
-          <div class="chevron"></div>
-          <div class="chevron"></div>
-          <div class="chevron"></div>
+          <div className="chevron"></div>
+          <div className="chevron"></div>
+          <div className="chevron"></div>
           
         </div>
       </div>

@@ -19,7 +19,7 @@ import Layer1 from "@/components/Layer1";
 import Layer2 from "@/components/Layer2";
 import Footer from "@/components/Footer";
 
-export default function Profile({cityOptions}) {
+export default function Profile({ cityOptions }) {
   const [getStated, setGetStated] = useState(false);
   const [firstTime, setFirstTime] = useState(false);
   const [formComplete, setFormComplete] = useState(false);
@@ -42,17 +42,16 @@ export default function Profile({cityOptions}) {
   }, []);
 
   // useEffect(() => {
-    // console.log({cityOptions})
+  // console.log({cityOptions})
   // }, [cityOptions])
 
   const f_complete = () => {
     setFormComplete(true);
   };
   const ScrollDown = () => {
-    console.log("asdasd")
-    setDown("-100vh")
+    setDown("-100vh");
   };
-  
+
   return (
     <div>
       <Head>
@@ -60,19 +59,43 @@ export default function Profile({cityOptions}) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Nav />
-      <main className={`${styles.main} `}> 
+      <main className={`${styles.main} `}>
         {/* {getStated && <Image src={Almost_1} fill alt="Almost There Banner" />} */}
-        <Layer2 ScrollDown={ScrollDown} classes={styles.layer_1} name="#APlayfulTwist" style={down}  />
-        {formComplete && <Layer1 name="#APlayfulTwist" style="0" classes="position-absolute start-0 top-0" /> }
+        <Layer2
+          ScrollDown={ScrollDown}
+          classes={styles.layer_1}
+          name="#APlayfulTwist"
+          style={down}
+        />
+        {formComplete && (
+          <Layer1
+            name="#APlayfulTwist"
+            style="0"
+            classes="position-absolute start-0 top-0"
+          />
+        )}
 
-        <div id="fromScroll" style={{height:"100vh",overflowY:"auto",transform: `translateY(${down})`}}  className={`d-flex justify-content-center flex-column align-items-center ${styles.layer_1}`}>
+        <div
+          id="fromScroll"
+          style={{
+            height: "100vh",
+            overflowY: "auto",
+            transform: `translateY(${down})`,
+          }}
+          className={`d-flex justify-content-center flex-column align-items-center ${styles.layer_1}`}
+        >
           <div className="row m-0">
             <p className="col-11 col-sm-8 fw_r m-auto mb-0 px-1 py-3 text-center text-white">
               We just need a couple of details about you. Build your Oreo x
               Monopoly collection and win exciting gifts.
             </p>
           </div>
-          <Form cityOptions={cityOptions} firstTime={firstTime} f_complete={f_complete} />
+          <Form
+            cityOptions={cityOptions}
+            firstTime={firstTime}
+            f_complete={f_complete}
+            styling={styles.second}
+          />
           {/* <small className="text-white fw_r text-center p-3">
             &copy; {new Date().getFullYear()} Oreo Pakistan Instance - All
             rights reserved
@@ -83,27 +106,27 @@ export default function Profile({cityOptions}) {
     </div>
   );
 }
-export async function getServerSideProps({req, res}) {
-  const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}get-cities`;
 
-  let cityOptions;
- 
-  
-    const response = await axios.get(
-      apiUrl,
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    let result = response.data;
-    // console.log(result)
-  if (result?.status === "success") {
-      cityOptions= result?.cities;
-    
-    }
-  return {
-    props: {cityOptions},
-  };
-}
+// export async function getServerSideProps({req, res}) {
+//   const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}get-cities`;
+
+//   let cityOptions;
+
+//     const response = await axios.get(
+//       apiUrl,
+//       {
+//         headers: {
+//           "Content-Type": "application/json",
+//         },
+//       }
+//     );
+//     let result = response.data;
+//     // console.log(result)
+//   if (result?.status === "success") {
+//       cityOptions= result?.cities;
+
+//     }
+//   return {
+//     props: {cityOptions},
+//   };
+// }

@@ -7,6 +7,11 @@
 :root {
   --bs-warning: #eca941;
   --bs-danger: #ff0000;
+  --bs-blue: #00286d;
+  --bs-primary: #024299;
+}
+.text-primary {
+  color: var(--bs-primary) !important;
 }
 .bg-warning {
   background-color: var(--bs-warning) !important;

@@ -12,49 +12,63 @@
     transform: translateY(0vh);
     transition: 700ms all;
   }
-  .form {
+}
+.form {
+  &.second {
     background-color: #fff;
     max-width: 300px;
-    width: 90%;
-    padding: 20px;
-    border-radius: 8px;
     box-shadow: 0px 0px 10px 1px #00000085;
-    .row {
-      gap: 15px;
+    width: 90%;
+    border-radius: 8px;
+    padding: 20px;
+  }
+  .row {
+    @media (min-width: 280px) and (max-height: 750px) {
+      height: calc(100vh - 280px);
+      overflow-y: auto;
     }
-    label {
-      font-weight: bolder;
-      margin-bottom: 5px;
-      color: var(--bs-black);
+    gap: 15px;
+  }
+  label {
+    font-weight: bolder;
+    margin-bottom: 5px;
+    color: var(--bs-black);
+  }
+  input:not(input[type="checkbox"]),
+  .submitBtn {
+    padding: 7px 10px;
+    border-radius: 8px;
+    width: 100%;
+    height: auto;
+  }
+  p {
+    color: var(--bs-danger);
+    margin-bottom: 0;
+    margin-top: 5px;
+    font-size: 12px;
+  }
+  select,
+  input:not(input[type="checkbox"]) {
+    border: 0px;
+    box-shadow: 0px 0px 1px 1px #7f8fbb;
+    // border: 1px solid #7F8FBB;
+    outline: none;
+    &:focus {
+      box-shadow: 0px 0px 1px 2px #7f8fbb;
+      // border: 2px solid #7d9df6;
     }
-    input,
-    .submitBtn {
-      padding: 7px 10px;
-      border-radius: 8px;
-      width: 100%;
-      height: auto;
-    }
-    p {
-      color: var(--bs-danger);
-      margin-bottom: 0;
-      margin-top: 5px;
-      font-size: 12px;
-    }
-    select,
-    input {
-      border: 0px;
-      box-shadow: 0px 0px 1px 1px #7f8fbb;
-      // border: 1px solid #7F8FBB;
-      outline: none;
-      &:focus {
-        box-shadow: 0px 0px 1px 2px #7f8fbb;
-        // border: 2px solid #7d9df6;
-      }
-    }
-    .submitBtn {
-      background-color: #000;
-      color: #fff;
-      font-size: 18px;
-    }
+  }
+  .form_check_label {
+    width: calc(100% - 30px);
+    display: inline-block;
+    font-size: 0.7rem;
+    // color:#000000bf
+    color: var(--bs-primary);
+  }
+  .submitBtn {
+    border: 0;
+    background-color: var(--bs-danger);
+    color: var(--bs-white);
+    font-size: 18px;
   }
 }
