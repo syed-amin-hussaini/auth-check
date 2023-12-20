@@ -29,7 +29,7 @@ const Nav = () => {
       } else { 
         setUserLogin(true)
         console.log("cookies?.user out" )
-        if (router.pathname !== "/privacypolicy" && router.pathname !== "/termsofuse" && router.pathname !== "/faq" && router.pathname !== "/torchControl") {
+        if (router.pathname !== "/board" &&  router.pathname !== "/privacypolicy" && router.pathname !== "/termsofuse" && router.pathname !== "/faq" && router.pathname !== "/torchControl") {
           router.push("/");
         }
         // if (router.basePath) 
