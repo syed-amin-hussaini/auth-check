@@ -38,7 +38,7 @@ export default function TorchControl({ CheckTorch }) {
     isTorchSupported
       ?
       <span
-      className={`p-3 bg-black rounded-circle ${styles.btnContainer}`}
+      className={`p-3 bg-black rounded-circle btnContainer`}
       onClick={() => handleOn()}
       // style={!isTorchSupported && { visibility:"hidden",pointerEvents:"none"}}
     >

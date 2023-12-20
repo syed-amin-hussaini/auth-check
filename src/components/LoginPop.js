@@ -51,14 +51,14 @@ const LoginPop = ({ userStatus= false }) => {
 const All = ({ setModalState }) => {
   return (
     <>
-      <Image
+      {/* <Image
         onClick={() => setModalState("all")}
         className={styles.cancel}
         src={Cancel}
         width={35}
         height={35}
         alt="Cookie image"
-      />
+      /> */}
       <h3 className="text-center text-black mb-4">
         Welcome to <br /> Oreo x Monopoly
       </h3>

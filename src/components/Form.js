@@ -148,13 +148,23 @@ const Form = ({
           }, 3000);
         }
       }
+      
     } catch (error) {
+      
+      if (error?.response.status === 404) {
+        setFormError(true)
+        // alert(error?.response.status)
+        setTimeout(() => {
+          setFormError(false)
+          
+        }, 3000);
+      }
       if (error?.response?.status === 401) {
         destroyCookie(null, "user", { path: "/" });
         signOut();
       }
 
-      setFormError(error?.response?.data?.error);
+      // setFormError(error?.response.status);
       // const FormData = error?.response?.data;
       // const statusText = error?.response?.statusText;
       // console.log(statusText);
@@ -166,7 +176,7 @@ const Form = ({
   // };
   return (
     <>
-      {formError && <Alert action="danger" msg={formError} hide={true} />}
+      {formError &&<Alert action="danger" customClass="position-fixed start-50 translate-middle-x" msg={[{"msg":"Player name and number do not match."}]} />}
       <form
         onSubmit={handleSubmit(onSubmit)}
         className={`${styles.form} ${styling}`}
@@ -177,6 +187,7 @@ const Form = ({
             <br />
             <input
               type="text"
+              placeholder="Full name"
               className={styles.autoColor}
               maxLength={99}
               {...register("name", {
@@ -199,11 +210,12 @@ const Form = ({
               type="tel"
               className={styles.autoColor}
               maxLength={64}
-              placeholder="03XXXXXXXXX"
+              placeholder="03xx1234567"
               {...register("phone", {
                 required: "Required",
                 pattern: {
-                  value: /^(\+92|0092|0)[1-9]\d{9}$/g,
+                  // value: /^(\+92|0092|0)[1-9]\d{9}$/g,
+                  value: /^0[1-9]\d{9}$/,
                   message: "Invalid format",
                 },
               })}

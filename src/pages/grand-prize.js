@@ -5,7 +5,8 @@ import axios from "axios";
 import React from "react";
 import nookies, { setCookie } from "nookies";
 
-const GrandPrize = ({result}) => {
+const GrandPrize = ({ result }) => {
+  console.log({result})
   return (
     <>
       <Nav />
@@ -26,7 +27,7 @@ export async function getServerSideProps({ req, res }) {
   let userId = parseInt(user?.id);
   let userAuth = revertToken(user?.auth);
   const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}cookie-status?user_id=${userId}`;
-
+  
   // const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}cookie-status?user_id=4`;
   let result;
   try {
@@ -36,7 +37,6 @@ export async function getServerSideProps({ req, res }) {
         Authorization: `Bearer ${userAuth}`,
       },
     });
-    console.log( result?.data );
     result = result?.data ?? "";
   } catch (error) {
     console.log("error?.response");
@@ -46,16 +46,15 @@ export async function getServerSideProps({ req, res }) {
       return {
         redirect: {
           permanent: false,
-          destination: "/"
-        }
+          destination: "/",
+        },
       };
     }
   }
+  console.log({result})
 
-  // console.log("Cookie Check");
-  // console.log({ result });
   return {
-    props: {result},
+    props: { result },
   };
 }
 

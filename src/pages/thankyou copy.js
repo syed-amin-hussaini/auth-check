@@ -43,7 +43,7 @@ const Thankyou = ({ content, image, index = 0, handleBack = "" }) => {
         <div className={`d-flex justify-content-between align-items-center w-100 px-3 ${styles.logoContainer}`}>
           <span
             onClick={() => handleBack()}
-            className={`bg-white rounded-circle btnContainer`}
+            className={`bg-white rounded-circle ${styles.btnContainer}`}
           >
             {/* <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -73,7 +73,7 @@ const Thankyou = ({ content, image, index = 0, handleBack = "" }) => {
           />
           <span
             // onClick={}
-            className={`bg-white rounded-circle opacity-0 btnContainer`}
+            className={`bg-white rounded-circle opacity-0 ${styles.btnContainer}`}
           >
             {/* <svg
               xmlns="http://www.w3.org/2000/svg"

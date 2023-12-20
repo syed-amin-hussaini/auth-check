@@ -8,6 +8,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import Alert from "./Alert";
 import LoginPop from "./LoginPop";
+import Modal from "./Modal";
 
 
 const Nav = () => {
@@ -18,7 +19,6 @@ const Nav = () => {
     const fetchCookie = () => {
       const cookies = parseCookies();
       if (cookies?.user) {
-        console.log("cookies?.user in")
         setUserLogin(false)
         // let emailStatus = JSON?.parse(cookies?.user)?.email_status;
         // let username = JSON?.parse(cookies?.user)?.name;
@@ -129,6 +129,7 @@ const Nav = () => {
           <div className="ms-2"> Verify email</div>
         </div> */}
        {userLogin && <LoginPop userStatus={userLogin} />}
+       {/* {<Modal userStatus={!userLogin} />} */}
     </>
   );
 };

@@ -5,10 +5,11 @@
 }
 
 :root {
-  --bs-warning: #eca941;
+  --bs-warning: #fba618;
   --bs-danger: #ff0000;
   --bs-blue: #00286d;
   --bs-primary: #024299;
+  --bs-success: #01a601;
 }
 .text-primary {
   color: var(--bs-primary) !important;
@@ -19,11 +20,15 @@
 .bg-danger {
   background-color: var(--bs-danger) !important;
 }
+.bg-success {
+  background-color: var(--bs-success) !important;
+}
 .card {
   border-radius: 14px;
   // overflow: hidden;
   .card-header {
     border-radius: 12px 12px 0 0;
+    padding-block: 10px;
   }
 }
 .card .card-header,
@@ -69,6 +74,9 @@ html {
 }
 .z_2 {
   z-index: 2;
+}
+.z_1 {
+  z-index: 1;
 }
 
 .main {
@@ -244,4 +252,48 @@ $base: 0.6rem;
   opacity: 0;
   transform: translateY($base * 8) scale(0.5);
  }
+}
+
+
+// Tooltip
+.tooltip-box {
+  position: absolute;
+  height: 100vh;
+  top: 0;
+  display: block;
+  width: 100%;
+  left: 0;
+  z-index: 999;
+  // pointer-events: none;
+  &:empty {
+    // background-color: rgba(255, 166, 0, 0.273);
+    pointer-events: none;
+  }
+  &:not(:empty) {
+    background-color: rgb(0 0 0 / 73%);
+    #tooltip-2,
+    #tooltip-1 {
+      visibility: visible;
+      pointer-events: unset;
+    }
+  }
+  #tooltip-2,
+  #tooltip-1 {
+    position: absolute;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%,-50%) !important;
+    .react-tooltip-arrow{
+      display: none;
+    }
+  }
+}
+.btnContainer {
+  width: 55px;
+  height: 55px;
+  cursor: pointer;
+  // padding: 10px;
+  &:hover {
+    box-shadow: 0px 5px 20px 1px rgba(28, 12, 12, 0.51);
+  }
 }

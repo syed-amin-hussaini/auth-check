@@ -1,4 +1,4 @@
-import { cookieDataServer, revertToken } from "@/components/GenerateToken";
+import { cookieDataServer, revertToken,generateToken } from "@/components/GenerateToken";
 import axios from "axios";
 import nookies, { setCookie } from "nookies";
 
@@ -27,7 +27,7 @@ export default async function handler(req, res) {
       nookies.destroy({ res }, "user", { path: "/" });
 
       // nookies.set({ res }, 'user', `{\"id\":\"${req?.query?.login ? responseVal?.data.id : cookies.id}\",\"auth\":\"${req?.query?.login ? responseVal?.token : cookies?.auth}\",\"profile_status\":\"complete\", \"name\":\"${name}\",\"email\":\"${email?? ''}\",\"email_status\":\"${email_status ?? ''}\", \"age\":\"${age}\", \"phone\":\"${phone}\", \"gender\":\"${gender}\"}`, {
-      nookies.set({ res }, 'user', `{\"id\":\"${responseVal?.data?.data?.id}\",\"auth\":\"${responseVal?.data?.token}\",\"profile_status\":\"complete\", \"name\":\"${name}\",\"email\":\"${email?? ''}\",\"email_status\":\"${email_status ?? ''}\", \"age\":\"${age}\", \"phone\":\"${phone}\", \"gender\":\"${gender}\"}`, {
+      nookies.set({ res }, 'user', `{\"id\":\"${responseVal?.data?.data?.id}\",\"auth\":\"${req?.query?.login ? generateToken(responseVal?.data?.token) : `${cookies?.auth}`}\",\"profile_status\":\"complete\", \"name\":\"${name}\",\"email\":\"${email?? ''}\",\"email_status\":\"${email_status ?? ''}\", \"age\":\"${age}\", \"phone\":\"${phone}\", \"gender\":\"${gender}\"}`, {
         maxAge: 31536000, // 1 year
         path: '/',    // Cookie path
       });

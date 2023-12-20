@@ -1,5 +1,23 @@
-import axios from "axios";
+import axios from 'axios';
 
+const fetchData = async (url, data, token, method) => {
+  // console.log({url, data, token, method})
+  try {
+    const response = await axios({
+      method,
+      url,
+      data,
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: token ? `Bearer ${token}` : '',
+      },
+    });
+    console.log(response.data)
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
 let controller = new AbortController();
 
 const axiosCall = async (
@@ -52,4 +70,4 @@ const restartCall = (url = "", body = "", token = "", method = "post", abort = t
   return axiosCall(url,body,token,method,abort);
 };
 
-export { axiosCall, abortRequest, restartCall };
+export { axiosCall, abortRequest, restartCall,fetchData };

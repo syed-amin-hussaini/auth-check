@@ -8,17 +8,22 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
   .collection_cookie {
+    border: 3px solid var(--bs-white);
     display: flex;
     flex-wrap: wrap;
-    gap: 30px;
+    column-gap: 35px;
     justify-content: center;
     margin-bottom: 40px;
-    width: 90% !important;
+    padding: 20px;
+    border-radius: 20px;
+    row-gap: 28px;
+    // width: 90% !important;
     div {
       width: 27%;
-      @media (min-width:568px) {
-        width: 21%;
+      @media (min-width: 568px) {
+        width: 26%;
       }
       height: auto;
       .status_icon {
@@ -39,5 +44,73 @@
         }
       }
     }
+  }
+  .btnContainer {
+    width: 55px;
+    height: 55px;
+    cursor: pointer;
+    // padding: 10px;
+    &:hover {
+      box-shadow: 0px 5px 20px 1px rgba(28, 12, 12, 0.51);
+    }
+  }
+  .logo {
+    margin-block: 20px;
+    width: 200px;
+    height: auto;
+  }
+  .uncleHalf {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-70%);
+  }
+  .open {
+    transform: scale(1);
+    animation: pulse1 2s infinite;
+    &:after {
+      opacity: .75; 
+      animation: pulse 4s cubic-bezier(0.55, 0.055, 0.675, 0.19) infinite;
+      content: "";
+      background-image: url("/assets/images/camera/plus-icon.png");
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-repeat: no-repeat;
+      z-index: 1;
+      background-size: 60px;
+      background-position: center;
+    }
+  }
+}
+@keyframes pulse1 {
+  0% {
+    transform: scale(0.95);
+  }
+  
+  70% {
+    transform: scale(1);
+  }
+  
+  100% {
+    transform: scale(0.95);
+  }
+}
+@keyframes pulse {
+  0% {
+    transform: scale(0.75);
+    opacity: 0;
+  }
+  
+  70% {
+    transform: scale(.75);
+    opacity: .75;
+  }
+  
+  100% {
+    opacity: 0;
+    transform: scale(0.75);
   }
 }
